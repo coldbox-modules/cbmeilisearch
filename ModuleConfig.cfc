@@ -6,17 +6,17 @@
 component {
 
 	// Module Properties
-	this.title 				= "@MODULE_NAME@";
+	this.title 				= "cbMeilisearch";
 	this.author 			= "Ortus Solutions";
 	this.webURL 			= "https://www.ortussolutions.com";
-	this.description 		= "@MODULE_DESCRIPTION@";
+	this.description 		= "An API wrapper for Meilisearch written in CFML for the ColdBox platform";
 	this.version 			= "@build.version@+@build.number@";
 
 	// Model Namespace
-	this.modelNamespace		= "@MODULE_SLUG@";
+	this.modelNamespace		= "cbmeilisearch";
 
 	// CF Mapping
-	this.cfmapping			= "@MODULE_SLUG@";
+	this.cfmapping			= "cbmeilisearch";
 
 	// Dependencies
 	this.dependencies 		= [];

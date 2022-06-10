@@ -7,7 +7,7 @@ notifications:
 env:
   # Fill out these global variables for build process
   global:
-    - MODULE_ID=@MODULE_NAME@
+    - MODULE_ID=cbMeilisearch
   matrix:
     - ENGINE=lucee@5
     - ENGINE=adobe@2016
