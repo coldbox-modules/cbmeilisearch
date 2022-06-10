@@ -1,6 +1,6 @@
 # Ortus ColdBox Module Template
 
-This template can be used to create Ortus based ColdBox Modules.  To use, just click the `Use this Template` button in the github repository: https://github.com/coldbox-modules/module-template and run the setup task from where you cloned it.
+This template can be used to create Ortus based ColdBox Modules.  To use, just click the `Use this Template` button in the github repository: https://github.com/michaelborn/module-template and run the setup task from where you cloned it.
 
 ```bash
 box task run taskFile=build/setupTemplate

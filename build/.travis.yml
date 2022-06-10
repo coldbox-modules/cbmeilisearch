@@ -105,7 +105,7 @@ deploy:
     # Destination
     bucket: "downloads.ortussolutions.com"
     local-dir: $TRAVIS_BUILD_DIR/.artifacts/$MODULE_ID
-    upload-dir: ortussolutions/coldbox-modules/$MODULE_ID
+    upload-dir: ortussolutions/michaelborn/$MODULE_ID
     acl: public_read
 
   # API Docs Deployment
@@ -121,7 +121,7 @@ deploy:
     secret_access_key: $AWS_ACCESS_SECRET
     bucket: "apidocs.ortussolutions.com"
     local-dir: $TRAVIS_BUILD_DIR/.tmp/apidocs
-    upload-dir: coldbox-modules/$MODULE_ID/$TARGET_VERSION
+    upload-dir: michaelborn/$MODULE_ID/$TARGET_VERSION
     acl: public_read
 
   # Github Release only on Master
