@@ -11,8 +11,8 @@
         "testbox":"*"
     },
     "installPaths":{
-        "coldbox":"coldbox",
-        "testbox":"testbox"
+        "coldbox":"coldbox/",
+        "testbox":"testbox/"
     },
     "testbox":{
         "runner":"http://localhost:60277/tests/runner.cfm"

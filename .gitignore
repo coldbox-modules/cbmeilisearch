@@ -1,6 +1,7 @@
 # Artifacts and temp folders
 .artifacts/**
 .tmp/**
+meili_data
 
 # Engine + Secrets
 .env

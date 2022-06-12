@@ -26,7 +26,10 @@ component {
 	 */
 	function configure(){
 		settings = {
-
+			MEILISEARCH_HOST     : getSystemSetting( "MEILISEARCH_HOST", "http://127.0.0.1" ),
+			MEILISEARCH_PORT     : getSystemSetting( "MEILISEARCH_PORT", "7700" ),
+			// Preferably overriden via a .env file or environment variable
+			MEILISEARCH_MASTER_KEY : getSystemSetting( "MEILISEARCH_MASTER_KEY", "change_me" )
 		};
 	}
 
@@ -34,7 +37,15 @@ component {
 	 * Fired when the module is registered and activated.
 	 */
 	function onLoad(){
-
+		// Binder Mappings
+		binder
+			.map( "MeilisearchClient@cbmeilisearch" )
+			.to( "hyper.models.HyperBuilder" )
+			.asSingleton()
+			.initWith(
+				baseURL : "#settings.MEILISEARCH_HOST#:#settings.MEILISEARCH_PORT#",
+				headers : { "Authorization" : "Bearer #settings.MEILISEARCH_MASTER_KEY#" }
+			);
 	}
 
 	/**

@@ -26,6 +26,8 @@ docker run -it --rm \
 
 ## Usage
 
+This library follows the [Meilisearch API reference](https://docs.meilisearch.com/reference/api/overview.html#api-reference) as closely as possible.
+
 ## The Good News
 
 > For all have sinned, and come short of the glory of God ([Romans 3:23](https://www.kingjamesbibleonline.org/Romans-3-23/))
