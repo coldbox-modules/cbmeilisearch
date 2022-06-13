@@ -43,7 +43,7 @@ jobs:
 
       - name: Setup Meilisearch
         run: |
-          docker run -it --rm  -p 7700:7700 -e MEILI_MASTER_KEY='$MASTER_KEY' -v $(pwd)/meili_data:/meili_data getmeili/meilisearch
+          docker run --rm  -p 7700:7700 -e MEILI_MASTER_KEY='$MASTER_KEY' -v $(pwd)/meili_data:/meili_data getmeili/meilisearch
           meilisearch --env="development"
 
       - name: Cache CommandBox Dependencies
