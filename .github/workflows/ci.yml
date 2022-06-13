@@ -15,7 +15,7 @@ jobs:
   # Tests First baby! We fail, no build :(
   #############################################
   tests:
-    uses: ./.github/workflows/tests.yml
+    uses: ./.github/workflows/tests.yml@development
     secrets:
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
