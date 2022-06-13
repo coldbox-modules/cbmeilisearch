@@ -6,6 +6,7 @@ on:
     secrets:
       SLACK_WEBHOOK_URL:
         required: true
+  workflow_dispatch:
 
 jobs:
   tests:
