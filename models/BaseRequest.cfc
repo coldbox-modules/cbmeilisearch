@@ -19,7 +19,7 @@ component accessors="true" {
 	 * @keep Array of key names to keep.
 	 * @discard Array of key names to discard.
 	 */
-	package struct function buildArgs( required struct args, array keep, array discard ){
+	package struct function buildArgs( required struct args, array keep, array discard = [] ){
 		return arguments.args.filter( ( key, value ) => {
 			return discard.contains( key ) ? false : keep.contains( key ) && !isNull( value );
 		} );
