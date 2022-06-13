@@ -8,12 +8,13 @@ on:
         required: true
   workflow_dispatch:
 
+env:
+  MASTER_KEY: bifur_bofur_bombur
+
 jobs:
   tests:
     name: Tests
     runs-on: ubuntu-20.04
-    env:
-      MASTER_KEY: bifur_bofur_bombur
     strategy:
       fail-fast: false
       matrix:
@@ -41,10 +42,10 @@ jobs:
          printf "MEILISEARCH_PORT=7700\n" >> .env
          printf "MEILISEARCH_MASTER_KEY=$MASTER_KEY\n" >> .env
 
-      - name: Setup Meilisearch
-        run: |
-          docker run -it --rm  -p 7700:7700 -e MEILI_MASTER_KEY='$MASTER_KEY' -v $(pwd)/meili_data:/meili_data getmeili/meilisearch
-          meilisearch --env="development"
+      # - name: Setup Meilisearch
+      #   run: |
+      #     docker run -it --rm  -p 7700:7700 -e MEILI_MASTER_KEY='$MASTER_KEY' -v $(pwd)/meili_data:/meili_data getmeili/meilisearch
+      #     meilisearch --env="development"
 
       - name: Cache CommandBox Dependencies
         uses: actions/cache@v1
