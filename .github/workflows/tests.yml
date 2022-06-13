@@ -6,7 +6,6 @@ on:
     secrets:
       SLACK_WEBHOOK_URL:
         required: true
-  workflow_dispatch:
 
 env:
   MASTER_KEY: bifur_bofur_bombur
@@ -33,14 +32,14 @@ jobs:
         uses: Ortus-Solutions/setup-commandbox@main
 
       - name: Setup Meilisearch connection
-       working-directory: ./test-harness
-       run: |
-         # Setup .env
-         touch .env
-         # ENV
-         printf "MEILISEARCH_HOST=localhost\n" >> .env
-         printf "MEILISEARCH_PORT=7700\n" >> .env
-         printf "MEILISEARCH_MASTER_KEY=$MASTER_KEY\n" >> .env
+        working-directory: ./test-harness
+        run: |
+          # Setup .env
+          touch .env
+          # ENV
+          printf "MEILISEARCH_HOST=localhost\n" >> .env
+          printf "MEILISEARCH_PORT=7700\n" >> .env
+          printf "MEILISEARCH_MASTER_KEY=$MASTER_KEY\n" >> .env
 
       # - name: Setup Meilisearch
       #   run: |
