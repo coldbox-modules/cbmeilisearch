@@ -15,11 +15,15 @@ component accessors="true" {
 	/**
 	 * Build an argument body for a payload. Will trim null values and any keys not found in the keys array.
 	 *
-	 * @args the argument scope to trim
-	 * @keep Array of key names to keep.
+	 * @args    the argument scope to trim
+	 * @keep    Array of key names to keep.
 	 * @discard Array of key names to discard.
 	 */
-	package struct function buildArgs( required struct args, array keep, array discard = [] ){
+	package struct function buildArgs(
+		required struct args,
+		array keep,
+		array discard = []
+	){
 		return arguments.args.filter( ( key, value ) => {
 			return discard.contains( key ) ? false : keep.contains( key ) && !isNull( value );
 		} );
