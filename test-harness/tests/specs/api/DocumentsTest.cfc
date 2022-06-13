@@ -19,23 +19,23 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Do
                     attributesToRetrieve = "*"
                 );
 
-				debug( result );
+				// debug( result );
 				expect( result ).toBeArray();
 			});
 
 			it( "+addOrReplace", function() {
                 var documents = [{
-                    id : "111",
-                    title: "Star Wars: Rogue One",
-                    genre : "sci-fi"
+                    "id" : "111",
+                    "title": "Star Wars: Rogue One",
+                    "genre" : "sci-fi"
                 },{
-                    id : "217",
-                    title: "Star Trek: Beyond",
-                    genre : "sci-fi"
+                    "id" : "217",
+                    "title": "Star Trek: Beyond",
+                    "genre" : "sci-fi"
                 },{
-                    id : "3767",
-                    title: "Dark Knight",
-                    genre : "superhero"
+                    "id" : "3767",
+                    "title": "Dark Knight",
+                    "genre" : "superhero"
                 }];
 				var result = model.addOrReplace(
                     index_uid = "movies",
@@ -50,25 +50,25 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Do
 
 			it( "+addOrUpdate", function() {
                 var documents = [{
-                    id : "111",
-                    title: "Star Wars: Rogue One",
-                    genre : "sci-fi",
-                    releaseYear: "2016"
+                    "id" : "111",
+                    "title": "Star Wars: Rogue One",
+                    "genre" : "sci-fi",
+                    "releaseYear": "2016"
                 },{
-                    id : "217",
-                    title: "Star Trek: Beyond",
-                    genre : "sci-fi",
-                    releaseYear: "2016"
+                    "id" : "217",
+                    "title": "Star Trek: Beyond",
+                    "genre" : "sci-fi",
+                    "releaseYear": "2016"
                 },{
-                    id : "3767",
-                    title: "Dark Knight",
-                    genre : "superhero",
-                    releaseYear: "2008"
+                    "id" : "3767",
+                    "title": "Dark Knight",
+                    "genre" : "superhero",
+                    "releaseYear": "2008"
                 },{
-                    id : "22",
-                    title: "Groundhog Day",
-                    genre : "comedy",
-                    releaseYear: "1993"
+                    "id" : "22",
+                    "title": "Groundhog Day",
+                    "genre" : "comedy",
+                    "releaseYear": "1993"
                 }];
 				var result = model.addOrUpdate(
                     index_uid = "movies",
@@ -83,7 +83,7 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Do
 
 			it( "+get", function() {
 				var result = model.get( "movies", "111" );
-				debug( result );
+				// debug( result );
 				expect( result ).toBeStruct();
 			});
 
@@ -114,7 +114,7 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Do
 
 				// debug( result );
 				expect( result ).toBeStruct().toHaveKey( "type" );
-                expect( result.type ).toBe( "documentDeletion" );
+                expect( result.type ).toBe( "clearAll" );
 			});
 		});
 

@@ -21,7 +21,12 @@ component accessors="true" extends="../BaseRequest" {
 	 * 
 	 * @link https://docs.meilisearch.com/reference/api/documents.html#get-documents
 	 */
-	public function list( required string index_uid ){
+	public function list( 
+		required string index_uid,
+		numeric offset,
+		numeric limit,
+		string attributesToRetrieve
+	){
 		return handleResponse(
 			MeilisearchClient
                 .setQueryParams( buildArgs( arguments, [ "offset", "limit", "attributesToRetrieve" ] ) )
@@ -91,7 +96,7 @@ component accessors="true" extends="../BaseRequest" {
 			MeilisearchClient
                 .setBody( arguments.document_ids )
                 .withHeaders( { "Content-Type" : "application/json" } )
-                .delete( "/indexes/#arguments.index_uid#/documents/#arguments.document_id#" )
+                .post( "/indexes/#arguments.index_uid#/documents/delete-batch" )
 		);
 	}
 }
