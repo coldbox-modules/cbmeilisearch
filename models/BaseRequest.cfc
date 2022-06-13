@@ -35,8 +35,8 @@ component accessors="true" {
 			var message = parseErrorMessage( response );
 			throw(
 				type         = "cbdo.ResponseErrorException",
-				message      = "Error from Meilisearch",
-				detail       = serializeJSON( { "status" : response.getStatusCode(), "error" : message } ),
+				message      = "Error from Meilisearch: #response.getStatusCode()# #response.getStatusText()# - #message#",
+				detail       = serializeJSON( response.getMemento() ),
 				extendedInfo = response.getData()
 			);
 		} else {
