@@ -36,7 +36,12 @@ component accessors="true" extends="BaseRequest" {
 	){
 		return handleResponse(
 			MeilisearchClient
-				.setBody( arguments )
+				.setBody( {
+					"actions"    : arguments.actions,
+					"description": arguments.description,
+					"indexes"    : arguments.indexes,
+					"expiresAt"  : arguments.expiresAt
+				} )
 				.withHeaders( { "Content-Type" : "application/json" } )
 				.post( "/keys" )
 		);

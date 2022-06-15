@@ -31,7 +31,10 @@ component accessors="true" extends="BaseRequest" {
 	public function create( required string uid, required string primaryKey ){
 		return handleResponse(
 			MeilisearchClient
-				.setBody( arguments )
+				.setBody( {
+					"uid"       : arguments.uid,
+					"primaryKey": arguments.primaryKey
+				} )
 				.withHeaders( { "Content-Type" : "application/json" } )
 				.post( "/indexes" )
 		);
@@ -45,7 +48,9 @@ component accessors="true" extends="BaseRequest" {
 	public function update( required string uid, required string primaryKey ){
 		return handleResponse(
 			MeilisearchClient
-				.setBody( buildArgs( arguments, [ "primaryKey" ] ) )
+				.setBody( {
+					"primaryKey": arguments.primaryKey
+				} )
 				.withHeaders( { "Content-Type" : "application/json" } )
 				.put( "/indexes/#arguments.uid#" )
 		);

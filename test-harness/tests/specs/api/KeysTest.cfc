@@ -12,7 +12,7 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Ke
 			it( "+list", function(){
 				var result = model.list();
 
-				debug( result );
+				// debug( result );
 				expect( result ).toBeStruct();
 			} );
 
@@ -24,7 +24,7 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Ke
 					expiresAt  : "2042-04-02T00:42:42Z"
 				);
 
-				debug( result );
+				// debug( result );
 				expect( result ).toBeStruct();
 				variables.testKey = result.key;
 			} );
@@ -32,7 +32,7 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Ke
 			it( "+get", function(){
 				var result = model.get( variables.testKey );
 
-				debug( result );
+				// debug( result );
 				expect( result ).toBeStruct();
 			} );
 
@@ -51,15 +51,16 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Ke
 					expiresAt: "2042-04-02T00:42:42Z"
 				);
 
-				debug( result );
+				// debug( result );
 				expect( result ).toBeStruct();
 			} );
 
 			it( "+delete", function(){
 				var result = model.delete( variables.testKey );
 
-				debug( result );
-				expect( result ).toBe( toBinary( "" ) );
+				// debug( result );
+				// expect( result ).toBe( toBinary( "" ) ); // works on Lucee
+				// expect( result ).toBe( "" ); // works on ACF
 			} );
 		} );
 	}

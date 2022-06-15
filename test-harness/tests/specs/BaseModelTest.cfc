@@ -25,7 +25,10 @@ component extends="coldbox.system.testing.BaseModelTest" {
 
 	function ensureTestIndexExists(){
 		var indexes = getWirebox().getInstance( "cbmeilisearch.models.api.Indexes" );
-		var result = indexes.create( uid: "products", primaryKey: "id" );
+		var result = indexes.create(
+			uid = "products",
+			primaryKey = "id"
+		);
 
 		expect( result )
 			.toBeStruct()
