@@ -3,7 +3,7 @@
  *
  * @link https://docs.meilisearch.com/reference/api/keys.html
  */
-component accessors="true" extends="../BaseRequest" {
+component accessors="true" extends="BaseRequest" {
 
 	/**
 	 * Get all keys

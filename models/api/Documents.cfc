@@ -3,7 +3,7 @@
  *
  * @link https://docs.meilisearch.com/reference/api/documents.html
  */
-component accessors="true" extends="../BaseRequest" {
+component accessors="true" extends="BaseRequest" {
 
 	/**
 	 * Get one document

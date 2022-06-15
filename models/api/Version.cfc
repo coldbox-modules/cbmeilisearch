@@ -3,7 +3,7 @@
  *
  * @link https://docs.meilisearch.com/reference/api/version.html
  */
-component accessors="true" extends="../BaseRequest" {
+component accessors="true" extends="BaseRequest" {
 
 	/**
 	 * Get Meilisearch Version
