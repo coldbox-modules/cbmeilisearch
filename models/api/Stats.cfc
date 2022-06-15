@@ -10,8 +10,8 @@ component accessors="true" extends="BaseRequest" {
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/stats.html#get-stats-of-an-index
 	 */
-	public function getIndexStats( required string index_uid ){
-		return handleResponse( MeilisearchClient.get( "/indexes/#arguments.index_uid#/stats" ) );
+	public function getIndexStats( required string index ){
+		return handleResponse( MeilisearchClient.get( "/indexes/#arguments.index#/stats" ) );
 	}
 
 	/**

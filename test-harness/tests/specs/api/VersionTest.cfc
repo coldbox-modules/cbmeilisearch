@@ -10,7 +10,7 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Ve
 			it( "+getVersion", function(){
 				var result = model.getVersion();
 
-				debug( result );
+				// debug( result );
 				expect( result ).toBeStruct();
 			} );
 		} );

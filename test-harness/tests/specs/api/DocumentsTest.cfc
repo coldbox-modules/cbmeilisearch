@@ -5,13 +5,13 @@
  */
 component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Documents" {
 
-	variables.index_uid = "";
+	variables.index = "";
 
 	function run(){
 		describe( "Documents Suite", function(){
 			it( "+list", function(){
 				var result = model.list(
-					index_uid            = "products",
+					index            = "products",
 					offset               = 0,
 					limit                = 5,
 					attributesToRetrieve = "*"
@@ -40,7 +40,7 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Do
 					}
 				];
 				var result = model.addOrReplace(
-					index_uid  = "products",
+					index  = "products",
 					documents  = documents,
 					primaryKey = "id"
 				);
@@ -78,7 +78,7 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Do
 					}
 				];
 				var result = model.addOrUpdate(
-					index_uid  = "products",
+					index  = "products",
 					documents  = documents,
 					primaryKey = "id"
 				);
@@ -95,7 +95,7 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Do
 			} );
 
 			it( "+deleteOne", function(){
-				var result = model.deleteOne( index_uid = "products", document_id = "111" );
+				var result = model.deleteOne( index = "products", document_id = "111" );
 
 				// debug( result );
 				expect( result ).toBeStruct().toHaveKey( "type" );
@@ -103,7 +103,7 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Do
 			} );
 
 			it( "+deleteBatch", function(){
-				var result = model.deleteBatch( index_uid = "products", document_ids = [ "3767", "22" ] );
+				var result = model.deleteBatch( index = "products", document_ids = [ "3767", "22" ] );
 
 				// debug( result );
 				expect( result ).toBeStruct().toHaveKey( "type" );

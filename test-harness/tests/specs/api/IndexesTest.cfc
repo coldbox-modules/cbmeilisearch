@@ -5,7 +5,7 @@
  */
 component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Indexes" {
 
-	variables.index_uid = "";
+	variables.index = "";
 
 	function run(){
 		describe( "Indexes Suite", function(){
@@ -17,7 +17,7 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.In
 
 			it( "+create", function(){
 				var result = model.create( uid: "movies", primaryKey: "id" );
-				debug( result );
+				// debug( result );
 
 				expect( result )
 					.toBeStruct()
@@ -43,13 +43,13 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.In
 
 			it( "+get", function(){
 				var result = model.get( "movies" );
-				debug( result );
+				// debug( result );
 				expect( result ).toBeStruct();
 			} );
 
 			it( "+update", function(){
 				var result = model.update( uid: "movies", primaryKey: "movieID" );
-				debug( result );
+				// debug( result );
 
 				expect( result )
 					.toBeStruct()
@@ -61,7 +61,7 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.In
 
 			it( "+delete", function(){
 				var result = model.delete( "movies" );
-				debug( result );
+				// debug( result );
 
 				expect( result )
 					.toBeStruct()

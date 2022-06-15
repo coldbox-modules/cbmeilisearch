@@ -10,8 +10,8 @@ component accessors="true" extends="BaseRequest" {
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/documents.html#get-one-document
 	 */
-	public function get( required string index_uid, required string document_id ){
-		return handleResponse( MeilisearchClient.get( "/indexes/#arguments.index_uid#/documents/#document_id#" ) );
+	public function get( required string index, required string document_id ){
+		return handleResponse( MeilisearchClient.get( "/indexes/#arguments.index#/documents/#document_id#" ) );
 	}
 
 	/**
@@ -20,7 +20,7 @@ component accessors="true" extends="BaseRequest" {
 	 * @link https://docs.meilisearch.com/reference/api/documents.html#get-documents
 	 */
 	public function list(
-		required string index_uid,
+		required string index,
 		numeric offset,
 		numeric limit,
 		string attributesToRetrieve
@@ -28,7 +28,7 @@ component accessors="true" extends="BaseRequest" {
 		return handleResponse(
 			MeilisearchClient
 				.setQueryParams( buildArgs( arguments, [ "offset", "limit", "attributesToRetrieve" ] ) )
-				.get( "/indexes/#arguments.index_uid#/documents" )
+				.get( "/indexes/#arguments.index#/documents" )
 		);
 	}
 
@@ -38,7 +38,7 @@ component accessors="true" extends="BaseRequest" {
 	 * @link https://docs.meilisearch.com/reference/api/documents.html#add-or-replace-documents
 	 */
 	public function addOrReplace(
-		required string index_uid,
+		required string index,
 		required array documents,
 		string primaryKey
 	){
@@ -47,7 +47,7 @@ component accessors="true" extends="BaseRequest" {
 				.setQueryParams( buildArgs( arguments, [ "primaryKey" ] ) )
 				.setBody( arguments.documents )
 				.withHeaders( { "Content-Type" : "application/json" } )
-				.post( "/indexes/#arguments.index_uid#/documents" )
+				.post( "/indexes/#arguments.index#/documents" )
 		);
 	}
 
@@ -57,7 +57,7 @@ component accessors="true" extends="BaseRequest" {
 	 * @link https://docs.meilisearch.com/reference/api/documents.html#add-or-update-documents
 	 */
 	public function addOrUpdate(
-		required string index_uid,
+		required string index,
 		required array documents,
 		string primaryKey
 	){
@@ -66,7 +66,7 @@ component accessors="true" extends="BaseRequest" {
 				.setQueryParams( buildArgs( arguments, [ "primaryKey" ] ) )
 				.setBody( arguments.documents )
 				.withHeaders( { "Content-Type" : "application/json" } )
-				.put( "/indexes/#arguments.index_uid#/documents" )
+				.put( "/indexes/#arguments.index#/documents" )
 		);
 	}
 
@@ -75,8 +75,8 @@ component accessors="true" extends="BaseRequest" {
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/documents.html#add-or-update-documents
 	 */
-	public function deleteAll( required string index_uid ){
-		return handleResponse( MeilisearchClient.delete( "/indexes/#arguments.index_uid#/documents" ) );
+	public function deleteAll( required string index ){
+		return handleResponse( MeilisearchClient.delete( "/indexes/#arguments.index#/documents" ) );
 	}
 
 	/**
@@ -84,9 +84,9 @@ component accessors="true" extends="BaseRequest" {
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/documents.html#delete-one-document
 	 */
-	public function deleteOne( required string index_uid, required string document_id ){
+	public function deleteOne( required string index, required string document_id ){
 		return handleResponse(
-			MeilisearchClient.delete( "/indexes/#arguments.index_uid#/documents/#arguments.document_id#" )
+			MeilisearchClient.delete( "/indexes/#arguments.index#/documents/#arguments.document_id#" )
 		);
 	}
 
@@ -95,12 +95,12 @@ component accessors="true" extends="BaseRequest" {
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/documents.html#delete-documents-by-batch
 	 */
-	public function deleteBatch( required string index_uid, required array document_ids ){
+	public function deleteBatch( required string index, required array document_ids ){
 		return handleResponse(
 			MeilisearchClient
 				.setBody( arguments.document_ids )
 				.withHeaders( { "Content-Type" : "application/json" } )
-				.post( "/indexes/#arguments.index_uid#/documents/delete-batch" )
+				.post( "/indexes/#arguments.index#/documents/delete-batch" )
 		);
 	}
 
