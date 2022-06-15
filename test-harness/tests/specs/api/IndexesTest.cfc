@@ -27,10 +27,18 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.In
 				expect( result.type ).toBe( "indexCreation" );
 
 				/**
-				 * TODO: Pause the rest of the test until the asynchronous index creation has completed.
+				 * Pause the rest of the test until the asynchronous index creation has completed.
 				 *
 				 * See https://docs.meilisearch.com/reference/api/overview.html#asynchronous-operations
 				 */
+				var indexExists = false;
+				var taskID = result.uid;
+				var task = getWirebox().getInstance( "cbmeilisearch.models.api.Tasks" );
+				while( !indexExists ){
+					sleep( 500 );
+					var result = task.get( taskID );
+					indexExists = ( result.status == "succeeded" );
+				}
 			} );
 
 			it( "+get", function(){

@@ -26,14 +26,14 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Ta
 			} );
 
 			it( "+getAllByIndex", function(){
-				var result = model.getAllByIndex( "movies" );
+				var result = model.getAllByIndex( "products" );
 
 				// debug( result );
 				expect( result ).toBeStruct();
 			} );
 
 			it( "+getByIndex", function(){
-				var result = model.getByIndex( "movies", variables.testTaskUID );
+				var result = model.getByIndex( "products", variables.testTaskUID );
 
 				// debug( result );
 				expect( result ).toBeStruct();

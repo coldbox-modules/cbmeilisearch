@@ -8,7 +8,7 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.St
 	function run(){
 		describe( "Stats Suite", function(){
 			it( "+getIndexStats", function(){
-				var result = model.getIndexStats( "movies" );
+				var result = model.getIndexStats( "products" );
 
 				// debug( result );
 				expect( result ).toBeStruct();

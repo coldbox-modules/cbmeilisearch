@@ -20,7 +20,7 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Ke
 				var result = model.create(
 					description: "Add documents: Movies API key",
 					actions    : [ "documents.add" ],
-					indexes    : [ "movies" ],
+					indexes    : [ "products" ],
 					expiresAt  : "2042-04-02T00:42:42Z"
 				);
 
@@ -47,7 +47,7 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Ke
 						"indexes.delete",
 						"tasks.get"
 					],
-					indexes  : [ "movies" ],
+					indexes  : [ "products" ],
 					expiresAt: "2042-04-02T00:42:42Z"
 				);
 

@@ -11,7 +11,7 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Do
 		describe( "Documents Suite", function(){
 			it( "+list", function(){
 				var result = model.list(
-					index_uid            = "movies",
+					index_uid            = "products",
 					offset               = 0,
 					limit                = 5,
 					attributesToRetrieve = "*"
@@ -40,7 +40,7 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Do
 					}
 				];
 				var result = model.addOrReplace(
-					index_uid  = "movies",
+					index_uid  = "products",
 					documents  = documents,
 					primaryKey = "id"
 				);
@@ -78,7 +78,7 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Do
 					}
 				];
 				var result = model.addOrUpdate(
-					index_uid  = "movies",
+					index_uid  = "products",
 					documents  = documents,
 					primaryKey = "id"
 				);
@@ -89,13 +89,13 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Do
 			} );
 
 			it( "+get", function(){
-				var result = model.get( "movies", "111" );
+				var result = model.get( "products", "111" );
 				// debug( result );
 				expect( result ).toBeStruct();
 			} );
 
 			it( "+deleteOne", function(){
-				var result = model.deleteOne( index_uid = "movies", document_id = "111" );
+				var result = model.deleteOne( index_uid = "products", document_id = "111" );
 
 				// debug( result );
 				expect( result ).toBeStruct().toHaveKey( "type" );
@@ -103,7 +103,7 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Do
 			} );
 
 			it( "+deleteBatch", function(){
-				var result = model.deleteBatch( index_uid = "movies", document_ids = [ "3767", "22" ] );
+				var result = model.deleteBatch( index_uid = "products", document_ids = [ "3767", "22" ] );
 
 				// debug( result );
 				expect( result ).toBeStruct().toHaveKey( "type" );
@@ -111,7 +111,7 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Do
 			} );
 
 			it( "+deleteAll", function(){
-				var result = model.deleteAll( "movies" );
+				var result = model.deleteAll( "products" );
 
 				// debug( result );
 				expect( result ).toBeStruct().toHaveKey( "type" );
