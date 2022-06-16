@@ -28,6 +28,12 @@ docker run --detach --rm \
 
 This library follows the [Meilisearch API reference](https://docs.meilisearch.com/reference/api/overview.html#api-reference) as closely as possible.
 
+## License
+
+Apache License, Version 2.0.
+
+> The ColdBox Websites, logo and content have a separate license and they are a separate entity.
+
 ## The Good News
 
 > For all have sinned, and come short of the glory of God ([Romans 3:23](https://www.kingjamesbibleonline.org/Romans-3-23/))
@@ -38,8 +44,8 @@ This library follows the [Meilisearch API reference](https://docs.meilisearch.co
  
 ## Repository
 
-Copyright 2022 (and on) - [Michael Born](https://michaelborn.me/)
+Copyright 2022 (and on) - [Ortus Solutions](https://www.ortussolutions.com/)
 
 * [Homepage](https://github.com/michaelborn/cbMeilisearch)
 * [Issue Tracker](https://github.com/michaelborn/cbMeilisearch/issues)
-* [New BSD License](https://github.com/michaelborn/cbMeilisearch/blob/master/LICENSE)
+* [New BSD License](https://github.com/michaelborn/cbMeilisearch/blob/master/LICENSE.txt)
