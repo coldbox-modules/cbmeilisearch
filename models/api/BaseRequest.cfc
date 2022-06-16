@@ -25,7 +25,7 @@ component accessors="true" {
 		array discard = []
 	){
 		return arguments.args.filter( ( key, value ) => {
-			return discard.contains( key ) ? false : keep.contains( key ) && !isNull( value );
+			return discard.contains( key ) ? false : !isNull( value ) && ( !keep.len() || keep.contains( key ) );
 		} );
 	}
 
