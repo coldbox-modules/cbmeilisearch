@@ -6,27 +6,30 @@
 component {
 
 	// Module Properties
-	this.title 				= "@MODULE_NAME@";
-	this.author 			= "Ortus Solutions";
-	this.webURL 			= "https://www.ortussolutions.com";
-	this.description 		= "@MODULE_DESCRIPTION@";
-	this.version 			= "@build.version@+@build.number@";
+	this.title       = "cbMeilisearch";
+	this.author      = "Michael Born";
+	this.webURL      = "https://www.ortussolutions.com";
+	this.description = "An API wrapper for Meilisearch written in CFML for the ColdBox platform";
+	this.version     = "@build.version@+@build.number@";
 
 	// Model Namespace
-	this.modelNamespace		= "@MODULE_SLUG@";
+	this.modelNamespace = "cbmeilisearch";
 
 	// CF Mapping
-	this.cfmapping			= "@MODULE_SLUG@";
+	this.cfmapping = "cbmeilisearch";
 
 	// Dependencies
-	this.dependencies 		= [];
+	this.dependencies = [];
 
 	/**
 	 * Configure Module
 	 */
 	function configure(){
 		settings = {
-
+			MEILISEARCH_HOST       : getSystemSetting( "MEILISEARCH_HOST", "http://127.0.0.1" ),
+			MEILISEARCH_PORT       : getSystemSetting( "MEILISEARCH_PORT", "7700" ),
+			// Preferably overriden via a .env file or environment variable
+			MEILISEARCH_MASTER_KEY : getSystemSetting( "MEILISEARCH_MASTER_KEY", "change_me" )
 		};
 	}
 
@@ -34,14 +37,21 @@ component {
 	 * Fired when the module is registered and activated.
 	 */
 	function onLoad(){
-
+		// Binder Mappings
+		binder
+			.map( "MeilisearchClient@cbmeilisearch" )
+			.to( "hyper.models.HyperBuilder" )
+			.asSingleton()
+			.initWith(
+				baseURL: "#settings.MEILISEARCH_HOST#:#settings.MEILISEARCH_PORT#",
+				headers: { "Authorization" : "Bearer #settings.MEILISEARCH_MASTER_KEY#" }
+			);
 	}
 
 	/**
 	 * Fired when the module is unregistered and unloaded
 	 */
 	function onUnload(){
-
 	}
 
 }

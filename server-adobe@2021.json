@@ -1,19 +1,19 @@
 {
-    "name":"@MODULE_NAME@-adobe@2021",
+    "name":"cbMeilisearch-adobe@2021",
     "app":{
         "serverHomeDirectory":".engine/adobe2021",
         "cfengine":"adobe@2021"
     },
     "web":{
         "http":{
-            "port":"60299"
+            "port":"60277"
         },
         "rewrites":{
             "enable":"true"
         },
 		"webroot": "test-harness",
 		"aliases":{
-            "/moduleroot/@MODULE_NAME@":"../"
+            "/moduleroot/cbMeilisearch":"../"
         }
     },
     "jvm":{

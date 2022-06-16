@@ -39,7 +39,7 @@ component {
 		command( "tokenReplace" )
 			.params(
 				path        = "/#variables.cwd#/**",
-				token       = "@MODULE_NAME@",
+				token       = "cbMeilisearch",
 				replacement = moduleName
 			)
 			.run();
@@ -47,7 +47,7 @@ component {
 		command( "tokenReplace" )
 			.params(
 				path        = "/#variables.cwd#/**",
-				token       = "@MODULE_SLUG@",
+				token       = "cbmeilisearch",
 				replacement = moduleSlug
 			)
 			.run();
@@ -55,7 +55,7 @@ component {
 		command( "tokenReplace" )
 			.params(
 				path        = "/#variables.cwd#/**",
-				token       = "@MODULE_DESCRIPTION@",
+				token       = "An API wrapper for Meilisearch written in CFML for the ColdBox platform",
 				replacement = moduleDescription
 			)
 			.run();

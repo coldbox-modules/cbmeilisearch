@@ -1,4 +1,4 @@
-name: @MODULE_NAME@ CI
+name: cbMeilisearch CI
 
 # Only on Development we build snapshots
 on:
@@ -8,7 +8,7 @@ on:
       - master
 
 env:
-  MODULE_ID: @MODULE_SLUG@
+  MODULE_ID: cbmeilisearch
 
 jobs:
   #############################################
@@ -20,7 +20,7 @@ jobs:
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
   #############################################
-  # Build ContentBox
+  # Build
   #############################################
   build:
     name: Build & Publish
@@ -77,27 +77,27 @@ jobs:
           path: |
             .artifacts/**/*
 
-      - name: Upload Binaries to S3
-        uses: jakejarvis/s3-sync-action@master
-        with:
-          args: --acl public-read
-        env:
-          AWS_S3_BUCKET: "downloads.ortussolutions.com"
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_ACCESS_SECRET }}
-          SOURCE_DIR: ".artifacts/${{ env.MODULE_ID }}"
-          DEST_DIR: "ortussolutions/coldbox-modules/${{ env.MODULE_ID }}"
+      # - name: Upload Binaries to S3
+      #   uses: jakejarvis/s3-sync-action@master
+      #   with:
+      #     args: --acl public-read
+      #   env:
+      #     AWS_S3_BUCKET: "downloads.ortussolutions.com"
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_ACCESS_SECRET }}
+      #     SOURCE_DIR: ".artifacts/${{ env.MODULE_ID }}"
+      #     DEST_DIR: "ortussolutions/coldbox-modules/${{ env.MODULE_ID }}"
 
-      - name: Upload API Docs to S3
-        uses: jakejarvis/s3-sync-action@master
-        with:
-          args: --acl public-read
-        env:
-          AWS_S3_BUCKET: "apidocs.ortussolutions.com"
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_ACCESS_SECRET }}
-          SOURCE_DIR: ".tmp/apidocs"
-          DEST_DIR: "coldbox-modules/${{ env.MODULE_ID }}/${{ env.VERSION }}"
+      # - name: Upload API Docs to S3
+      #   uses: jakejarvis/s3-sync-action@master
+      #   with:
+      #     args: --acl public-read
+      #   env:
+      #     AWS_S3_BUCKET: "apidocs.ortussolutions.com"
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_ACCESS_SECRET }}
+      #     SOURCE_DIR: ".tmp/apidocs"
+      #     DEST_DIR: "coldbox-modules/${{ env.MODULE_ID }}/${{ env.VERSION }}"
 
       - name: Publish To ForgeBox
         run: |
@@ -109,7 +109,7 @@ jobs:
         if: ${{ always() }}
         uses: rtCamp/action-slack-notify@v2
         env:
-          SLACK_CHANNEL: coding
+          # SLACK_CHANNEL: coding
           SLACK_COLOR: ${{ job.status }} # or a specific color like 'green' or '#ff00ff'
           SLACK_ICON_EMOJI: ":bell:"
           SLACK_MESSAGE: '${{ env.MODULE_ID }} Built with ${{ job.status }}!'

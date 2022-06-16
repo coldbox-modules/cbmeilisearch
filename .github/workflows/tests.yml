@@ -7,13 +7,13 @@ on:
       SLACK_WEBHOOK_URL:
         required: true
 
+env:
+  MASTER_KEY: bifur_bofur_bombur
+
 jobs:
   tests:
     name: Tests
     runs-on: ubuntu-20.04
-    env:
-      DB_USER: root
-      DB_PASSWORD: root
     strategy:
       fail-fast: false
       matrix:
@@ -21,13 +21,6 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
-
-      # Not Needed in this module
-      #- name: Setup Database and Fixtures
-      #  run: |
-      #    sudo /etc/init.d/mysql start
-      #    mysql -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }} -e 'CREATE DATABASE coolblog;'
-      #    mysql -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }} < test-harness/tests/resources/coolblog.sql
 
       - name: Setup Java
         uses: actions/setup-java@v2
@@ -38,21 +31,19 @@ jobs:
       - name: Setup CommandBox CLI
         uses: Ortus-Solutions/setup-commandbox@main
 
-      # Not Needed in this module
-      #- name: Setup Environment For Testing Process
-      #  working-directory: ./test-harness
-      #  run: |
-      #    # Setup .env
-      #    touch .env
-      #    # ENV
-      #    printf "DB_HOST=localhost\n" >> .env
-      #    printf "DB_DATABASE=mydatabase\n" >> .env
-      #    printf "DB_DRIVER=MySQL\n" >> .env
-      #    printf "DB_USER=${{ env.DB_USER }}\n" >> .env
-      #    printf "DB_PASSWORD=${{ env.DB_PASSWORD }}\n" >> .env
-      #    printf "DB_CLASS=com.mysql.cj.jdbc.Driver\n" >> .env
-      #    printf "DB_BUNDLEVERSION=8.0.19\n" >> .env
-      #    printf "DB_BUNDLENAME=com.mysql.cj\n" >> .env
+      - name: Setup Meilisearch connection
+        working-directory: ./test-harness
+        run: |
+          # Setup .env
+          touch .env
+          # ENV
+          printf "MEILISEARCH_HOST=localhost\n" >> .env
+          printf "MEILISEARCH_PORT=7700\n" >> .env
+          printf "MEILISEARCH_MASTER_KEY=$MASTER_KEY\n" >> .env
+
+      - name: Setup Meilisearch
+        run: |
+          docker run --detach --rm  -p 7700:7700 -e MEILI_MASTER_KEY="$MASTER_KEY" -v $(pwd)/meili_data:/meili_data getmeili/meilisearch meilisearch --env="development"
 
       - name: Cache CommandBox Dependencies
         uses: actions/cache@v1
@@ -75,7 +66,7 @@ jobs:
           if [[ "${{ matrix.cfengine }}" == "adobe@2021" ]] ; then
             box run-script install:2021
           fi
-          curl http://127.0.0.1:60299
+          curl http://127.0.0.1:60277
 
       - name: Run Tests
         run: |

@@ -1,23 +1,23 @@
 {
-    "name":"@MODULE_NAME@-lucee@5",
+    "name":"cbMeilisearch-lucee@5",
     "app":{
         "serverHomeDirectory":".engine/lucee5",
         "cfengine":"lucee@5"
     },
     "web":{
         "http":{
-            "port":"60299"
+            "port":"60277"
         },
         "rewrites":{
             "enable":"true"
         },
-		"webroot": "test-harness",
-		"aliases":{
-            "/moduleroot/@MODULE_NAME@":"../"
+        "webroot":"test-harness",
+        "aliases":{
+            "/moduleroot/cbMeilisearch":"../"
         }
     },
     "openBrowser":"false",
-	"cfconfig": {
-		"file" : ".cfconfig.json"
-	}
+    "cfconfig":{
+        "file":".cfconfig.json"
+    }
 }

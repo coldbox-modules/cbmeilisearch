@@ -7,7 +7,7 @@ notifications:
 env:
   # Fill out these global variables for build process
   global:
-    - MODULE_ID=@MODULE_NAME@
+    - MODULE_ID=cbMeilisearch
   matrix:
     - ENGINE=lucee@5
     - ENGINE=adobe@2016
@@ -71,9 +71,9 @@ script:
   # run our matrix server
   - box server start serverConfigFile="server-${ENGINE}.json"
   # Startup the app
-  #- curl http://localhost:60299
+  #- curl http://localhost:60277
   # Debugging of tests
-  #- curl http://localhost:60299/tests/runner.cfm?reporter=json -o testresults.json && cat testresults.json
+  #- curl http://localhost:60277/tests/runner.cfm?reporter=json -o testresults.json && cat testresults.json
   # move back to build dir to build it
   - cd $TRAVIS_BUILD_DIR
   # Build Project
@@ -105,7 +105,7 @@ deploy:
     # Destination
     bucket: "downloads.ortussolutions.com"
     local-dir: $TRAVIS_BUILD_DIR/.artifacts/$MODULE_ID
-    upload-dir: ortussolutions/coldbox-modules/$MODULE_ID
+    upload-dir: ortussolutions/michaelborn/$MODULE_ID
     acl: public_read
 
   # API Docs Deployment
@@ -121,7 +121,7 @@ deploy:
     secret_access_key: $AWS_ACCESS_SECRET
     bucket: "apidocs.ortussolutions.com"
     local-dir: $TRAVIS_BUILD_DIR/.tmp/apidocs
-    upload-dir: coldbox-modules/$MODULE_ID/$TARGET_VERSION
+    upload-dir: michaelborn/$MODULE_ID/$TARGET_VERSION
     acl: public_read
 
   # Github Release only on Master
