@@ -11,14 +11,15 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Do
 		describe( "Documents Suite", function(){
 			it( "+list", function(){
 				var result = model.list(
-					index            = "products",
-					offset               = 0,
-					limit                = 5,
-					attributesToRetrieve = "*"
+					index  = "products",
+					offset = 0,
+					limit  = 5,
+					fields = "*"
 				);
 
 				// debug( result );
-				expect( result ).toBeArray();
+				expect( result ).toBeStruct().toHaveKey( "results" );
+				expect( result.results ).toBeArray();
 			} );
 
 			it( "+addOrReplace", function(){
@@ -47,7 +48,7 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Do
 
 				// debug( result );
 				expect( result ).toBeStruct().toHaveKey( "type" );
-				expect( result.type ).toBe( "documentAddition" );
+				expect( result.type ).toBe( "documentAdditionOrUpdate" );
 			} );
 
 			it( "+addOrUpdate", function(){
@@ -85,7 +86,7 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Do
 
 				// debug( result );
 				expect( result ).toBeStruct().toHaveKey( "type" );
-				expect( result.type ).toBe( "documentPartial" );
+				expect( result.type ).toBe( "documentAdditionOrUpdate" );
 			} );
 
 			it( "+get", function(){
@@ -115,7 +116,7 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Do
 
 				// debug( result );
 				expect( result ).toBeStruct().toHaveKey( "type" );
-				expect( result.type ).toBe( "clearAll" );
+				expect( result.type ).toBe( "documentDeletion" );
 			} );
 		} );
 	}
