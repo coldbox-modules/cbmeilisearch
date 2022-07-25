@@ -12,11 +12,12 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.In
 			it( "+list", function(){
 				var result = model.list();
 				debug( result );
-				expect( result ).toBeArray();
+				expect( result ).toBeStruct().toHaveKey( "results" );
+				expect( result.results ).toBeArray();
 			} );
 
 			it( "+create", function(){
-				var result = model.create( uid: "movies", primaryKey: "id" );
+				var result = model.create( "movies", "id" );
 				// debug( result );
 
 				expect( result )
@@ -32,7 +33,7 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.In
 				 * See https://docs.meilisearch.com/reference/api/overview.html#asynchronous-operations
 				 */
 				var indexExists = false;
-				var taskID = result.uid;
+				var taskID = result.taskUid;
 				var task = getWirebox().getInstance( "cbmeilisearch.models.api.Tasks" );
 				while( !indexExists ){
 					sleep( 500 );
@@ -48,7 +49,7 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.In
 			} );
 
 			it( "+update", function(){
-				var result = model.update( uid: "movies", primaryKey: "movieID" );
+				var result = model.update( "movies", "movieID" );
 				// debug( result );
 
 				expect( result )

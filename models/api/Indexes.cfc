@@ -52,7 +52,7 @@ component accessors="true" extends="BaseRequest" {
 					"primaryKey": arguments.primaryKey
 				} )
 				.asJson()
-				.put( "/indexes/#arguments.uid#" )
+				.patch( "/indexes/#arguments.uid#" )
 		);
 	}
 
