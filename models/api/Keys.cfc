@@ -42,7 +42,7 @@ component accessors="true" extends="BaseRequest" {
 					"indexes"    : arguments.indexes,
 					"expiresAt"  : arguments.expiresAt
 				} )
-				.withHeaders( { "Content-Type" : "application/json" } )
+				.asJson()
 				.post( "/keys" )
 		);
 	}
@@ -62,7 +62,7 @@ component accessors="true" extends="BaseRequest" {
 		return handleResponse(
 			MeilisearchClient
 				.setBody( buildArgs( args = arguments, discard = [ "key" ] ) )
-				.withHeaders( { "Content-Type" : "application/json" } )
+				.asJson()
 				.patch( "/keys/#arguments.key#" )
 		);
 	}

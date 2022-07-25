@@ -22,7 +22,7 @@ component accessors="true" extends="BaseRequest" {
 	public function updateSettings( required string uid, required struct settings ){
 		return handleResponse(
             MeilisearchClient
-                .withHeaders( { "Content-Type" : "application/json" } )
+                .asJson()
                 .setBody( arguments.settings )
                 .patch( "/indexes/#arguments.uid#/settings" )
         );
@@ -54,7 +54,7 @@ component accessors="true" extends="BaseRequest" {
 	public function updateDisplayedAttributes( required string uid, required array attributes ){
 		return handleResponse(
 			MeilisearchClient
-				.withHeaders( { "Content-Type" : "application/json" } )
+				.asJson()
 				.setBody( arguments.attributes )
 				.put( "/indexes/#arguments.uid#/settings/displayed-attributes" )
 		);
@@ -89,7 +89,7 @@ component accessors="true" extends="BaseRequest" {
 		return handleResponse(
 			MeilisearchClient
 				.setBody( '"#arguments.attribute#"' )
-				.withHeaders( { "Content-Type" : "application/json" } )
+				.asJson()
 				.put( "/indexes/#arguments.uid#/settings/distinct-attribute" )
 		);
 	}
@@ -123,7 +123,7 @@ component accessors="true" extends="BaseRequest" {
 		return handleResponse(
 			MeilisearchClient
 				.setBody( arguments.settings )
-				.withHeaders( { "Content-Type" : "application/json" } )
+				.asJson()
 				.patch( "/indexes/#arguments.uid#/settings/faceting" )
 		);
 	}
@@ -157,7 +157,7 @@ component accessors="true" extends="BaseRequest" {
 		return handleResponse(
 			MeilisearchClient
 				.setBody( arguments.attributes )
-				.withHeaders( { "Content-Type" : "application/json" } )
+				.asJson()
 				.put( "/indexes/#arguments.uid#/settings/filterable-attributes" )
 		);
 	}
@@ -191,7 +191,7 @@ component accessors="true" extends="BaseRequest" {
 		return handleResponse(
 			MeilisearchClient
 				.setBody( arguments.settings )
-				.withHeaders( { "Content-Type" : "application/json" } )
+				.asJson()
 				.patch( "/indexes/#arguments.uid#/settings/pagination" )
 		);
 	}
@@ -225,7 +225,7 @@ component accessors="true" extends="BaseRequest" {
 		return handleResponse(
 			MeilisearchClient
 				.setBody( arguments.rules )
-				.withHeaders( { "Content-Type" : "application/json" } )
+				.asJson()
 				.put( "/indexes/#arguments.uid#/settings/ranking-rules" )
 		);
 	}
@@ -259,7 +259,7 @@ component accessors="true" extends="BaseRequest" {
 		return handleResponse(
 			MeilisearchClient
 				.setBody( arguments.attributes )
-				.withHeaders( { "Content-Type" : "application/json" } )
+				.asJson()
 				.put( "/indexes/#arguments.uid#/settings/searchable-attributes" )
 		);
 	}
@@ -293,7 +293,7 @@ component accessors="true" extends="BaseRequest" {
 		return handleResponse(
 			MeilisearchClient
 				.setBody( arguments.attributes )
-				.withHeaders( { "Content-Type" : "application/json" } )
+				.asJson()
 				.put( "/indexes/#arguments.uid#/settings/sortable-attributes" )
 		);
 	}
@@ -327,7 +327,7 @@ component accessors="true" extends="BaseRequest" {
 		return handleResponse(
 			MeilisearchClient
 				.setBody( arguments.stopWords )
-				.withHeaders( { "Content-Type" : "application/json" } )
+				.asJson()
 				.put( "/indexes/#arguments.uid#/settings/stop-words" )
 		);
 	}
@@ -361,7 +361,7 @@ component accessors="true" extends="BaseRequest" {
 		return handleResponse(
 			MeilisearchClient
 				.setBody( arguments.synonyms )
-				.withHeaders( { "Content-Type" : "application/json" } )
+				.asJson()
 				.put( "/indexes/#arguments.uid#/settings/synonyms" )
 		);
 	}
@@ -395,7 +395,7 @@ component accessors="true" extends="BaseRequest" {
 		return handleResponse(
 			MeilisearchClient
 				.setBody( arguments.settings )
-				.withHeaders( { "Content-Type" : "application/json" } )
+				.asJson()
 				.patch( "/indexes/#arguments.uid#/settings/typo-tolerance" )
 		);
 	}

@@ -35,7 +35,7 @@ component accessors="true" extends="BaseRequest" {
 					"uid"       : arguments.uid,
 					"primaryKey": arguments.primaryKey
 				} )
-				.withHeaders( { "Content-Type" : "application/json" } )
+				.asJson()
 				.post( "/indexes" )
 		);
 	}
@@ -51,7 +51,7 @@ component accessors="true" extends="BaseRequest" {
 				.setBody( {
 					"primaryKey": arguments.primaryKey
 				} )
-				.withHeaders( { "Content-Type" : "application/json" } )
+				.asJson()
 				.put( "/indexes/#arguments.uid#" )
 		);
 	}

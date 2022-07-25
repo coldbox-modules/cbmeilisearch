@@ -46,7 +46,7 @@ component accessors="true" extends="BaseRequest" {
 			MeilisearchClient
 				.setQueryParams( buildArgs( arguments, [ "primaryKey" ] ) )
 				.setBody( arguments.documents )
-				.withHeaders( { "Content-Type" : "application/json" } )
+				.asJson()
 				.post( "/indexes/#arguments.index#/documents" )
 		);
 	}
@@ -65,7 +65,7 @@ component accessors="true" extends="BaseRequest" {
 			MeilisearchClient
 				.setQueryParams( buildArgs( arguments, [ "primaryKey" ] ) )
 				.setBody( arguments.documents )
-				.withHeaders( { "Content-Type" : "application/json" } )
+				.asJson()
 				.put( "/indexes/#arguments.index#/documents" )
 		);
 	}
@@ -99,7 +99,7 @@ component accessors="true" extends="BaseRequest" {
 		return handleResponse(
 			MeilisearchClient
 				.setBody( arguments.document_ids )
-				.withHeaders( { "Content-Type" : "application/json" } )
+				.asJson()
 				.post( "/indexes/#arguments.index#/documents/delete-batch" )
 		);
 	}

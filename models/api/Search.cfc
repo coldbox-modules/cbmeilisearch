@@ -30,7 +30,7 @@ component accessors="true" extends="BaseRequest" {
 		return handleResponse(
             MeilisearchClient
                 .setBody( buildArgs( args = arguments, discard = [ "index" ] ) )
-                .withHeaders( { "Content-Type" : "application/json" } )
+                .asJson()
                 .post( "/indexes/#arguments.index#/search" )
             );
 	}
