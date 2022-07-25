@@ -23,11 +23,11 @@ component accessors="true" extends="BaseRequest" {
 		required string index,
 		numeric offset,
 		numeric limit,
-		string attributesToRetrieve
+		string fields
 	){
 		return handleResponse(
 			MeilisearchClient
-				.setQueryParams( buildArgs( arguments, [ "offset", "limit", "attributesToRetrieve" ] ) )
+				.setQueryParams( buildArgs( arguments, [ "offset", "limit", "fields" ] ) )
 				.get( "/indexes/#arguments.index#/documents" )
 		);
 	}
