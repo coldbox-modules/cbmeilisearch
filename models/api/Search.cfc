@@ -16,7 +16,7 @@ component accessors="true" extends="BaseRequest" {
         numeric offset,
         numeric limit,
         any filter,
-        array facetsDistribution,
+        array facets,
         array attributesToRetrieve,
         array attributesToCrop,
         numeric cropLength,
@@ -24,7 +24,7 @@ component accessors="true" extends="BaseRequest" {
         array attributesToHighlight,
         string highlightPreTag,
         string highlightPostTag,
-        boolean matches,
+        boolean showMatchesPosition,
         any sort
     ){
 		return handleResponse(
@@ -46,7 +46,7 @@ component accessors="true" extends="BaseRequest" {
         numeric offset,
         numeric limit,
         any filter,
-        array facetsDistribution,
+        array facets,
         array attributesToRetrieve,
         array attributesToCrop,
         numeric cropLength,
@@ -54,7 +54,7 @@ component accessors="true" extends="BaseRequest" {
         array attributesToHighlight,
         string highlightPreTag,
         string highlightPostTag,
-        boolean matches,
+        boolean showMatchesPosition,
         any sort
     ){
 		return handleResponse(

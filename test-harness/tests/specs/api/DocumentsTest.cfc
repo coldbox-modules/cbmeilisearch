@@ -25,19 +25,19 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Do
 			it( "+addOrReplace", function(){
 				var documents = [
 					{
-						"id"    : "111",
-						"title" : "Star Wars: Rogue One",
-						"genre" : "sci-fi"
+						"id"      : "111",
+						"title"   : "Deluxe Silver Digital Watch",
+						"category": "watches"
 					},
 					{
-						"id"    : "217",
-						"title" : "Star Trek: Beyond",
-						"genre" : "sci-fi"
+						"id"      : "217",
+						"title"   : "Deluxe Leather Analog Watch",
+						"category": "watches"
 					},
 					{
-						"id"    : "3767",
-						"title" : "Dark Knight",
-						"genre" : "superhero"
+						"id"      : "3767",
+						"title"   : "Men's Leather Billfold",
+						"category": "wallets"
 					}
 				];
 				var result = model.addOrReplace(
@@ -54,28 +54,28 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Do
 			it( "+addOrUpdate", function(){
 				var documents = [
 					{
-						"id"          : "111",
-						"title"       : "Star Wars: Rogue One",
-						"genre"       : "sci-fi",
-						"releaseYear" : "2016"
+						"id"             : "111",
+						"title"          : "Deluxe Silver Digital Watch",
+						"category"       : "watches",
+						"manufactureYear": "2016"
 					},
 					{
-						"id"          : "217",
-						"title"       : "Star Trek: Beyond",
-						"genre"       : "sci-fi",
-						"releaseYear" : "2016"
+						"id"             : "217",
+						"title"          : "Deluxe Leather Analog Watch",
+						"category"       : "watches",
+						"manufactureYear": "2016"
 					},
 					{
-						"id"          : "3767",
-						"title"       : "Dark Knight",
-						"genre"       : "superhero",
-						"releaseYear" : "2008"
+						"id"             : "3767",
+						"title"          : "Men's Leather Billfold",
+						"category"       : "wallets",
+						"manufactureYear": "2008"
 					},
 					{
-						"id"          : "22",
-						"title"       : "Groundhog Day",
-						"genre"       : "comedy",
-						"releaseYear" : "1993"
+						"id"             : "22",
+						"title"          : "Groundhog Day",
+						"category"       : "jackets",
+						"manufactureYear": "1993"
 					}
 				];
 				var result = model.addOrUpdate(
