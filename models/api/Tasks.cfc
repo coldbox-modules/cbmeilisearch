@@ -19,7 +19,13 @@ component accessors="true" extends="BaseRequest" {
 	){
 		return handleResponse(
 			MeilisearchClient
-				.setQueryParams( buildArgs( arguments ) )
+				.setQueryParams( buildArgs( {
+					"limit"   : arguments.limit ?: javaCast( "null", 0 ),
+					"from"    : arguments.from ?: javaCast( "null", 0 ),
+					"status"  : arguments.status ?: javaCast( "null", 0 ),
+					"type"    : arguments.type ?: javaCast( "null", 0 ),
+					"indexUid": arguments.indexUid ?: javaCast( "null", 0 )
+				} ) )
 				.get( "/tasks" )
 		);
 	}

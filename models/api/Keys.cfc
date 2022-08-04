@@ -16,7 +16,10 @@ component accessors="true" extends="BaseRequest" {
 	){
 		return handleResponse(
 			MeilisearchClient
-				.setQueryParams( buildArgs( arguments ) )
+				.setQueryParams( buildArgs( {
+					"offset": arguments.offset ?: javaCast( "null", 0 ),
+					"limit" : arguments.limit ?: javaCast( "null", 0 )
+				} ) )
 				.get( "/keys" )
 		);
 	}
@@ -44,13 +47,13 @@ component accessors="true" extends="BaseRequest" {
 	){
 		return handleResponse(
 			MeilisearchClient
-				.setBody( {
-					"actions"    : arguments.actions,
-					"name"       : arguments.name,
-					"description": arguments.description,
-					"indexes"    : arguments.indexes,
-					"expiresAt"  : arguments.expiresAt
-				} )
+				.setBody( buildArgs( {
+					"actions"    : arguments.actions ?: javaCast( "null", 0 ),
+					"name"       : arguments.name ?: javaCast( "null", 0 ),
+					"description": arguments.description ?: javaCast( "null", 0 ),
+					"indexes"    : arguments.indexes ?: javaCast( "null", 0 ),
+					"expiresAt"  : arguments.expiresAt ?: javaCast( "null", 0 )
+				} ) )
 				.asJson()
 				.post( "/keys" )
 		);
@@ -68,7 +71,10 @@ component accessors="true" extends="BaseRequest" {
 	){
 		return handleResponse(
 			MeilisearchClient
-				.setBody( buildArgs( args = arguments, discard = [ "key" ] ) )
+				.setBody( {
+					"name"       : arguments.name,
+					"description": arguments.description
+				} )
 				.asJson()
 				.patch( "/keys/#arguments.key#" )
 		);

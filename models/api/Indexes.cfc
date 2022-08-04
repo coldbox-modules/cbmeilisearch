@@ -16,7 +16,10 @@ component accessors="true" extends="BaseRequest" {
 	){
 		return handleResponse(
 			MeilisearchClient
-				.setQueryParams( buildArgs( arguments ) )
+				.setQueryParams( buildArgs( {
+					"offset" : arguments.offset ?: javaCast( "null", 0 ),
+					"limit" : arguments.limit ?: javaCast( "null", 0 )
+				} ) )
 				.get( "/indexes" )
 		);
 	}
