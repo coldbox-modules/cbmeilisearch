@@ -2,6 +2,7 @@
 .artifacts/**
 .tmp/**
 meili_data
+docs/
 
 # Engine + Secrets
 .env
