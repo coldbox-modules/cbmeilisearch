@@ -17,6 +17,24 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Ta
 
 				variables.testTaskUID = result.results.first().uid;
 			} );
+			it( "+list with pagination", function(){
+				var result = model.list(
+					limit = 2,
+					from = variables.testTaskUID
+				);
+
+				// debug( result );
+				expect( result ).toBeStruct();
+			} );
+			it( "+list with filter", function(){
+				var result = model.list(
+					status = "succeeded",
+					type = "indexCreation"
+				);
+
+				// debug( result );
+				expect( result ).toBeStruct();
+			} );
 
 			it( "+get", function(){
 				var result = model.get( variables.testTaskUID );
