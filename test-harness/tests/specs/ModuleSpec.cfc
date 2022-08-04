@@ -14,7 +14,8 @@ component extends="coldbox.system.testing.BaseTestCase" appMapping="root" {
 	/*********************************** BDD SUITES ***********************************/
 
 	function run(){
-		xdescribe( "ModuleConfig", function(){} );
+		xdescribe( "ModuleConfig", function(){
+		} );
 	}
 
 }

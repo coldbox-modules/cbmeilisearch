@@ -21,7 +21,7 @@ component accessors="true" {
 	 */
 	package struct function buildArgs(
 		required struct args,
-		array keep = [],
+		array keep    = [],
 		array discard = []
 	){
 		return arguments.args.filter( ( key, value ) => {

@@ -16,10 +16,7 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Ke
 				expect( result ).toBeStruct();
 			} );
 			it( "+list with pagination", function(){
-				var result = model.list(
-					offset = 1,
-					limit = 1
-				);
+				var result = model.list( offset = 1, limit = 1 );
 
 				// debug( result );
 				expect( result ).toBeStruct();

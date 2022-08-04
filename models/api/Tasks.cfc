@@ -19,13 +19,15 @@ component accessors="true" extends="BaseRequest" {
 	){
 		return handleResponse(
 			MeilisearchClient
-				.setQueryParams( buildArgs( {
-					"limit"   : arguments.limit ?: javaCast( "null", 0 ),
-					"from"    : arguments.from ?: javaCast( "null", 0 ),
-					"status"  : arguments.status ?: javaCast( "null", 0 ),
-					"type"    : arguments.type ?: javaCast( "null", 0 ),
-					"indexUid": arguments.indexUid ?: javaCast( "null", 0 )
-				} ) )
+				.setQueryParams(
+					buildArgs( {
+						"limit"    : arguments.limit ?: javacast( "null", 0 ),
+						"from"     : arguments.from ?: javacast( "null", 0 ),
+						"status"   : arguments.status ?: javacast( "null", 0 ),
+						"type"     : arguments.type ?: javacast( "null", 0 ),
+						"indexUid" : arguments.indexUid ?: javacast( "null", 0 )
+					} )
+				)
 				.get( "/tasks" )
 		);
 	}
@@ -45,24 +47,21 @@ component accessors="true" extends="BaseRequest" {
 	 * @link https://docs.meilisearch.com/reference/api/tasks.html#get-task-by-index
 	 */
 	public function getByIndex( required string index, required string task_uid ){
-		return handleResponse(
-			MeilisearchClient.get( "/indexes/#arguments.index#/tasks/#arguments.task_uid#" )
-		);
+		return handleResponse( MeilisearchClient.get( "/indexes/#arguments.index#/tasks/#arguments.task_uid#" ) );
 	}
 
 	/**
 	 * Wait for completion of a given (asynchronous) task.
 	 *
-	 * @url https://docs.meilisearch.com/reference/api/overview.html#asynchronous-operations
-	 * 
-	 * @task_uid the unique ID of the task to wait for. 
+	 * @url          https://docs.meilisearch.com/reference/api/overview.html#asynchronous-operations
+	 * @task_uid     the unique ID of the task to wait for.
 	 * @wait_time_ms How long to wait (in milliseconds) between task polls. Defaults to 500 milliseconds.
 	 */
 	public struct function pollTaskCompletion( required string task_uid, numeric wait_time_ms = 500 ){
 		var taskComplete = false;
-		while( !taskComplete ){
+		while ( !taskComplete ) {
 			sleep( 500 );
-			var result = this.get( arguments.task_uid );
+			var result   = this.get( arguments.task_uid );
 			taskComplete = arrayContains( [ "succeeded", "failed" ], result.status );
 		}
 		return result;
@@ -71,12 +70,12 @@ component accessors="true" extends="BaseRequest" {
 
 	// /**
 	//  * Asynchronously wait for task completion... i.e. thread a callback to run on task completion.
-	//  * 
+	//  *
 	//  * TODO: implement.
 	//  *
-	//  * @task_uid 
-	//  * @callback 
-	//  * @wait_time_ms 
+	//  * @task_uid
+	//  * @callback
+	//  * @wait_time_ms
 	//  */
 	// public void function onTaskCompletion( required string task_uid, required callback, numeric wait_time_ms = 500 ){
 	// 	var taskResult = pollTaskCompletion( arguments.task_uid, arguments.wait_time_ms );

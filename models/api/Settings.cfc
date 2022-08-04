@@ -21,11 +21,11 @@ component accessors="true" extends="BaseRequest" {
 	 */
 	public function updateSettings( required string uid, required struct settings ){
 		return handleResponse(
-            MeilisearchClient
-                .asJson()
-                .setBody( arguments.settings )
-                .patch( "/indexes/#arguments.uid#/settings" )
-        );
+			MeilisearchClient
+				.asJson()
+				.setBody( arguments.settings )
+				.patch( "/indexes/#arguments.uid#/settings" )
+		);
 	}
 
 	/**
@@ -88,7 +88,7 @@ component accessors="true" extends="BaseRequest" {
 	public function updateDistinctAttribute( required string uid, required string attribute ){
 		return handleResponse(
 			MeilisearchClient
-				.setBody( '"#arguments.attribute#"' )
+				.setBody( """#arguments.attribute#""" )
 				.asJson()
 				.put( "/indexes/#arguments.uid#/settings/distinct-attribute" )
 		);
@@ -100,9 +100,7 @@ component accessors="true" extends="BaseRequest" {
 	 * @link https://docs.meilisearch.com/reference/api/distinct_attribute.html#reset-distinct-attribute
 	 */
 	public function resetDistinctAttribute( required string uid ){
-		return handleResponse(
-			MeilisearchClient.delete( "/indexes/#arguments.uid#/settings/distinct-attribute" )
-		);
+		return handleResponse( MeilisearchClient.delete( "/indexes/#arguments.uid#/settings/distinct-attribute" ) );
 	}
 
 	/**
@@ -134,9 +132,7 @@ component accessors="true" extends="BaseRequest" {
 	 * @link https://docs.meilisearch.com/reference/api/faceting.html#get-faceting-settings
 	 */
 	public function resetFacetingSettings( required string uid ){
-		return handleResponse(
-			MeilisearchClient.delete( "/indexes/#arguments.uid#/settings/faceting" )
-		);
+		return handleResponse( MeilisearchClient.delete( "/indexes/#arguments.uid#/settings/faceting" ) );
 	}
 
 	/**
@@ -202,9 +198,7 @@ component accessors="true" extends="BaseRequest" {
 	 * @link https://docs.meilisearch.com/reference/api/pagination.html#reset-pagination-settings
 	 */
 	public function resetPaginationSettings( required string uid ){
-		return handleResponse(
-			MeilisearchClient.delete( "/indexes/#arguments.uid#/settings/pagination" )
-		);
+		return handleResponse( MeilisearchClient.delete( "/indexes/#arguments.uid#/settings/pagination" ) );
 	}
 
 	/**
@@ -236,9 +230,7 @@ component accessors="true" extends="BaseRequest" {
 	 * @link https://docs.meilisearch.com/reference/api/ranking_rules.html#reset-ranking-rules
 	 */
 	public function resetRankingRules( required string uid ){
-		return handleResponse(
-			MeilisearchClient.delete( "/indexes/#arguments.uid#/settings/ranking-rules" )
-		);
+		return handleResponse( MeilisearchClient.delete( "/indexes/#arguments.uid#/settings/ranking-rules" ) );
 	}
 
 	/**
@@ -338,9 +330,7 @@ component accessors="true" extends="BaseRequest" {
 	 * @link https://docs.meilisearch.com/reference/api/stop_words.html#reset-stop-words
 	 */
 	public function resetStopWords( required string uid ){
-		return handleResponse(
-			MeilisearchClient.delete( "/indexes/#arguments.uid#/settings/stop-words" )
-		);
+		return handleResponse( MeilisearchClient.delete( "/indexes/#arguments.uid#/settings/stop-words" ) );
 	}
 
 	/**
@@ -372,9 +362,7 @@ component accessors="true" extends="BaseRequest" {
 	 * @link https://docs.meilisearch.com/reference/api/synonyms.html#reset-synonyms
 	 */
 	public function resetSynonyms( required string uid ){
-		return handleResponse(
-			MeilisearchClient.delete( "/indexes/#arguments.uid#/settings/synonyms" )
-		);
+		return handleResponse( MeilisearchClient.delete( "/indexes/#arguments.uid#/settings/synonyms" ) );
 	}
 
 	/**
@@ -406,8 +394,7 @@ component accessors="true" extends="BaseRequest" {
 	 * @link https://docs.meilisearch.com/reference/api/typo_tolerance.html#reset-typo-tolerance
 	 */
 	public function resetTypoTolerance( required string uid ){
-		return handleResponse(
-			MeilisearchClient.delete( "/indexes/#arguments.uid#/settings/typo-tolerance" )
-		);
+		return handleResponse( MeilisearchClient.delete( "/indexes/#arguments.uid#/settings/typo-tolerance" ) );
 	}
+
 }

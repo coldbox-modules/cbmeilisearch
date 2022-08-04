@@ -10,16 +10,15 @@ component accessors="true" extends="BaseRequest" {
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/indexes.html#list-all-indexes
 	 */
-	public function list(
-		numeric offset,
-		numeric limit
-	){
+	public function list( numeric offset, numeric limit ){
 		return handleResponse(
 			MeilisearchClient
-				.setQueryParams( buildArgs( {
-					"offset" : arguments.offset ?: javaCast( "null", 0 ),
-					"limit" : arguments.limit ?: javaCast( "null", 0 )
-				} ) )
+				.setQueryParams(
+					buildArgs( {
+						"offset" : arguments.offset ?: javacast( "null", 0 ),
+						"limit"  : arguments.limit ?: javacast( "null", 0 )
+					} )
+				)
 				.get( "/indexes" )
 		);
 	}
@@ -42,8 +41,8 @@ component accessors="true" extends="BaseRequest" {
 		return handleResponse(
 			MeilisearchClient
 				.setBody( {
-					"uid"       : arguments.uid,
-					"primaryKey": arguments.primaryKey
+					"uid"        : arguments.uid,
+					"primaryKey" : arguments.primaryKey
 				} )
 				.asJson()
 				.post( "/indexes" )
@@ -58,9 +57,7 @@ component accessors="true" extends="BaseRequest" {
 	public function update( required string uid, required string primaryKey ){
 		return handleResponse(
 			MeilisearchClient
-				.setBody( {
-					"primaryKey": arguments.primaryKey
-				} )
+				.setBody( { "primaryKey" : arguments.primaryKey } )
 				.asJson()
 				.patch( "/indexes/#arguments.uid#" )
 		);

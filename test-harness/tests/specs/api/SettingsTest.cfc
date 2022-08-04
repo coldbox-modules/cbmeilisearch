@@ -16,10 +16,13 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Se
 				expect( result ).toBeStruct();
 			} );
 			it( "+updateSettings", function(){
-				var result = model.updateSettings( "products", {
-                    "filterableAttributes" : [ "category" ],
-                    "stopWords" : [ "the", "and", "or", "but", "not" ]
-                } );
+				var result = model.updateSettings(
+					"products",
+					{
+						"filterableAttributes" : [ "category" ],
+						"stopWords"            : [ "the", "and", "or", "but", "not" ]
+					}
+				);
 
 				// debug( result );
 				expect( result ).toBeStruct();
@@ -71,9 +74,7 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Se
 				expect( result ).toBeStruct().toHaveKey( "maxValuesPerFacet" );
 			} );
 			it( "+updateFacetingSettings", function(){
-				var result = model.updateFacetingSettings( "products", {
-					"maxValuesPerFacet" : 20
-				} );
+				var result = model.updateFacetingSettings( "products", { "maxValuesPerFacet" : 20 } );
 				// debug( result );
 				expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
 				variables.taskIds.append( result.taskUid );
@@ -107,9 +108,7 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Se
 				expect( result ).toBeStruct().toHaveKey( "maxTotalHits" );
 			} );
 			it( "+updatePaginationSettings", function(){
-				var result = model.updatePaginationSettings( "products", {
-					"maxTotalHits" : 20
-				} );
+				var result = model.updatePaginationSettings( "products", { "maxTotalHits" : 20 } );
 				// debug( result );
 				expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
 				variables.taskIds.append( result.taskUid );
@@ -126,7 +125,8 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Se
 				expect( result ).toBeArray().toHaveLength( 6 );
 			} );
 			it( "+updateRankingRules", function(){
-				var result = model.updateRankingRules( "products",
+				var result = model.updateRankingRules(
+					"products",
 					[
 						"words",
 						"typo",
@@ -204,10 +204,13 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Se
 				expect( result ).toBeStruct().toBeEmpty();
 			} );
 			it( "+updateSynonyms", function(){
-				var result = model.updateSynonyms( "products", {
-					"Michael" : [ "strong", "intelligent" ],
-					"Born" : [ "Bourne", "Jason" ]
-				} );
+				var result = model.updateSynonyms(
+					"products",
+					{
+						"Michael" : [ "strong", "intelligent" ],
+						"Born"    : [ "Bourne", "Jason" ]
+					}
+				);
 				// debug( result );
 				expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
 				variables.taskIds.append( result.taskUid );
@@ -224,11 +227,14 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Se
 				expect( result ).toBeStruct().toHaveKey( "minWordSizeForTypos" );
 			} );
 			it( "+updateTypoTolerance", function(){
-				var result = model.updateTypoTolerance( "products", {
-					"enabled" : true,
-					"disableOnWords" : [ "lowes" ],
-					"disableOnAttributes" : [ "name" ]
-				} );
+				var result = model.updateTypoTolerance(
+					"products",
+					{
+						"enabled"             : true,
+						"disableOnWords"      : [ "lowes" ],
+						"disableOnAttributes" : [ "name" ]
+					}
+				);
 				// debug( result );
 				expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
 				variables.taskIds.append( result.taskUid );
@@ -239,14 +245,14 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Se
 				expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
 				variables.taskIds.append( result.taskUid );
 			} );
-			it( "All tasks succeeded", function() {
+			it( "All tasks succeeded", function(){
 				var tasksAPI = getWirebox().getInstance( "Tasks@cbmeilisearch" );
-				variables.taskIds.each(( taskUID ) => {
+				variables.taskIds.each( ( taskUID ) => {
 					var result = tasksAPI.get( taskUID );
 					// debug( result );
 					expect( result.status ).toBe( "succeeded" );
-				})
-			});
+				} )
+			} );
 		} );
 	}
 

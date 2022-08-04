@@ -13,4 +13,5 @@ component accessors="true" extends="BaseRequest" {
 	public function create(){
 		return handleResponse( MeilisearchClient.post( "/dumps" ) );
 	}
+
 }

@@ -10,16 +10,15 @@ component accessors="true" extends="BaseRequest" {
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/keys.html#get-all-keys
 	 */
-	public function list(
-		numeric offset,
-		numeric limit
-	){
+	public function list( numeric offset, numeric limit ){
 		return handleResponse(
 			MeilisearchClient
-				.setQueryParams( buildArgs( {
-					"offset": arguments.offset ?: javaCast( "null", 0 ),
-					"limit" : arguments.limit ?: javaCast( "null", 0 )
-				} ) )
+				.setQueryParams(
+					buildArgs( {
+						"offset" : arguments.offset ?: javacast( "null", 0 ),
+						"limit"  : arguments.limit ?: javacast( "null", 0 )
+					} )
+				)
 				.get( "/keys" )
 		);
 	}
@@ -47,13 +46,15 @@ component accessors="true" extends="BaseRequest" {
 	){
 		return handleResponse(
 			MeilisearchClient
-				.setBody( buildArgs( {
-					"actions"    : arguments.actions ?: javaCast( "null", 0 ),
-					"name"       : arguments.name ?: javaCast( "null", 0 ),
-					"description": arguments.description ?: javaCast( "null", 0 ),
-					"indexes"    : arguments.indexes ?: javaCast( "null", 0 ),
-					"expiresAt"  : arguments.expiresAt ?: javaCast( "null", 0 )
-				} ) )
+				.setBody(
+					buildArgs( {
+						"actions"     : arguments.actions ?: javacast( "null", 0 ),
+						"name"        : arguments.name ?: javacast( "null", 0 ),
+						"description" : arguments.description ?: javacast( "null", 0 ),
+						"indexes"     : arguments.indexes ?: javacast( "null", 0 ),
+						"expiresAt"   : arguments.expiresAt ?: javacast( "null", 0 )
+					} )
+				)
 				.asJson()
 				.post( "/keys" )
 		);
@@ -72,8 +73,8 @@ component accessors="true" extends="BaseRequest" {
 		return handleResponse(
 			MeilisearchClient
 				.setBody( {
-					"name"       : arguments.name,
-					"description": arguments.description
+					"name"        : arguments.name,
+					"description" : arguments.description
 				} )
 				.asJson()
 				.patch( "/keys/#arguments.key#" )

@@ -13,4 +13,5 @@ component accessors="true" extends="BaseRequest" {
 	public function getVersion(){
 		return handleResponse( MeilisearchClient.get( "/version" ) );
 	}
+
 }

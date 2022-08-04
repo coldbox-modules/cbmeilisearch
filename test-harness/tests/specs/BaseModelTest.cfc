@@ -9,7 +9,7 @@ component extends="coldbox.system.testing.BaseModelTest" {
 		// setup the model
 		super.setup();
 
-		if ( variables.keyExists( "model" ) ){
+		if ( variables.keyExists( "model" ) ) {
 			// init the model object
 			model.init();
 
@@ -26,10 +26,7 @@ component extends="coldbox.system.testing.BaseModelTest" {
 
 	function ensureTestIndexExists(){
 		var indexes = getWirebox().getInstance( "cbmeilisearch.models.api.Indexes" );
-		var result = indexes.create(
-			uid = "products",
-			primaryKey = "id"
-		);
+		var result  = indexes.create( uid = "products", primaryKey = "id" );
 
 		expect( result )
 			.toBeStruct()
@@ -42,37 +39,44 @@ component extends="coldbox.system.testing.BaseModelTest" {
 		task.pollTaskCompletion( result.taskUid, 500 );
 
 		// basic settings for index
-		var settingsUpdate = getWirebox().getInstance( "Settings@cbmeilisearch").updateSettings( "products", {
-			"filterableAttributes" : [ "category", "manufactureYear" ],
-			"sortableAttributes" : [ "category", "manufactureYear" ]
-		} );
+		var settingsUpdate = getWirebox()
+			.getInstance( "Settings@cbmeilisearch" )
+			.updateSettings(
+				"products",
+				{
+					"filterableAttributes" : [ "category", "manufactureYear" ],
+					"sortableAttributes"   : [ "category", "manufactureYear" ]
+				}
+			);
 		task.pollTaskCompletion( settingsUpdate.taskUid, 500 );
-
 	}
 
 
-    function addTestDocuments(){
-        var documents = [
-            {
-                "id"    : "99",
-                "title" : "Bulova Men's Leather Wrist Watch",
-                "cost" : "49.99"
-            },
-            {
-                "id"    : "11",
-                "title" : "Bulova Men's Stainless Steel Bracelet Watch",
-                "cost" : "49.99"
-            },
-            {
-                "id"    : "76",
-                "title" : "Timex Men's BST.47 Black Silicone Strap Watch",
-                "cost" : "96.99"
-            }
-        ];
-        var result = getWirebox().getInstance( "Documents@cbmeilisearch" ).addOrReplace(
-            index  = "products",
-            documents  = documents,
-            primaryKey = "id"
-        );
-    }
+	function addTestDocuments(){
+		var documents = [
+			{
+				"id"    : "99",
+				"title" : "Bulova Men's Leather Wrist Watch",
+				"cost"  : "49.99"
+			},
+			{
+				"id"    : "11",
+				"title" : "Bulova Men's Stainless Steel Bracelet Watch",
+				"cost"  : "49.99"
+			},
+			{
+				"id"    : "76",
+				"title" : "Timex Men's BST.47 Black Silicone Strap Watch",
+				"cost"  : "96.99"
+			}
+		];
+		var result = getWirebox()
+			.getInstance( "Documents@cbmeilisearch" )
+			.addOrReplace(
+				index      = "products",
+				documents  = documents,
+				primaryKey = "id"
+			);
+	}
+
 }
