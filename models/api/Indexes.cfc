@@ -10,8 +10,15 @@ component accessors="true" extends="BaseRequest" {
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/indexes.html#list-all-indexes
 	 */
-	public function list(){
-		return handleResponse( MeilisearchClient.get( "/indexes" ) );
+	public function list(
+		numeric offset,
+		numeric limit
+	){
+		return handleResponse(
+			MeilisearchClient
+				.setQueryParams( buildArgs( arguments ) )
+				.get( "/indexes" )
+		);
 	}
 
 	/**
