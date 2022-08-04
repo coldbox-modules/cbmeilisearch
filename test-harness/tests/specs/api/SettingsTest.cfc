@@ -5,12 +5,14 @@
  */
 component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Settings" {
 
+	variables.taskIds = [];
+
 	function run(){
 		describe( "Settings Suite", function(){
 			it( "+getSettings", function(){
 				var result = model.getSettings( "products" );
 
-				debug( result );
+				// debug( result );
 				expect( result ).toBeStruct();
 			} );
 			it( "+updateSettings", function(){
@@ -19,29 +21,33 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Se
                     "stopWords" : [ "the", "and", "or", "but", "not" ]
                 } );
 
-				debug( result );
+				// debug( result );
 				expect( result ).toBeStruct();
+				variables.taskIds.append( result.taskUid );
 			} );
 			it( "+resetSettings", function(){
 				var result = model.resetSettings( "products" );
-				debug( result );
+				// debug( result );
 				expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
+				variables.taskIds.append( result.taskUid );
 			} );
 			it( "+getDisplayedAttributes", function(){
 				var result = model.getDisplayedAttributes( "products" );
-				debug( result );
+				// debug( result );
 				expect( result ).toBeArray().toHaveLength( 1 );
 				expect( result.first() ).toBe( "*" );
 			} );
 			it( "+updateDisplayedAttributes", function(){
 				var result = model.updateDisplayedAttributes( "products", [ "title", "price" ] );
-				debug( result );
+				// debug( result );
 				expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
+				variables.taskIds.append( result.taskUid );
 			} );
 			it( "+resetDisplayedAttributes", function(){
 				var result = model.resetDisplayedAttributes( "products" );
-				debug( result );
+				// debug( result );
 				expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
+				variables.taskIds.append( result.taskUid );
 			} );
 			it( "+getDistinctAttribute", function(){
 				var result = model.getDistinctAttribute( "products" );
@@ -49,66 +55,74 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Se
 			} );
 			it( "+updateDistinctAttribute", function(){
 				var result = model.updateDistinctAttribute( "products", "id" );
-				debug( result );
+				// debug( result );
 				expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
+				variables.taskIds.append( result.taskUid );
 			} );
 			it( "+resetDistinctAttribute", function(){
 				var result = model.resetDistinctAttribute( "products" );
-				debug( result );
+				// debug( result );
 				expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
+				variables.taskIds.append( result.taskUid );
 			} );
 			it( "+getFacetingSettings", function(){
 				var result = model.getFacetingSettings( "products" );
-				debug( result );
+				// debug( result );
 				expect( result ).toBeStruct().toHaveKey( "maxValuesPerFacet" );
 			} );
 			it( "+updateFacetingSettings", function(){
 				var result = model.updateFacetingSettings( "products", {
 					"maxValuesPerFacet" : 20
 				} );
-				debug( result );
+				// debug( result );
 				expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
+				variables.taskIds.append( result.taskUid );
 			} );
 			it( "+resetFacetingSettings", function(){
 				var result = model.resetFacetingSettings( "products" );
-				debug( result );
+				// debug( result );
 				expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
+				variables.taskIds.append( result.taskUid );
 			} );
 			it( "+getFilterableAttributes", function(){
 				var result = model.getFilterableAttributes( "products" );
-				debug( result );
+				// debug( result );
 				expect( result ).toBeArray().toHaveLength( 0 );
 			} );
 			it( "+updateFilterableAttributes", function(){
 				var result = model.updateFilterableAttributes( "products", [ "price", "category" ] );
-				debug( result );
+				// debug( result );
 				expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
+				variables.taskIds.append( result.taskUid );
 			} );
 			it( "+resetFilterableAttributes", function(){
 				var result = model.resetFilterableAttributes( "products" );
-				debug( result );
+				// debug( result );
 				expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
+				variables.taskIds.append( result.taskUid );
 			} );
 			it( "+getPaginationSettings", function(){
 				var result = model.getPaginationSettings( "products" );
-				debug( result );
+				// debug( result );
 				expect( result ).toBeStruct().toHaveKey( "maxTotalHits" );
 			} );
 			it( "+updatePaginationSettings", function(){
 				var result = model.updatePaginationSettings( "products", {
 					"maxTotalHits" : 20
 				} );
-				debug( result );
+				// debug( result );
 				expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
+				variables.taskIds.append( result.taskUid );
 			} );
 			it( "+resetPaginationSettings", function(){
 				var result = model.resetPaginationSettings( "products" );
-				debug( result );
+				// debug( result );
 				expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
+				variables.taskIds.append( result.taskUid );
 			} );
 			it( "+getRankingRules", function(){
 				var result = model.getRankingRules( "products" );
-				debug( result );
+				// debug( result );
 				expect( result ).toBeArray().toHaveLength( 6 );
 			} );
 			it( "+updateRankingRules", function(){
@@ -123,63 +137,70 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Se
 						"release_date:desc"
 					]
 				);
-				debug( result );
+				// debug( result );
 				expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
+				variables.taskIds.append( result.taskUid );
 			} );
 			it( "+resetRankingRules", function(){
 				var result = model.resetRankingRules( "products" );
-				debug( result );
+				// debug( result );
 				expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
+				variables.taskIds.append( result.taskUid );
 			} );
 			it( "+getSearchableAttributes", function(){
 				var result = model.getSearchableAttributes( "products" );
-				debug( result );
+				// debug( result );
 				expect( result ).toBeArray().toHaveLength( 1 );
 				expect( result.first() ).toBe( "*" );
 			} );
 			it( "+updateSearchableAttributes", function(){
 				var result = model.updateSearchableAttributes( "products", [ "title", "price" ] );
-				debug( result );
+				// debug( result );
 				expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
 			} );
 			it( "+resetSearchableAttributes", function(){
 				var result = model.resetSearchableAttributes( "products" );
-				debug( result );
+				// debug( result );
 				expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
+				variables.taskIds.append( result.taskUid );
 			} );
 			it( "+getSortableAttributes", function(){
 				var result = model.getSortableAttributes( "products" );
-				debug( result );
+				// debug( result );
 				expect( result ).toBeArray().toHaveLength( 0 );
 			} );
 			it( "+updateSortableAttributes", function(){
 				var result = model.updateSortableAttributes( "products", [ "title", "price" ] );
-				debug( result );
+				// debug( result );
 				expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
+				variables.taskIds.append( result.taskUid );
 			} );
 			it( "+resetSortableAttributes", function(){
 				var result = model.resetSortableAttributes( "products" );
-				debug( result );
+				// debug( result );
 				expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
+				variables.taskIds.append( result.taskUid );
 			} );
 			it( "+getStopWords", function(){
 				var result = model.getStopWords( "products" );
-				debug( result );
+				// debug( result );
 				expect( result ).toBeArray().toHaveLength( 0 );
 			} );
 			it( "+updateStopWords", function(){
 				var result = model.updateStopWords( "products", [ "of", "the", "and" ] );
-				debug( result );
+				// debug( result );
 				expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
+				variables.taskIds.append( result.taskUid );
 			} );
 			it( "+resetStopWords", function(){
 				var result = model.resetStopWords( "products" );
-				debug( result );
+				// debug( result );
 				expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
+				variables.taskIds.append( result.taskUid );
 			} );
 			it( "+getSynonyms", function(){
 				var result = model.getSynonyms( "products" );
-				debug( result );
+				// debug( result );
 				expect( result ).toBeStruct().toBeEmpty();
 			} );
 			it( "+updateSynonyms", function(){
@@ -187,17 +208,19 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Se
 					"Michael" : [ "strong", "intelligent" ],
 					"Born" : [ "Bourne", "Jason" ]
 				} );
-				debug( result );
+				// debug( result );
 				expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
+				variables.taskIds.append( result.taskUid );
 			} );
 			it( "+resetSynonyms", function(){
 				var result = model.resetSynonyms( "products" );
-				debug( result );
+				// debug( result );
 				expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
+				variables.taskIds.append( result.taskUid );
 			} );
 			it( "+getTypoTolerance", function(){
 				var result = model.getTypoTolerance( "products" );
-				debug( result );
+				// debug( result );
 				expect( result ).toBeStruct().toHaveKey( "minWordSizeForTypos" );
 			} );
 			it( "+updateTypoTolerance", function(){
@@ -206,14 +229,24 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Se
 					"disableOnWords" : [ "lowes" ],
 					"disableOnAttributes" : [ "name" ]
 				} );
-				debug( result );
+				// debug( result );
 				expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
+				variables.taskIds.append( result.taskUid );
 			} );
 			it( "+resetTypoTolerance", function(){
 				var result = model.resetTypoTolerance( "products" );
-				debug( result );
+				// debug( result );
 				expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
+				variables.taskIds.append( result.taskUid );
 			} );
+			it( "All tasks succeeded", function() {
+				var tasksAPI = getWirebox().getInstance( "Tasks@cbmeilisearch" );
+				variables.taskIds.each(( taskUID ) => {
+					var result = tasksAPI.get( taskUID );
+					// debug( result );
+					expect( result.status ).toBe( "succeeded" );
+				})
+			});
 		} );
 	}
 
