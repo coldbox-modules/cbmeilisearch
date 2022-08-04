@@ -10,8 +10,15 @@ component accessors="true" extends="BaseRequest" {
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/keys.html#get-all-keys
 	 */
-	public function list(){
-		return handleResponse( MeilisearchClient.get( "/keys" ) );
+	public function list(
+		numeric offset,
+		numeric limit
+	){
+		return handleResponse(
+			MeilisearchClient
+				.setQueryParams( buildArgs( arguments ) )
+				.get( "/keys" )
+		);
 	}
 
 	/**
@@ -30,6 +37,7 @@ component accessors="true" extends="BaseRequest" {
 	 */
 	public function create(
 		required array actions,
+		string name,
 		string description,
 		array indexes,
 		string expiresAt
@@ -38,6 +46,7 @@ component accessors="true" extends="BaseRequest" {
 			MeilisearchClient
 				.setBody( {
 					"actions"    : arguments.actions,
+					"name"       : arguments.name,
 					"description": arguments.description,
 					"indexes"    : arguments.indexes,
 					"expiresAt"  : arguments.expiresAt
@@ -54,10 +63,8 @@ component accessors="true" extends="BaseRequest" {
 	 */
 	public function update(
 		required string key,
-		required array actions,
-		string description,
-		array indexes,
-		string expiresAt
+		string name,
+		string description
 	){
 		return handleResponse(
 			MeilisearchClient

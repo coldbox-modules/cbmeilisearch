@@ -15,9 +15,19 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Ke
 				// debug( result );
 				expect( result ).toBeStruct();
 			} );
+			it( "+list with pagination", function(){
+				var result = model.list(
+					offset = 1,
+					limit = 1
+				);
+
+				// debug( result );
+				expect( result ).toBeStruct();
+			} );
 
 			it( "+create", function(){
 				var result = model.create(
+					name       : "cbMeilisearch Test Key",
 					description: "Add documents: Movies API key",
 					actions    : [ "documents.add" ],
 					indexes    : [ "products" ],
@@ -26,6 +36,8 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Ke
 
 				// debug( result );
 				expect( result ).toBeStruct();
+				expect( result.name ).toBe( "cbMeilisearch Test Key" );
+				expect( result.description ).toBe( "Add documents: Movies API key" );
 				variables.testKey = result.key;
 			} );
 
@@ -37,22 +49,16 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Ke
 			} );
 
 			it( "+update", function(){
-				var result = model.create(
-					key        = variables.testKey,
-					description: "Movies API key - build and populate Movies index",
-					actions    : [
-						"documents.add",
-						"indexes.create",
-						"indexes.update",
-						"indexes.delete",
-						"tasks.get"
-					],
-					indexes  : [ "products" ],
-					expiresAt: "2042-04-02T00:42:42Z"
+				var result = model.update(
+					key        : variables.testKey,
+					name       : "Test Harness Key",
+					description: "Movies API key - build and populate Movies index"
 				);
 
 				// debug( result );
 				expect( result ).toBeStruct();
+				expect( result.name ).toBe( "Test Harness Key" );
+				expect( result.description ).toBe( "Movies API key - build and populate Movies index" );
 			} );
 
 			it( "+delete", function(){
