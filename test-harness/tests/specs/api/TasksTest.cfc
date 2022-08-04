@@ -25,19 +25,13 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Ta
 				expect( result ).toBeStruct();
 			} );
 
-			it( "+getAllByIndex", function(){
-				var result = model.getAllByIndex( "products" );
+			it( "+list with index filter", function(){
+				var result = model.list( indexUid = "products" );
 
 				// debug( result );
 				expect( result ).toBeStruct();
 			} );
 
-			it( "+getByIndex", function(){
-				var result = model.getByIndex( "products", variables.testTaskUID );
-
-				// debug( result );
-				expect( result ).toBeStruct();
-			} );
 		} );
 	}
 

@@ -10,8 +10,18 @@ component accessors="true" extends="BaseRequest" {
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/tasks.html#get-all-tasks
 	 */
-	public function list(){
-		return handleResponse( MeilisearchClient.get( "/tasks" ) );
+	public function list(
+		numeric limit,
+		string from,
+		string status,
+		string type,
+		string indexUid
+	){
+		return handleResponse(
+			MeilisearchClient
+				.setQueryParams( buildArgs( arguments ) )
+				.get( "/tasks" )
+		);
 	}
 
 	/**
@@ -21,15 +31,6 @@ component accessors="true" extends="BaseRequest" {
 	 */
 	public function get( required string task_uid ){
 		return handleResponse( MeilisearchClient.get( "/tasks/#arguments.task_uid#" ) );
-	}
-
-	/**
-	 * Get all tasks by index
-	 *
-	 * @link https://docs.meilisearch.com/reference/api/tasks.html#get-all-tasks-by-index
-	 */
-	public function getAllByIndex( required string index ){
-		return handleResponse( MeilisearchClient.get( "/indexes/#arguments.index#/tasks" ) );
 	}
 
 	/**
