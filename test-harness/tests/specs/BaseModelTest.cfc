@@ -38,10 +38,12 @@ component extends="coldbox.system.testing.BaseModelTest" {
 		expect( result.type ).toBe( "indexCreation" );
 
 		/**
-		 * TODO: Pause the rest of the test until the asynchronous index creation has completed.
+		 * Pause the rest of the test until the asynchronous index creation has completed.
 		 *
 		 * See https://docs.meilisearch.com/reference/api/overview.html#asynchronous-operations
 		 */
+		var task = getWirebox().getInstance( "cbmeilisearch.models.api.Tasks" );
+		task.pollTaskCompletion( result.taskUid, 500 );
 	}
 
 }

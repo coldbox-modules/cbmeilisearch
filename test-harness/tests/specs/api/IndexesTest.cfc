@@ -32,14 +32,8 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.In
 				 *
 				 * See https://docs.meilisearch.com/reference/api/overview.html#asynchronous-operations
 				 */
-				var indexExists = false;
-				var taskID = result.taskUid;
 				var task = getWirebox().getInstance( "cbmeilisearch.models.api.Tasks" );
-				while( !indexExists ){
-					sleep( 500 );
-					var result = task.get( taskID );
-					indexExists = ( result.status == "succeeded" );
-				}
+				task.pollTaskCompletion( result.taskUid, 500 );
 			} );
 
 			it( "+get", function(){

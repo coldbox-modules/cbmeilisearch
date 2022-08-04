@@ -43,4 +43,37 @@ component accessors="true" extends="BaseRequest" {
 		);
 	}
 
+	/**
+	 * Wait for completion of a given (asynchronous) task.
+	 *
+	 * @url https://docs.meilisearch.com/reference/api/overview.html#asynchronous-operations
+	 * 
+	 * @task_uid the unique ID of the task to wait for. 
+	 * @wait_time_ms How long to wait (in milliseconds) between task polls. Defaults to 500 milliseconds.
+	 */
+	public struct function pollTaskCompletion( required string task_uid, numeric wait_time_ms = 500 ){
+		var taskComplete = false;
+		while( !taskComplete ){
+			sleep( 500 );
+			var result = this.get( arguments.task_uid );
+			taskComplete = arrayContains( [ "succeeded", "failed" ], result.status );
+		}
+		return result;
+	}
+
+
+	// /**
+	//  * Asynchronously wait for task completion... i.e. thread a callback to run on task completion.
+	//  * 
+	//  * TODO: implement.
+	//  *
+	//  * @task_uid 
+	//  * @callback 
+	//  * @wait_time_ms 
+	//  */
+	// public void function onTaskCompletion( required string task_uid, required callback, numeric wait_time_ms = 500 ){
+	// 	var taskResult = pollTaskCompletion( arguments.task_uid, arguments.wait_time_ms );
+	// 	callback( taskResult );
+	// }
+
 }
