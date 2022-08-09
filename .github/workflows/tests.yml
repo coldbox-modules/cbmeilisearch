@@ -13,11 +13,17 @@ env:
 jobs:
   tests:
     name: Tests
+    continue-on-error: ${{ matrix.experimental }}
     runs-on: ubuntu-20.04
     strategy:
       fail-fast: false
       matrix:
         cfengine: [ "lucee@5", "adobe@2018", "adobe@2021" ]
+        meilisearch: [ "v0.28" ]
+        experimental: [ false ]
+        include:
+          - meilisearch: "v0.27"
+            experimental: true
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
@@ -43,7 +49,7 @@ jobs:
 
       - name: Setup Meilisearch
         run: |
-          docker run --detach --rm  -p 7700:7700 -e MEILI_MASTER_KEY="$MASTER_KEY" -v $(pwd)/meili_data:/meili_data getmeili/meilisearch meilisearch --env="development"
+          docker run --detach --rm  -p 7700:7700 -e MEILI_MASTER_KEY="$MASTER_KEY" -v $(pwd)/meili_data:/meili_data getmeili/meilisearch:${{ matrix.cfengine }} meilisearch --env="development"
 
       - name: Cache CommandBox Dependencies
         uses: actions/cache@v1
