@@ -11,23 +11,11 @@ component accessors="true" extends="BaseRequest" {
 	 * @link https://docs.meilisearch.com/reference/api/tasks.html#get-all-tasks
 	 */
 	public function list(
-		numeric limit,
-		string from,
-		string status,
-		string type,
-		string indexUid
+		struct params = {}
 	){
 		return handleResponse(
 			MeilisearchClient
-				.setQueryParams(
-					buildArgs( {
-						"limit"    : arguments.limit ?: javacast( "null", 0 ),
-						"from"     : arguments.from ?: javacast( "null", 0 ),
-						"status"   : arguments.status ?: javacast( "null", 0 ),
-						"type"     : arguments.type ?: javacast( "null", 0 ),
-						"indexUid" : arguments.indexUid ?: javacast( "null", 0 )
-					} )
-				)
+				.setQueryParams( arguments.params )
 				.get( "/tasks" )
 		);
 	}
@@ -39,15 +27,6 @@ component accessors="true" extends="BaseRequest" {
 	 */
 	public function get( required string task_uid ){
 		return handleResponse( MeilisearchClient.get( "/tasks/#arguments.task_uid#" ) );
-	}
-
-	/**
-	 * Get task by index
-	 *
-	 * @link https://docs.meilisearch.com/reference/api/tasks.html#get-task-by-index
-	 */
-	public function getByIndex( required string index, required string task_uid ){
-		return handleResponse( MeilisearchClient.get( "/indexes/#arguments.index#/tasks/#arguments.task_uid#" ) );
 	}
 
 	/**

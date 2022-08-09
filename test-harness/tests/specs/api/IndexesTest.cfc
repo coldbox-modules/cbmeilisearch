@@ -16,14 +16,17 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.In
 				expect( result.results ).toBeArray();
 			} );
 			it( "+list with pagination", function(){
-				var result = model.list( limit = 1, offset = 0 );
+				var result = model.list( {
+					"limit" : 1,
+					"offset": 0
+				} );
 				expect( result.results.len() ).toBe( 1 );
 				expect( result ).toBeStruct().toHaveKey( "results" );
 				expect( result.results ).toBeArray();
 			} );
 
 			it( "+create", function(){
-				var result = model.create( "movies", "id" );
+				var result = model.create( "movies", { "primaryKey" : "id" } );
 				// debug( result );
 
 				expect( result )
@@ -49,7 +52,7 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.In
 			} );
 
 			it( "+update", function(){
-				var result = model.update( "movies", "movieID" );
+				var result = model.update( "movies", { "primaryKey" : "movieID" } );
 				// debug( result );
 
 				expect( result )

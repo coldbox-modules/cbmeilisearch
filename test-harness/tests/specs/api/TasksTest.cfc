@@ -18,13 +18,19 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Ta
 				variables.testTaskUID = result.results.first().uid;
 			} );
 			it( "+list with pagination", function(){
-				var result = model.list( limit = 2, from = variables.testTaskUID );
+				var result = model.list( {
+					"limit": 2,
+					"from" : variables.testTaskUID
+				} );
 
 				// debug( result );
 				expect( result ).toBeStruct();
 			} );
 			it( "+list with filter", function(){
-				var result = model.list( status = "succeeded", type = "indexCreation" );
+				var result = model.list( {
+					"status": "succeeded",
+					"type"  : "indexCreation"
+				} );
 
 				// debug( result );
 				expect( result ).toBeStruct();
@@ -38,7 +44,9 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Ta
 			} );
 
 			it( "+list with index filter", function(){
-				var result = model.list( indexUid = "products" );
+				var result = model.list( { 
+					"indexUid" : "products"
+				} );
 
 				// debug( result );
 				expect( result ).toBeStruct();

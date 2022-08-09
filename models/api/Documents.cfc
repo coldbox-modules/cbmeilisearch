@@ -21,13 +21,11 @@ component accessors="true" extends="BaseRequest" {
 	 */
 	public function list(
 		required string index,
-		numeric offset,
-		numeric limit,
-		string fields
+		struct params = {}
 	){
 		return handleResponse(
 			MeilisearchClient
-				.setQueryParams( buildArgs( arguments, [ "offset", "limit", "fields" ] ) )
+				.setQueryParams( arguments.params )
 				.get( "/indexes/#arguments.index#/documents" )
 		);
 	}
@@ -40,11 +38,11 @@ component accessors="true" extends="BaseRequest" {
 	public function addOrReplace(
 		required string index,
 		required array documents,
-		string primaryKey
+		struct params = {}
 	){
 		return handleResponse(
 			MeilisearchClient
-				.setQueryParams( buildArgs( arguments, [ "primaryKey" ] ) )
+				.setQueryParams( arguments.params )
 				.setBody( arguments.documents )
 				.asJson()
 				.post( "/indexes/#arguments.index#/documents" )
@@ -59,11 +57,11 @@ component accessors="true" extends="BaseRequest" {
 	public function addOrUpdate(
 		required string index,
 		required array documents,
-		string primaryKey
+		struct params = {}
 	){
 		return handleResponse(
 			MeilisearchClient
-				.setQueryParams( buildArgs( arguments, [ "primaryKey" ] ) )
+				.setQueryParams( arguments.params )
 				.setBody( arguments.documents )
 				.asJson()
 				.put( "/indexes/#arguments.index#/documents" )

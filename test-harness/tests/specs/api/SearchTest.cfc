@@ -12,34 +12,36 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Se
 	function run(){
 		describe( "Search Suite", function(){
 			it( "+searchWithPost", function(){
-				var result = model.searchWithPost( index = "products", q = "Wallet" );
+				var result = model.searchWithPost( "products", { "q" : "Wallet" } );
 
-				debug( result );
+				// debug( result );
 				expect( result ).toBeStruct();
 			} );
 			it( "+searchWithGet", function(){
-				var result = model.searchWithGet( index = "products", q = "Wallet" );
+				var result = model.searchWithGet( "products", { "q" : "Wallet" } );
 
 				debug( result );
 				expect( result ).toBeStruct();
 			} );
 			it( "+searchWithPost, all arguments", function(){
 				var result = model.searchWithPost(
-					index                 = "products",
-					q                     = "Watch",
-					offset                = 1,
-					limit                 = 10,
-					filter                = "manufactureYear = 2008",
-					facets                = [ "category" ],
-					attributesToRetrieve  = [ "id", "title", "manufactureYear", "category" ],
-					attributesToCrop      = [ "title" ],
-					cropLength            = 15,
-					cropMarker            = "...",
-					attributesToHighlight = [ "title" ],
-					highlightPreTag       = "<em class=""search_highlight"">",
-					highlightPostTag      = "</em>",
-					showMatchesPosition   = true,
-					sort                  = [ "manufactureYear:asc" ]
+					"products",
+					{
+						"q"                     : "Watch",
+						"offset"                : 1,
+						"limit"                 : 10,
+						"filter"                : "manufactureYear = 2008",
+						"facets"                : [ "category" ],
+						"attributesToRetrieve"  : [ "id", "title", "manufactureYear", "category" ],
+						"attributesToCrop"      : [ "title" ],
+						"cropLength"            : 15,
+						"cropMarker"            : "...",
+						"attributesToHighlight" : [ "title" ],
+						"highlightPreTag"       : "<em class=""search_highlight"">",
+						"highlightPostTag"      : "</em>",
+						"showMatchesPosition"   : true,
+						"sort"                  : [ "manufactureYear:asc" ]
+					}
 				);
 
 				// debug( result );

@@ -11,10 +11,12 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Do
 		describe( "Documents Suite", function(){
 			it( "+list", function(){
 				var result = model.list(
-					index  = "products",
-					offset = 0,
-					limit  = 5,
-					fields = "*"
+					"products",
+					{
+						"offset" : 0,
+						"limit"  : 5,
+						"fields" : "*"
+					}
 				);
 
 				// debug( result );

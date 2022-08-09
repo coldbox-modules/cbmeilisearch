@@ -10,15 +10,10 @@ component accessors="true" extends="BaseRequest" {
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/keys.html#get-all-keys
 	 */
-	public function list( numeric offset, numeric limit ){
+	public function list( struct params = {} ){
 		return handleResponse(
 			MeilisearchClient
-				.setQueryParams(
-					buildArgs( {
-						"offset" : arguments.offset ?: javacast( "null", 0 ),
-						"limit"  : arguments.limit ?: javacast( "null", 0 )
-					} )
-				)
+				.setQueryParams( arguments.params )
 				.get( "/keys" )
 		);
 	}
@@ -38,23 +33,11 @@ component accessors="true" extends="BaseRequest" {
 	 * @link https://docs.meilisearch.com/reference/api/keys.html#create-a-key
 	 */
 	public function create(
-		required array actions,
-		string name,
-		string description,
-		array indexes,
-		string expiresAt
+		required struct params
 	){
 		return handleResponse(
 			MeilisearchClient
-				.setBody(
-					buildArgs( {
-						"actions"     : arguments.actions ?: javacast( "null", 0 ),
-						"name"        : arguments.name ?: javacast( "null", 0 ),
-						"description" : arguments.description ?: javacast( "null", 0 ),
-						"indexes"     : arguments.indexes ?: javacast( "null", 0 ),
-						"expiresAt"   : arguments.expiresAt ?: javacast( "null", 0 )
-					} )
-				)
+				.setBody( arguments.params )
 				.asJson()
 				.post( "/keys" )
 		);
@@ -67,15 +50,11 @@ component accessors="true" extends="BaseRequest" {
 	 */
 	public function update(
 		required string key,
-		string name,
-		string description
+		required struct params
 	){
 		return handleResponse(
 			MeilisearchClient
-				.setBody( {
-					"name"        : arguments.name,
-					"description" : arguments.description
-				} )
+				.setBody( arguments.params )
 				.asJson()
 				.patch( "/keys/#arguments.key#" )
 		);

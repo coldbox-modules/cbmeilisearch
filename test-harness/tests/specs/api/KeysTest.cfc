@@ -23,13 +23,13 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Ke
 			} );
 
 			it( "+create", function(){
-				var result = model.create(
-					name       : "cbMeilisearch Test Key",
-					description: "Add documents: Movies API key",
-					actions    : [ "documents.add" ],
-					indexes    : [ "products" ],
-					expiresAt  : "2042-04-02T00:42:42Z"
-				);
+				var result = model.create( {
+					"name"       : "cbMeilisearch Test Key",
+					"description": "Add documents: Movies API key",
+					"actions"    : [ "documents.add" ],
+					"indexes"    : [ "products" ],
+					"expiresAt"  : "2042-04-02T00:42:42Z"
+				} );
 
 				// debug( result );
 				expect( result ).toBeStruct();
@@ -47,9 +47,11 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Ke
 
 			it( "+update", function(){
 				var result = model.update(
-					key        : variables.testKey,
-					name       : "Test Harness Key",
-					description: "Movies API key - build and populate Movies index"
+					variables.testKey,
+					{
+						"name"       : "Test Harness Key",
+						"description": "Movies API key - build and populate Movies index"
+					}
 				);
 
 				// debug( result );
