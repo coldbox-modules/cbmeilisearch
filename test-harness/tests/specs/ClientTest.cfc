@@ -1,4 +1,4 @@
-component extends="coldbox.system.testing.BaseTestCase" appMapping="root" {
+component extends="BaseModelTest" appMapping="root" {
 
 	/*********************************** LIFE CYCLE Methods ***********************************/
 

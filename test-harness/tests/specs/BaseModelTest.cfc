@@ -1,7 +1,7 @@
 component extends="coldbox.system.testing.BaseModelTest" {
 
 	this.loadColdbox   = true;
-	this.unLoadColdbox = false;
+	this.unLoadColdbox = true;
 
 	function beforeAll(){
 		super.beforeAll();

@@ -1,7 +1,7 @@
 /**
  * Wraps all API calls.
  */
-component accessors="true" {
+component accessors="false" {
 
 	property
 		name="Documents"
