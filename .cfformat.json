@@ -47,7 +47,7 @@
 	"metadata.multiline.min_length": 50,
 	"method_call.chain.multiline" : 3,
 	"newline":"\n",
-	"property.multiline.element_count": 3,
+	"property.multiline.element_count": 4,
 	"property.multiline.min_length": 30,
 	"parentheses.padding": true,
 	"strings.quote": "double",
