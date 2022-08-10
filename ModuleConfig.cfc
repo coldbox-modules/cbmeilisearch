@@ -47,7 +47,50 @@ component {
 				headers: { "Authorization" : "Bearer #settings.MEILISEARCH_MASTER_KEY#" }
 			);
 
-		binder.mapDirectory( "/cbmeilisearch/models/endpoints" );
+		binder
+			.map( "Documents@cbmeilisearch" )
+			.asSingleton()
+			.to( "#moduleMapping#.models.endpoints.Documents" );
+
+		binder
+			.map( "Dumps@cbmeilisearch" )
+			.asSingleton()
+			.to( "#moduleMapping#.models.endpoints.Dumps" );
+
+		binder
+			.map( "Indexes@cbmeilisearch" )
+			.asSingleton()
+			.to( "#moduleMapping#.models.endpoints.Indexes" );
+
+		binder
+			.map( "Keys@cbmeilisearch" )
+			.asSingleton()
+			.to( "#moduleMapping#.models.endpoints.Keys" );
+
+		binder
+			.map( "Search@cbmeilisearch" )
+			.asSingleton()
+			.to( "#moduleMapping#.models.endpoints.Search" );
+
+		binder
+			.map( "Settings@cbmeilisearch" )
+			.asSingleton()
+			.to( "#moduleMapping#.models.endpoints.Settings" );
+
+		binder
+			.map( "Stats@cbmeilisearch" )
+			.asSingleton()
+			.to( "#moduleMapping#.models.endpoints.Stats" );
+
+		binder
+			.map( "Tasks@cbmeilisearch" )
+			.asSingleton()
+			.to( "#moduleMapping#.models.endpoints.Tasks" );
+
+		binder
+			.map( "Version@cbmeilisearch" )
+			.asSingleton()
+			.to( "#moduleMapping#.models.endpoints.Version" );
 	}
 
 	/**

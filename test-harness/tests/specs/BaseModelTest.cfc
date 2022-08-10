@@ -25,8 +25,8 @@ component extends="coldbox.system.testing.BaseModelTest" {
 	}
 
 	function ensureTestIndexExists(){
-		var indexes = getWirebox().getInstance( "cbmeilisearch.models.endpoints.Indexes" );
-		var response  = indexes.createIndex( uid = "products", primaryKey = "id" );
+		var indexes  = getWirebox().getInstance( "cbmeilisearch.models.endpoints.Indexes" );
+		var response = indexes.createIndex( uid = "products", primaryKey = "id" );
 		expect( response.isSuccess() );
 		var result = response.json();
 
@@ -49,7 +49,8 @@ component extends="coldbox.system.testing.BaseModelTest" {
 					"filterableAttributes" : [ "category", "manufactureYear" ],
 					"sortableAttributes"   : [ "category", "manufactureYear" ]
 				}
-			).json();
+			)
+			.json();
 		task.waitForTask( settingsUpdate.taskUid, 500 );
 	}
 
