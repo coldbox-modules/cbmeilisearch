@@ -3,27 +3,27 @@
  * and then create it, prepare it for mocking and then place it in the variables scope as 'model'. It is your
  * responsibility to update the model annotation instantiation path and init your model.
  */
-component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Keys" {
+component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.endpoints.Keys" {
 
 	variables.testKey = "no_worky";
 
 	function run(){
 		describe( "Keys Suite", function(){
-			it( "+list", function(){
-				var result = model.list();
+			it( "+getAllKeys", function(){
+				var result = model.getAllKeys();
 
 				// debug( result );
 				expect( result ).toBeStruct();
 			} );
-			it( "+list with pagination", function(){
-				var result = model.list( offset = 1, limit = 1 );
+			it( "+getAllKeys with pagination", function(){
+				var result = model.getAllKeys( offset = 1, limit = 1 );
 
 				// debug( result );
 				expect( result ).toBeStruct();
 			} );
 
-			it( "+create", function(){
-				var result = model.create( {
+			it( "+createKey", function(){
+				var result = model.createKey( {
 					"name"       : "cbMeilisearch Test Key",
 					"description": "Add documents: Movies API key",
 					"actions"    : [ "documents.add" ],
@@ -38,15 +38,15 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Ke
 				variables.testKey = result.key;
 			} );
 
-			it( "+get", function(){
-				var result = model.get( variables.testKey );
+			it( "+getKey", function(){
+				var result = model.getKey( variables.testKey );
 
 				// debug( result );
 				expect( result ).toBeStruct();
 			} );
 
-			it( "+update", function(){
-				var result = model.update(
+			it( "+updateKey", function(){
+				var result = model.updateKey(
 					variables.testKey,
 					{
 						"name"       : "Test Harness Key",
@@ -60,8 +60,8 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Ke
 				expect( result.description ).toBe( "Movies API key - build and populate Movies index" );
 			} );
 
-			it( "+delete", function(){
-				var result = model.delete( variables.testKey );
+			it( "+deleteKey", function(){
+				var result = model.deleteKey( variables.testKey );
 
 				// debug( result );
 				// expect( result ).toBe( toBinary( "" ) ); // works on Lucee

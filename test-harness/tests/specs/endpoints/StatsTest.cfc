@@ -3,7 +3,7 @@
  * and then create it, prepare it for mocking and then place it in the variables scope as 'model'. It is your
  * responsibility to update the model annotation instantiation path and init your model.
  */
-component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Stats" {
+component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.endpoints.Stats" {
 
 	function run(){
 		describe( "Stats Suite", function(){

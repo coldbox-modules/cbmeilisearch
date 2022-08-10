@@ -3,12 +3,12 @@
  * and then create it, prepare it for mocking and then place it in the variables scope as 'model'. It is your
  * responsibility to update the model annotation instantiation path and init your model.
  */
-component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Version" {
+component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.endpoints.Version" {
 
 	function run(){
 		describe( "Version Suite", function(){
-			it( "+getVersion", function(){
-				var result = model.getVersion();
+			it( "+version", function(){
+				var result = model.version();
 
 				// debug( result );
 				expect( result ).toBeStruct();

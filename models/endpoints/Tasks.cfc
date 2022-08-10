@@ -10,7 +10,7 @@ component accessors="true" extends="BaseRequest" {
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/tasks.html#get-all-tasks
 	 */
-	public function list(
+	public function getAllTasks(
 		struct params = {}
 	){
 		return handleResponse(
@@ -25,7 +25,7 @@ component accessors="true" extends="BaseRequest" {
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/tasks.html#get-task
 	 */
-	public function get( required string task_uid ){
+	public function getTask( required string task_uid ){
 		return handleResponse( MeilisearchClient.get( "/tasks/#arguments.task_uid#" ) );
 	}
 
@@ -36,11 +36,11 @@ component accessors="true" extends="BaseRequest" {
 	 * @task_uid     the unique ID of the task to wait for.
 	 * @wait_time_ms How long to wait (in milliseconds) between task polls. Defaults to 500 milliseconds.
 	 */
-	public struct function pollTaskCompletion( required string task_uid, numeric wait_time_ms = 500 ){
+	public struct function waitForTask( required string task_uid, numeric wait_time_ms = 500 ){
 		var taskComplete = false;
 		while ( !taskComplete ) {
 			sleep( 500 );
-			var result   = this.get( arguments.task_uid );
+			var result   = this.getTask( arguments.task_uid );
 			taskComplete = arrayContains( [ "succeeded", "failed" ], result.status );
 		}
 		return result;
@@ -57,7 +57,7 @@ component accessors="true" extends="BaseRequest" {
 	//  * @wait_time_ms
 	//  */
 	// public void function onTaskCompletion( required string task_uid, required callback, numeric wait_time_ms = 500 ){
-	// 	var taskResult = pollTaskCompletion( arguments.task_uid, arguments.wait_time_ms );
+	// 	var taskResult = waitFor( arguments.task_uid, arguments.wait_time_ms );
 	// 	callback( taskResult );
 	// }
 

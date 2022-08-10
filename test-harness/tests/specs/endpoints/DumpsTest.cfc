@@ -3,12 +3,12 @@
  * and then create it, prepare it for mocking and then place it in the variables scope as 'model'. It is your
  * responsibility to update the model annotation instantiation path and init your model.
  */
-component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Dumps" {
+component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.endpoints.Dumps" {
 
 	function run(){
 		describe( "Dumps Suite", function(){
 			it( "+create", function(){
-				var result = model.create();
+				var result = model.createDump();
 
 				// debug( result );
 				expect( result ).toBeStruct();

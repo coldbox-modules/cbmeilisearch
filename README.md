@@ -28,6 +28,10 @@ docker run --detach --rm \
 
 This library follows the [Meilisearch API reference](https://docs.meilisearch.com/reference/api/overview.html#api-reference) as closely as possible.
 
+* `Client.cfc`
+  * `index()`
+    * `getDocument( document_id, params )`
+
 ## 🤖 Compatibility with Meilisearch
 
 This package only guarantees compatibility with version `v0.28.0` of Meilisearch.
@@ -35,14 +39,15 @@ This package only guarantees compatibility with version `v0.28.0` of Meilisearch
 ## TODO
 
 * ✅ Drop additional params as first-class arguments - too much work. Accept a struct and pass it through to the JSON body or URL.
-* ☢ Refactor API to match [PHP SDK](https://github.com/meilisearch/meilisearch-php)
-* 📖 Finalize API documentation
+* ✅ Refactor API to match [PHP SDK](https://github.com/meilisearch/meilisearch-php)
+* Return HyperResponse object, don't try to parse it without asking.
+* Finalize API documentation
   * Add Getting Started section to README
   * Add argument docs for each API method
-* 🧔 Add [Multitenancy](https://docs.meilisearch.com/learn/security/tenant_tokens.html#multitenancy-and-tenant-tokens) support
+* Add [Multitenancy](https://docs.meilisearch.com/learn/security/tenant_tokens.html#multitenancy-and-tenant-tokens) support
   * Add [Tenant Token generation utility](https://docs.meilisearch.com/learn/security/tenant_tokens.html#generating-tenant-tokens-without-a-meilisearch-sdk)
-* 🚋 Move to [coldbox-modules](https://github.com/coldbox-modules) organization
-* 🌪 Add callback support for asynchronous task completion 
+* Move to [coldbox-modules](https://github.com/coldbox-modules) organization
+* Add callback support for asynchronous task completion 
 
 ## License
 

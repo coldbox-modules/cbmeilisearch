@@ -3,22 +3,22 @@
  * and then create it, prepare it for mocking and then place it in the variables scope as 'model'. It is your
  * responsibility to update the model annotation instantiation path and init your model.
  */
-component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Tasks" {
+component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.endpoints.Tasks" {
 
 	variables.testTaskUID = "no_worky";
 
 	function run(){
 		describe( "Tasks Suite", function(){
-			it( "+list", function(){
-				var result = model.list();
+			it( "+getAllTasks", function(){
+				var result = model.getAllTasks();
 
 				// debug( result );
 				expect( result ).toBeStruct();
 
 				variables.testTaskUID = result.results.first().uid;
 			} );
-			it( "+list with pagination", function(){
-				var result = model.list( {
+			it( "+getAllTasks with pagination", function(){
+				var result = model.getAllTasks( {
 					"limit": 2,
 					"from" : variables.testTaskUID
 				} );
@@ -26,8 +26,8 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Ta
 				// debug( result );
 				expect( result ).toBeStruct();
 			} );
-			it( "+list with filter", function(){
-				var result = model.list( {
+			it( "+getAllTasks with filter", function(){
+				var result = model.getAllTasks( {
 					"status": "succeeded",
 					"type"  : "indexCreation"
 				} );
@@ -36,15 +36,15 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Ta
 				expect( result ).toBeStruct();
 			} );
 
-			it( "+get", function(){
-				var result = model.get( variables.testTaskUID );
+			it( "+getTask", function(){
+				var result = model.getTask( variables.testTaskUID );
 
 				// debug( result );
 				expect( result ).toBeStruct();
 			} );
 
-			it( "+list with index filter", function(){
-				var result = model.list( { 
+			it( "+getAllTasks with index filter", function(){
+				var result = model.getAllTasks( { 
 					"indexUid" : "products"
 				} );
 

@@ -10,7 +10,7 @@ component accessors="true" extends="BaseRequest" {
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/documents.html#get-one-document
 	 */
-	public function get( required string index, required string document_id ){
+	public function getDocument( required string index, required string document_id ){
 		return handleResponse( MeilisearchClient.get( "/indexes/#arguments.index#/documents/#document_id#" ) );
 	}
 
@@ -19,7 +19,7 @@ component accessors="true" extends="BaseRequest" {
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/documents.html#get-documents
 	 */
-	public function list(
+	public function getDocuments(
 		required string index,
 		struct params = {}
 	){
@@ -35,7 +35,7 @@ component accessors="true" extends="BaseRequest" {
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/documents.html#add-or-replace-documents
 	 */
-	public function addOrReplace(
+	public function addDocuments(
 		required string index,
 		required array documents,
 		struct params = {}
@@ -54,7 +54,7 @@ component accessors="true" extends="BaseRequest" {
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/documents.html#add-or-update-documents
 	 */
-	public function addOrUpdate(
+	public function updateDocuments(
 		required string index,
 		required array documents,
 		struct params = {}
@@ -73,7 +73,7 @@ component accessors="true" extends="BaseRequest" {
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/documents.html#add-or-update-documents
 	 */
-	public function deleteAll( required string index ){
+	public function deleteAllDocuments( required string index ){
 		return handleResponse( MeilisearchClient.delete( "/indexes/#arguments.index#/documents" ) );
 	}
 
@@ -82,7 +82,7 @@ component accessors="true" extends="BaseRequest" {
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/documents.html#delete-one-document
 	 */
-	public function deleteOne( required string index, required string document_id ){
+	public function deleteDocument( required string index, required string document_id ){
 		return handleResponse(
 			MeilisearchClient.delete( "/indexes/#arguments.index#/documents/#arguments.document_id#" )
 		);
@@ -93,7 +93,7 @@ component accessors="true" extends="BaseRequest" {
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/documents.html#delete-documents-by-batch
 	 */
-	public function deleteBatch( required string index, required array document_ids ){
+	public function deleteDocuments( required string index, required array document_ids ){
 		return handleResponse(
 			MeilisearchClient
 				.setBody( arguments.document_ids )

@@ -25,8 +25,8 @@ component extends="coldbox.system.testing.BaseModelTest" {
 	}
 
 	function ensureTestIndexExists(){
-		var indexes = getWirebox().getInstance( "cbmeilisearch.models.api.Indexes" );
-		var result  = indexes.create( uid = "products", primaryKey = "id" );
+		var indexes = getWirebox().getInstance( "cbmeilisearch.models.endpoints.Indexes" );
+		var result  = indexes.createIndex( uid = "products", primaryKey = "id" );
 
 		expect( result )
 			.toBeStruct()
@@ -36,7 +36,7 @@ component extends="coldbox.system.testing.BaseModelTest" {
 		expect( result.type ).toBe( "indexCreation" );
 
 		var task = getWirebox().getInstance( "Tasks@cbmeilisearch" );
-		task.pollTaskCompletion( result.taskUid, 500 );
+		task.waitForTask( result.taskUid, 500 );
 
 		// basic settings for index
 		var settingsUpdate = getWirebox()
@@ -48,7 +48,7 @@ component extends="coldbox.system.testing.BaseModelTest" {
 					"sortableAttributes"   : [ "category", "manufactureYear" ]
 				}
 			);
-		task.pollTaskCompletion( settingsUpdate.taskUid, 500 );
+		task.waitForTask( settingsUpdate.taskUid, 500 );
 	}
 
 
@@ -72,7 +72,7 @@ component extends="coldbox.system.testing.BaseModelTest" {
 		];
 		var result = getWirebox()
 			.getInstance( "Documents@cbmeilisearch" )
-			.addOrReplace(
+			.addDocuments(
 				index      = "products",
 				documents  = documents,
 				primaryKey = "id"

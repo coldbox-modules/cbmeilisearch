@@ -3,14 +3,14 @@
  * and then create it, prepare it for mocking and then place it in the variables scope as 'model'. It is your
  * responsibility to update the model annotation instantiation path and init your model.
  */
-component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Documents" {
+component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.endpoints.Documents" {
 
 	variables.index = "";
 
 	function run(){
 		describe( "Documents Suite", function(){
-			it( "+list", function(){
-				var result = model.list(
+			it( "+getDocuments", function(){
+				var result = model.getDocuments(
 					"products",
 					{
 						"offset" : 0,
@@ -24,7 +24,7 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Do
 				expect( result.results ).toBeArray();
 			} );
 
-			it( "+addOrReplace", function(){
+			it( "+addDocuments", function(){
 				var documents = [
 					{
 						"id"       : "111",
@@ -42,7 +42,7 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Do
 						"category" : "wallets"
 					}
 				];
-				var result = model.addOrReplace(
+				var result = model.addDocuments(
 					index      = "products",
 					documents  = documents,
 					primaryKey = "id"
@@ -53,7 +53,7 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Do
 				expect( result.type ).toBe( "documentAdditionOrUpdate" );
 			} );
 
-			it( "+addOrUpdate", function(){
+			it( "+updateDocuments", function(){
 				var documents = [
 					{
 						"id"              : "111",
@@ -80,7 +80,7 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Do
 						"manufactureYear" : "1993"
 					}
 				];
-				var result = model.addOrUpdate(
+				var result = model.updateDocuments(
 					index      = "products",
 					documents  = documents,
 					primaryKey = "id"
@@ -91,30 +91,30 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Do
 				expect( result.type ).toBe( "documentAdditionOrUpdate" );
 			} );
 
-			it( "+get", function(){
-				var result = model.get( "products", "111" );
+			it( "+getDocument", function(){
+				var result = model.getDocument( "products", "111" );
 				// debug( result );
 				expect( result ).toBeStruct();
 			} );
 
-			it( "+deleteOne", function(){
-				var result = model.deleteOne( index = "products", document_id = "111" );
+			it( "+deleteDocument", function(){
+				var result = model.deleteDocument( index = "products", document_id = "111" );
 
 				// debug( result );
 				expect( result ).toBeStruct().toHaveKey( "type" );
 				expect( result.type ).toBe( "documentDeletion" );
 			} );
 
-			it( "+deleteBatch", function(){
-				var result = model.deleteBatch( index = "products", document_ids = [ "3767", "22" ] );
+			it( "+deleteDocuments", function(){
+				var result = model.deleteDocuments( index = "products", document_ids = [ "3767", "22" ] );
 
 				// debug( result );
 				expect( result ).toBeStruct().toHaveKey( "type" );
 				expect( result.type ).toBe( "documentDeletion" );
 			} );
 
-			it( "+deleteAll", function(){
-				var result = model.deleteAll( "products" );
+			it( "+deleteAllDocuments", function(){
+				var result = model.deleteAllDocuments( "products" );
 
 				// debug( result );
 				expect( result ).toBeStruct().toHaveKey( "type" );

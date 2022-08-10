@@ -10,7 +10,7 @@ component accessors="true" extends="BaseRequest" {
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/keys.html#get-all-keys
 	 */
-	public function list( struct params = {} ){
+	public function getAllKeys( struct params = {} ){
 		return handleResponse(
 			MeilisearchClient
 				.setQueryParams( arguments.params )
@@ -23,7 +23,7 @@ component accessors="true" extends="BaseRequest" {
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/keys.html#get-one-key
 	 */
-	public function get( required string key ){
+	public function getKey( required string key ){
 		return handleResponse( MeilisearchClient.get( "/keys/#arguments.key#" ) );
 	}
 
@@ -32,7 +32,7 @@ component accessors="true" extends="BaseRequest" {
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/keys.html#create-a-key
 	 */
-	public function create(
+	public function createKey(
 		required struct params
 	){
 		return handleResponse(
@@ -48,7 +48,7 @@ component accessors="true" extends="BaseRequest" {
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/keys.html#update-a-key
 	 */
-	public function update(
+	public function updateKey(
 		required string key,
 		required struct params
 	){
@@ -65,7 +65,7 @@ component accessors="true" extends="BaseRequest" {
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/keys.html#delete-a-key
 	 */
-	public function delete( required string key ){
+	public function deleteKey( required string key ){
 		return handleResponse( MeilisearchClient.delete( "/keys/#arguments.key#" ) );
 	}
 

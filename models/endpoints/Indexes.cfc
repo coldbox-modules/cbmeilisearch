@@ -10,7 +10,7 @@ component accessors="true" extends="BaseRequest" {
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/indexes.html#list-all-indexes
 	 */
-	public function list( struct params = {} ){
+	public function getAllIndexes( struct params = {} ){
 		return handleResponse(
 			MeilisearchClient
 				.setQueryParams( arguments.params )
@@ -23,7 +23,7 @@ component accessors="true" extends="BaseRequest" {
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/indexes.html#get-one-index
 	 */
-	public function get( required string uid ){
+	public function getIndex( required string uid ){
 		return handleResponse( MeilisearchClient.get( "/indexes/#arguments.uid#" ) );
 	}
 
@@ -32,7 +32,7 @@ component accessors="true" extends="BaseRequest" {
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/indexes.html#create-an-index
 	 */
-	public function create( required string uid, struct params = {} ){
+	public function createIndex( required string uid, struct params = {} ){
 		arguments.params[ "uid" ] = arguments.uid;
 		return handleResponse(
 			MeilisearchClient
@@ -47,7 +47,7 @@ component accessors="true" extends="BaseRequest" {
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/indexes.html#update-an-index
 	 */
-	public function update( required string uid, struct params = {} ){
+	public function updateIndex( required string uid, struct params = {} ){
 		return handleResponse(
 			MeilisearchClient
 				.setBody( arguments.params )
@@ -61,7 +61,7 @@ component accessors="true" extends="BaseRequest" {
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/indexes.html#delete-an-index
 	 */
-	public function delete( required string uid ){
+	public function deleteIndex( required string uid ){
 		return handleResponse( MeilisearchClient.delete( "/indexes/#arguments.uid#" ) );
 	}
 

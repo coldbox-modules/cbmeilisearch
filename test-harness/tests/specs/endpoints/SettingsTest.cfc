@@ -3,12 +3,12 @@
  * and then create it, prepare it for mocking and then place it in the variables scope as 'model'. It is your
  * responsibility to update the model annotation instantiation path and init your model.
  */
-component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Settings" {
+component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.endpoints.Settings" {
 
 	variables.taskIds = [];
 
 	function run(){
-		describe( "Settings Suite", function(){
+		describe( "Settings", function(){
 			it( "+getSettings", function(){
 				var result = model.getSettings( "products" );
 
@@ -248,7 +248,7 @@ component extends="tests.specs.BaseModelTest" model="cbmeilisearch.models.api.Se
 			it( "All tasks succeeded", function(){
 				var tasksAPI = getWirebox().getInstance( "Tasks@cbmeilisearch" );
 				variables.taskIds.each( ( taskUID ) => {
-					var result = tasksAPI.get( taskUID );
+					var result = tasksAPI.getTask( taskUID );
 					// debug( result );
 					expect( result.status ).toBe( "succeeded" );
 				} )
