@@ -47,7 +47,6 @@ component {
 				headers: { "Authorization" : "Bearer #settings.MEILISEARCH_MASTER_KEY#" }
 			);
 
-		// TODO: Consider a better solution... should we move all models from the endpoints dir to the root?
 		binder.mapDirectory( "/cbmeilisearch/models/endpoints" );
 	}
 

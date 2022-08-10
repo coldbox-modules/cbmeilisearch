@@ -21,9 +21,9 @@ jobs:
         cfengine: [ "lucee@5", "adobe@2018", "adobe@2021" ]
         meilisearch: [ "v0.28" ]
         experimental: [ false ]
-        include:
-          - meilisearch: "v0.27"
-            experimental: true
+        # include:
+        #   - meilisearch: "v0.28.1"
+        #     experimental: true
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
