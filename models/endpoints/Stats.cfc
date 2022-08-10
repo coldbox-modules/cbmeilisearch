@@ -19,8 +19,8 @@ component accessors="true" extends="BaseRequest" {
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/stats.html#get-stats-of-an-index
 	 */
-	public function getIndexStats( required string index ){
-		return handleResponse( MeilisearchClient.get( "/indexes/#arguments.index#/stats" ) );
+	public HyperResponse function getIndexStats( required string index ){
+		return HyperClient.get( "/indexes/#arguments.index#/stats" );
 	}
 
 	/**
@@ -28,8 +28,8 @@ component accessors="true" extends="BaseRequest" {
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/stats.html#get-stats-of-all-indexes
 	 */
-	public function getAllStats(){
-		return handleResponse( MeilisearchClient.get( "/stats" ) );
+	public HyperResponse function getAllStats(){
+		return HyperClient.get( "/stats" );
 	}
 
 }

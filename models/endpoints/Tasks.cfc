@@ -10,14 +10,8 @@ component accessors="true" extends="BaseRequest" {
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/tasks.html#get-all-tasks
 	 */
-	public function getAllTasks(
-		struct params = {}
-	){
-		return handleResponse(
-			MeilisearchClient
-				.setQueryParams( arguments.params )
-				.get( "/tasks" )
-		);
+	public HyperResponse function getAllTasks( struct params = {} ){
+		return HyperClient.setQueryParams( arguments.params ).get( "/tasks" );
 	}
 
 	/**
@@ -25,8 +19,8 @@ component accessors="true" extends="BaseRequest" {
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/tasks.html#get-task
 	 */
-	public function getTask( required string task_uid ){
-		return handleResponse( MeilisearchClient.get( "/tasks/#arguments.task_uid#" ) );
+	public HyperResponse function getTask( required string task_uid ){
+		return HyperClient.get( "/tasks/#arguments.task_uid#" );
 	}
 
 	/**
@@ -40,10 +34,10 @@ component accessors="true" extends="BaseRequest" {
 		var taskComplete = false;
 		while ( !taskComplete ) {
 			sleep( 500 );
-			var result   = this.getTask( arguments.task_uid );
-			taskComplete = arrayContains( [ "succeeded", "failed" ], result.status );
+			var response = this.getTask( arguments.task_uid ).json();
+			taskComplete = arrayContains( [ "succeeded", "failed" ], response.status );
 		}
-		return result;
+		return response;
 	}
 
 

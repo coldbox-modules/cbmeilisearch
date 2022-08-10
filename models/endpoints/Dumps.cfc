@@ -10,8 +10,8 @@ component accessors="true" extends="BaseRequest" {
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/dump.html#create-a-dump
 	 */
-	public function createDump(){
-		return handleResponse( MeilisearchClient.post( "/dumps" ) );
+	public HyperResponse function createDump(){
+		return HyperClient.post( "/dumps" );
 	}
 
 }

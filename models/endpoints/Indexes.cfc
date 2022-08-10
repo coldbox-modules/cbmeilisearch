@@ -10,12 +10,8 @@ component accessors="true" extends="BaseRequest" {
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/indexes.html#list-all-indexes
 	 */
-	public function getAllIndexes( struct params = {} ){
-		return handleResponse(
-			MeilisearchClient
-				.setQueryParams( arguments.params )
-				.get( "/indexes" )
-		);
+	public HyperResponse function getAllIndexes( struct params = {} ){
+		return HyperClient.setQueryParams( arguments.params ).get( "/indexes" );
 	}
 
 	/**
@@ -23,8 +19,8 @@ component accessors="true" extends="BaseRequest" {
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/indexes.html#get-one-index
 	 */
-	public function getIndex( required string uid ){
-		return handleResponse( MeilisearchClient.get( "/indexes/#arguments.uid#" ) );
+	public HyperResponse function getIndex( required string uid ){
+		return HyperClient.get( "/indexes/#arguments.uid#" );
 	}
 
 	/**
@@ -32,14 +28,12 @@ component accessors="true" extends="BaseRequest" {
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/indexes.html#create-an-index
 	 */
-	public function createIndex( required string uid, struct params = {} ){
+	public HyperResponse function createIndex( required string uid, struct params = {} ){
 		arguments.params[ "uid" ] = arguments.uid;
-		return handleResponse(
-			MeilisearchClient
-				.setBody( arguments.params )
-				.asJson()
-				.post( "/indexes" )
-		);
+		return HyperClient
+			.setBody( arguments.params )
+			.asJson()
+			.post( "/indexes" );
 	}
 
 	/**
@@ -47,13 +41,11 @@ component accessors="true" extends="BaseRequest" {
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/indexes.html#update-an-index
 	 */
-	public function updateIndex( required string uid, struct params = {} ){
-		return handleResponse(
-			MeilisearchClient
-				.setBody( arguments.params )
-				.asJson()
-				.patch( "/indexes/#arguments.uid#" )
-		);
+	public HyperResponse function updateIndex( required string uid, struct params = {} ){
+		return HyperClient
+			.setBody( arguments.params )
+			.asJson()
+			.patch( "/indexes/#arguments.uid#" );
 	}
 
 	/**
@@ -61,8 +53,8 @@ component accessors="true" extends="BaseRequest" {
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/indexes.html#delete-an-index
 	 */
-	public function deleteIndex( required string uid ){
-		return handleResponse( MeilisearchClient.delete( "/indexes/#arguments.uid#" ) );
+	public HyperResponse function deleteIndex( required string uid ){
+		return HyperClient.delete( "/indexes/#arguments.uid#" );
 	}
 
 }

@@ -39,7 +39,7 @@ component {
 	function onLoad(){
 		// Binder Mappings
 		binder
-			.map( "MeilisearchClient@cbmeilisearch" )
+			.map( "HyperClient@cbmeilisearch" )
 			.to( "hyper.models.HyperBuilder" )
 			.asSingleton()
 			.initWith(

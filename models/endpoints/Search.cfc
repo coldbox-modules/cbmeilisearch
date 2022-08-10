@@ -7,13 +7,13 @@ component accessors="true" extends="BaseRequest" {
 
 	/**
 	 * Search in an index with POST route
-	 * 
+	 *
 	 * <code>
 	 * 	searchWithPost( "products", { "q" : "Wallet" } )
 	 * </code>
-	 * 
+	 *
 	 * For an example, you can use the `limit` and `offset` parameters to fetch the second page of 25 records:
-	 * 
+	 *
 	 * <code>
 	 * 	searchWithPost( "products", {
 	 * 		"q" : "Wallet",
@@ -21,34 +21,29 @@ component accessors="true" extends="BaseRequest" {
 	 * 		"offset" : 25
 	 * 	} )
 	 * </code>
-	 * 
+	 *
 	 * Please see the Meilisearch docs for more info on search parameters.
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/search.html#search-in-an-index-with-post-route
 	 */
-	public function searchWithPost(
-		required string index,
-		struct params = {}
-	){
-		return handleResponse(
-			MeilisearchClient
-				.setBody( arguments.params )
-				.asJson()
-				.setURL( "/indexes/#arguments.index#/search" )
-				.setMethod( "GET" )
-				.send()
-		);
+	public HyperResponse function searchWithPost( required string index, struct params = {} ){
+		return HyperClient
+			.setBody( arguments.params )
+			.asJson()
+			.setURL( "/indexes/#arguments.index#/search" )
+			.setMethod( "GET" )
+			.send();
 	}
 
 	/**
 	 * Search in an index with GET route.
-	 * 
+	 *
 	 * <code>
 	 * 	searchWithGet( "products", { "q" : "Wallet" } )
 	 * </code>
-	 * 
+	 *
 	 * For an example, you can use the `limit` and `offset` parameters to fetch the second page of 25 records:
-	 * 
+	 *
 	 * <code>
 	 * 	searchWithGet( "products", {
 	 * 		"q" : "Wallet",
@@ -56,23 +51,18 @@ component accessors="true" extends="BaseRequest" {
 	 * 		"offset" : 25
 	 * 	} )
 	 * </code>
-	 * 
+	 *
 	 * Please see the Meilisearch docs for more info on search parameters.
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/search.html#search-in-an-index-with-get-route
 	 */
-	public function searchWithGet(
-		required string index,
-		struct params = {}
-	){
-		return handleResponse(
-			MeilisearchClient
-				.setBody( arguments.params )
-				.asJson()
-				.setURL( "/indexes/#arguments.index#/search" )
-				.setMethod( "GET" )
-				.send()
-		);
+	public HyperResponse function searchWithGet( required string index, struct params = {} ){
+		return HyperClient
+			.setBody( arguments.params )
+			.asJson()
+			.setURL( "/indexes/#arguments.index#/search" )
+			.setMethod( "GET" )
+			.send();
 	}
 
 }

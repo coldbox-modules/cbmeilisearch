@@ -11,7 +11,7 @@ component accessors="true" extends="BaseRequest" {
 	 * @link https://docs.meilisearch.com/reference/api/version.html#get-version-of-meilisearch
 	 */
 	public function version(){
-		return handleResponse( MeilisearchClient.get( "/version" ) );
+		return HyperClient.get( "/version" );
 	}
 
 }

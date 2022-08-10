@@ -10,8 +10,8 @@ component accessors="true" extends="BaseRequest" {
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/documents.html#get-one-document
 	 */
-	public function getDocument( required string index, required string document_id ){
-		return handleResponse( MeilisearchClient.get( "/indexes/#arguments.index#/documents/#document_id#" ) );
+	public HyperResponse function getDocument( required string index, required string document_id ){
+		return HyperClient.get( "/indexes/#arguments.index#/documents/#document_id#" );
 	}
 
 	/**
@@ -19,15 +19,8 @@ component accessors="true" extends="BaseRequest" {
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/documents.html#get-documents
 	 */
-	public function getDocuments(
-		required string index,
-		struct params = {}
-	){
-		return handleResponse(
-			MeilisearchClient
-				.setQueryParams( arguments.params )
-				.get( "/indexes/#arguments.index#/documents" )
-		);
+	public HyperResponse function getDocuments( required string index, struct params = {} ){
+		return HyperClient.setQueryParams( arguments.params ).get( "/indexes/#arguments.index#/documents" );
 	}
 
 	/**
@@ -35,18 +28,16 @@ component accessors="true" extends="BaseRequest" {
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/documents.html#add-or-replace-documents
 	 */
-	public function addDocuments(
+	public HyperResponse function addDocuments(
 		required string index,
 		required array documents,
 		struct params = {}
 	){
-		return handleResponse(
-			MeilisearchClient
-				.setQueryParams( arguments.params )
-				.setBody( arguments.documents )
-				.asJson()
-				.post( "/indexes/#arguments.index#/documents" )
-		);
+		return HyperClient
+			.setQueryParams( arguments.params )
+			.setBody( arguments.documents )
+			.asJson()
+			.post( "/indexes/#arguments.index#/documents" );
 	}
 
 	/**
@@ -54,18 +45,16 @@ component accessors="true" extends="BaseRequest" {
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/documents.html#add-or-update-documents
 	 */
-	public function updateDocuments(
+	public HyperResponse function updateDocuments(
 		required string index,
 		required array documents,
 		struct params = {}
 	){
-		return handleResponse(
-			MeilisearchClient
-				.setQueryParams( arguments.params )
-				.setBody( arguments.documents )
-				.asJson()
-				.put( "/indexes/#arguments.index#/documents" )
-		);
+		return HyperClient
+			.setQueryParams( arguments.params )
+			.setBody( arguments.documents )
+			.asJson()
+			.put( "/indexes/#arguments.index#/documents" );
 	}
 
 	/**
@@ -73,8 +62,8 @@ component accessors="true" extends="BaseRequest" {
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/documents.html#add-or-update-documents
 	 */
-	public function deleteAllDocuments( required string index ){
-		return handleResponse( MeilisearchClient.delete( "/indexes/#arguments.index#/documents" ) );
+	public HyperResponse function deleteAllDocuments( required string index ){
+		return HyperClient.delete( "/indexes/#arguments.index#/documents" );
 	}
 
 	/**
@@ -82,10 +71,8 @@ component accessors="true" extends="BaseRequest" {
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/documents.html#delete-one-document
 	 */
-	public function deleteDocument( required string index, required string document_id ){
-		return handleResponse(
-			MeilisearchClient.delete( "/indexes/#arguments.index#/documents/#arguments.document_id#" )
-		);
+	public HyperResponse function deleteDocument( required string index, required string document_id ){
+		return HyperClient.delete( "/indexes/#arguments.index#/documents/#arguments.document_id#" );
 	}
 
 	/**
@@ -93,13 +80,11 @@ component accessors="true" extends="BaseRequest" {
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/documents.html#delete-documents-by-batch
 	 */
-	public function deleteDocuments( required string index, required array document_ids ){
-		return handleResponse(
-			MeilisearchClient
-				.setBody( arguments.document_ids )
-				.asJson()
-				.post( "/indexes/#arguments.index#/documents/delete-batch" )
-		);
+	public HyperResponse function deleteDocuments( required string index, required array document_ids ){
+		return HyperClient
+			.setBody( arguments.document_ids )
+			.asJson()
+			.post( "/indexes/#arguments.index#/documents/delete-batch" );
 	}
 
 }
