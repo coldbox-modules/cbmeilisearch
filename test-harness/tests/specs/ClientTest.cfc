@@ -16,7 +16,7 @@ component extends="coldbox.system.testing.BaseTestCase" appMapping="root" {
 	/*********************************** BDD SUITES ***********************************/
 
 	function run(){
-		describe( "cbMeilisearch.Client", function(){
+		describe( "cbmeilisearch.Client", function(){
 			it( "can initiate", function(){
 				expect( variables.model ).toBeInstanceOf( "cbmeilisearch.models.Client" );
 			} );

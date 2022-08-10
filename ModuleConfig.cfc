@@ -6,7 +6,7 @@
 component {
 
 	// Module Properties
-	this.title       = "cbMeilisearch";
+	this.title       = "cbmeilisearch";
 	this.author      = "Michael Born";
 	this.webURL      = "https://www.ortussolutions.com";
 	this.description = "An API wrapper for Meilisearch written in CFML for the ColdBox platform";

@@ -7,9 +7,9 @@ www.ortussolutions.com
 component {
 
 	// The name of the module used in cfmappings ,etc
-	request.MODULE_NAME = "cbMeilisearch";
+	request.MODULE_NAME = "cbmeilisearch";
 	// The directory name of the module on disk. Usually, it's the same as the module name
-	request.MODULE_PATH = "cbMeilisearch";
+	request.MODULE_PATH = "cbmeilisearch";
 
 	// APPLICATION CFC PROPERTIES
 	this.name               = "#request.MODULE_NAME# Testing Suite";
@@ -34,31 +34,11 @@ component {
 	this.mappings[ "/moduleroot" ]            = moduleRootPath;
 	this.mappings[ "/#request.MODULE_NAME#" ] = moduleRootPath & "#request.MODULE_PATH#";
 
-	// ORM Definitions
-	/**
-	this.datasource = "coolblog";
-	this.ormEnabled = "true";
-	this.ormSettings = {
-		cfclocation = [ "/root/models" ],
-		logSQL = true,
-		dbcreate = "update",
-		secondarycacheenabled = false,
-		cacheProvider = "ehcache",
-		flushAtRequestEnd = false,
-		eventhandling = true,
-		eventHandler = "cborm.models.EventHandler",
-		skipcfcWithError = false
-	};
-	**/
-
 	function onRequestStart( required targetPage ){
 		if ( url.keyExists( "fwreinit" ) ) {
 			if ( structKeyExists( server, "lucee" ) ) {
 				pagePoolClear();
 			}
-
-			// ORM reload: ENABLE IF NEEDED
-			// ormReload();
 		}
 
 		// Cleanup

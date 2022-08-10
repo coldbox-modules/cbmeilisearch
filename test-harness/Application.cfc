@@ -7,7 +7,7 @@ www.ortussolutions.com
 component{
 
 	// UPDATE THE NAME OF THE MODULE IN TESTING BELOW
-	request.MODULE_NAME = "cbMeilisearch";
+	request.MODULE_NAME = "cbmeilisearch";
 
 	// Application properties
 	this.name              = hash( getCurrentTemplatePath() );
@@ -46,23 +46,6 @@ component{
 	// Module Root + Path Mappings
 	this.mappings[ "/moduleroot" ] = moduleRootPath;
 	this.mappings[ "/#request.MODULE_NAME#" ] = modulePath;
-
-	// ORM definitions: ENABLE IF NEEDED
-	//this.datasource = "coolblog";
-	//this.ormEnabled = "true";
-	/**
-	this.ormSettings = {
-		cfclocation = [ "models" ],
-		logSQL = true,
-		dbcreate = "update",
-		secondarycacheenabled = false,
-		cacheProvider = "ehcache",
-		flushAtRequestEnd = false,
-		eventhandling = true,
-		eventHandler = "cborm.models.EventHandler",
-		skipcfcWithError = true
-	};
-	**/
 
 	// application start
 	public boolean function onApplicationStart(){
