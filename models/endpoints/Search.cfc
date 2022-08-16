@@ -28,10 +28,10 @@ component accessors="true" extends="BaseRequest" {
 	 */
 	public HyperResponse function searchWithPost( required string index, struct params = {} ){
 		return HyperClient
-			.setBody( arguments.params )
 			.asJson()
 			.setURL( "/indexes/#arguments.index#/search" )
-			.setMethod( "GET" )
+			.setBody( arguments.params )
+			.setMethod( "POST" )
 			.send();
 	}
 
