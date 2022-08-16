@@ -222,33 +222,6 @@ component extends="BaseModelTest" appMapping="root" {
 			} );
 
 			describe( "Settings", function(){
-				it( "can get settings", function(){
-					var response = variables.model.getSettings( "products" );
-					expect( response.isSuccess() );
-					var result = response.json();
-					expect( result ).toBeStruct();
-				} );
-				it( "can update settings", function(){
-					var response = variables.model.updateSettings(
-						"products",
-						{
-							"filterableAttributes" : [ "category" ],
-							"stopWords"            : [ "the", "and", "or", "but", "not" ]
-						}
-					);
-					expect( response.isSuccess() );
-					var result = response.json();
-					expect( result ).toBeStruct();
-				} );
-				it( "can reset settings", function(){
-					var response = variables.model.resetSettings( "products" );
-					expect( response.isSuccess() );
-					var result = response.json();
-					expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
-				} );
-			} );
-
-			describe( "Settings", function(){
 				variables.taskIds = [];
 				it( "getSettings", function(){
 					var response = model.getSettings( "products" );
@@ -605,6 +578,33 @@ component extends="BaseModelTest" appMapping="root" {
 
 					// debug( result );
 					expect( result ).toBeStruct();
+				} );
+			} );
+			describe( "Search", function(){
+				it( "can search with POST method", function(){
+					var response = model.searchWithPost( "products", {
+						"q" : "watch",
+						"attributesToHighlight" : [ "title" ]
+					} );
+					expect( response.isSuccess() );
+					var result = response.json();
+
+					// debug( result );
+					expect( result ).toBeStruct().toHaveKey( "hits" );
+					expect( arrayFirst( result.hits ) ).toHaveKey( "_formatted" );
+				} );
+
+				it( "can search with GET method", function(){
+					var response = model.searchWithGet( "products", {
+						"q" : "watch",
+						"attributesToHighlight" : [ "title" ]
+					} );
+					expect( response.isSuccess() );
+					var result = response.json();
+
+					// debug( result );
+					expect( result ).toBeStruct().toHaveKey( "hits" );
+					expect( arrayFirst( result.hits ) ).toHaveKey( "_formatted" );
 				} );
 			} );
 		} );
