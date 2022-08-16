@@ -9,6 +9,7 @@ component accessors="false" {
 	property name="Keys"      inject="Keys@cbmeilisearch"      delegate;
 	property name="Settings"  inject="Settings@cbmeilisearch"  delegate;
 	property name="Version"   inject="Version@cbmeilisearch"   delegate;
+	property name="Search"    inject="Search@cbmeilisearch"    delegate;
 	property name="Dumps"     inject="Dumps@cbmeilisearch"     delegate;
 	property name="Stats"     inject="Stats@cbmeilisearch"     delegate;
 
