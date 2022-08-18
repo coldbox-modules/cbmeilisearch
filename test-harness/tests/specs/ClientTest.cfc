@@ -45,15 +45,7 @@ component extends="BaseModelTest" appMapping="root" {
 			describe( "Documents", function(){
 				beforeEach( function(){
 					if ( !variables.keyExists( "testDocument" ) ) {
-						variables.testDocument = {
-							"id"       : "111",
-							"title"    : "Deluxe Silver Digital Watch",
-							"category" : "watches"
-						};
-						var response = variables.model.addDocuments( "products", [ variables.testDocument ] );
-						expect( response.isSuccess() ).toBeTrue();
-						var resultTask = response.json();
-						variables.model.waitForTask( resultTask.taskUid );
+						variables.testDocument = createTestDocument();
 					}
 				} );
 				it( "can get single document", function(){
@@ -581,6 +573,11 @@ component extends="BaseModelTest" appMapping="root" {
 				} );
 			} );
 			describe( "Search", function(){
+				beforeEach( function(){
+					if ( !variables.keyExists( "testDocument" ) ) {
+						variables.testDocument = createTestDocument();
+					}
+				} );
 				it( "can search with POST method", function(){
 					var response = model.searchWithPost( "products", {
 						"q" : "watch",
@@ -597,7 +594,8 @@ component extends="BaseModelTest" appMapping="root" {
 				it( "can search with GET method", function(){
 					var response = model.searchWithGet( "products", {
 						"q" : "watch",
-						"attributesToHighlight" : [ "title" ]
+						// TODO: Investigate  array-to-string casting issue in Hyper.
+						"attributesToHighlight" : "title"
 					} );
 					expect( response.isSuccess() );
 					var result = response.json();
@@ -608,6 +606,19 @@ component extends="BaseModelTest" appMapping="root" {
 				} );
 			} );
 		} );
+	}
+
+	function createTestDocument(){
+		var testDocument = {
+			"id"       : "111",
+			"title"    : "Deluxe Silver Digital Watch",
+			"category" : "watches"
+		};
+		var response = variables.model.addDocuments( "products", [ testDocument ] );
+		expect( response.isSuccess() ).toBeTrue();
+		var resultTask = response.json();
+		variables.model.waitForTask( resultTask.taskUid );
+		return testDocument;
 	}
 
 }
