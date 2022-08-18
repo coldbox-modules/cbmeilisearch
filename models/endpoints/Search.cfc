@@ -6,16 +6,16 @@
 component accessors="true" extends="BaseRequest" {
 
 	/**
-	 * Search in an index with POST route
+	 * Search in an index using a POST API call. This is the preferred method, per Meilisearch. If no API key is required, use `searchWithGet()`.
 	 *
 	 * <code>
-	 * 	searchWithPost( "products", { "q" : "Wallet" } )
+	 * 	search( "products", { "q" : "Wallet" } )
 	 * </code>
 	 *
 	 * For an example, you can use the `limit` and `offset` parameters to fetch the second page of 25 records:
 	 *
 	 * <code>
-	 * 	searchWithPost( "products", {
+	 * 	search( "products", {
 	 * 		"q" : "Wallet",
 	 * 		"limit" : 25,
 	 * 		"offset" : 25
@@ -26,7 +26,7 @@ component accessors="true" extends="BaseRequest" {
 	 *
 	 * @link https://docs.meilisearch.com/reference/api/search.html#search-in-an-index-with-post-route
 	 */
-	public HyperResponse function searchWithPost( required string index, struct params = {} ){
+	public HyperResponse function search( required string index, struct params = {} ){
 		return HyperClient
 			.asJson()
 			.setURL( "/indexes/#arguments.index#/search" )

@@ -579,7 +579,7 @@ component extends="BaseModelTest" appMapping="root" {
 					}
 				} );
 				it( "can search with POST method", function(){
-					var response = model.searchWithPost( "products", {
+					var response = model.search( "products", {
 						"q" : "watch",
 						"attributesToHighlight" : [ "title" ]
 					} );
