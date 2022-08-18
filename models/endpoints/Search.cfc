@@ -58,7 +58,7 @@ component accessors="true" extends="BaseRequest" {
 	 */
 	public HyperResponse function searchWithGet( required string index, struct params = {} ){
 		return HyperClient
-			.setBody( arguments.params )
+			.withQueryParams( arguments.params )
 			.asJson()
 			.setURL( "/indexes/#arguments.index#/search" )
 			.setMethod( "GET" )
