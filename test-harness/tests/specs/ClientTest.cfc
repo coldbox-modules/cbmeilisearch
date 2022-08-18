@@ -43,13 +43,9 @@ component extends="BaseModelTest" appMapping="root" {
 			} );
 
 			describe( "Documents", function(){
-				beforeEach( function(){
-					if ( !variables.keyExists( "testDocument" ) ) {
-						variables.testDocument = createTestDocument();
-					}
-				} );
 				it( "can get single document", function(){
-					variables.model.getDocument( "products", variables.testDocument.id );
+					var testDocument = createTestDocument();
+					variables.model.getDocument( "products", testDocument.id );
 				} );
 				it( "can get all documents", function(){
 					variables.model.getDocuments( "products", { "limit" : 50, "offset" : "12" } );
@@ -586,7 +582,7 @@ component extends="BaseModelTest" appMapping="root" {
 					expect( response.isSuccess() );
 					var result = response.json();
 
-					// debug( result );
+					debug( result );
 					expect( result ).toBeStruct().toHaveKey( "hits" );
 					expect( arrayFirst( result.hits ) ).toHaveKey( "_formatted" );
 				} );
@@ -600,7 +596,7 @@ component extends="BaseModelTest" appMapping="root" {
 					expect( response.isSuccess() );
 					var result = response.json();
 
-					// debug( result );
+					debug( result );
 					expect( result ).toBeStruct().toHaveKey( "hits" );
 					expect( arrayFirst( result.hits ) ).toHaveKey( "_formatted" );
 				} );
@@ -610,7 +606,7 @@ component extends="BaseModelTest" appMapping="root" {
 
 	function createTestDocument(){
 		var testDocument = {
-			"id"       : "111",
+			"id"       : createUUID(),
 			"title"    : "Deluxe Silver Digital Watch",
 			"category" : "watches"
 		};
