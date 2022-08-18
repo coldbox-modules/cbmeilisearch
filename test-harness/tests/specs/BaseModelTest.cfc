@@ -16,6 +16,7 @@ component extends="coldbox.system.testing.BaseModelTest" {
 			getWirebox().autowire( variables.model );
 		}
 
+		ensureMeilisearchResponding();
 		ensureTestIndexExists();
 		addTestDocuments();
 	}
@@ -24,10 +25,18 @@ component extends="coldbox.system.testing.BaseModelTest" {
 		super.afterAll();
 	}
 
+	function ensureMeilisearchResponding(){
+		var response = getWirebox().getInstance( "Client@cbmeilisearch" ).version();
+		if ( response.getStatusCode() == "504" ){
+			throw( "Meilisearch is not reachable" );
+		}
+	}
+
 	function ensureTestIndexExists(){
 		var indexes  = getWirebox().getInstance( "cbmeilisearch.models.endpoints.Indexes" );
+		indexes.deleteIndex( uid = "products" );
 		var response = indexes.createIndex( uid = "products", primaryKey = "id" );
-		expect( response.isSuccess() );
+		expect( response.isSuccess() ).toBeTrue( "");
 		var result = response.json();
 
 		expect( result )
@@ -47,7 +56,8 @@ component extends="coldbox.system.testing.BaseModelTest" {
 				"products",
 				{
 					"filterableAttributes" : [ "category", "manufactureYear" ],
-					"sortableAttributes"   : [ "category", "manufactureYear" ]
+					"sortableAttributes"   : [ "category", "manufactureYear", "title" ],
+					"searchableAttributes" : [ "title" ]
 				}
 			)
 			.json();
