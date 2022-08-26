@@ -29,21 +29,34 @@ component accessors="false" {
 	 *
 	 * @response the HyperResponse object.
 	 */
-	package function handleResponse( HyperResponse response ){
-		if ( response.isForbidden() || response.isError() ) {
-			var message = parseErrorMessage( response );
+	public function parseAndThrow( HyperResponse response ){
+		if ( response.isError() ) {
+			var message = "Meilisearch API call errored";
+			var type = "GenericException";
+			switch( response.getStatusCode() ){
+                case "504":
+                    message = "Meilisearch Unavailable";
+                    type    = "ConnectionFailure";
+                break;
+                case "403":
+                    message = "Forbidden";
+                    type    = "AuthenticationFailure";
+                break;
+                case "401":
+					message = "Unauthorized";
+					type    = "PermissionFailure";
+                break;
+                case "400":
+                    message = "Bad Request";
+                    type    = "RequestFailure";
+                break;
+            }
 			throw(
-				type         = "cbdo.ResponseErrorException",
-				message      = "Error from Meilisearch: #response.getStatusCode()# #response.getStatusText()# - #message#",
+				message      = message & " - #getPrettyErrorMessage( response )#",
+				type         = "cbMeilisearch.#type#",
 				detail       = serializeJSON( response.getMemento() ),
 				extendedInfo = response.getData()
 			);
-		} else {
-			if ( isJSON( response.getData() ) ) {
-				return response.json();
-			} else {
-				return response.getData();
-			}
 		}
 	}
 
@@ -53,7 +66,7 @@ component accessors="false" {
 	 * @link     https://docs.meilisearch.com/reference/api/overview.html#errors-status-code
 	 * @response the HyperResponse object.
 	 */
-	package function parseErrorMessage( HyperResponse response ){
+	package function getPrettyErrorMessage( HyperResponse response ){
 		if ( isJSON( response.getData() ) ) {
 			var error = response.json();
 			if ( !isNull( error ) && isStruct( error ) && error.keyExists( "message" ) ) {
