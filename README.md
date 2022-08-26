@@ -26,7 +26,8 @@ docker run --detach --rm \
     -e MEILI_MASTER_KEY='mySecretKey'\
     -v $(pwd)/meili_data:/meili_data \
     getmeili/meilisearch:v0.28 \
-    meilisearch --env="development"
+    meilisearch \
+    --env="development"
 ```
 
 

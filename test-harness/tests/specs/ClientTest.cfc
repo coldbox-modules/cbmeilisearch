@@ -582,7 +582,7 @@ component extends="BaseModelTest" appMapping="root" {
 					expect( response.isSuccess() );
 					var result = response.json();
 
-					debug( result );
+					// debug( result );
 					expect( result ).toBeStruct().toHaveKey( "hits" );
 					expect( arrayFirst( result.hits ) ).toHaveKey( "_formatted" );
 				} );
@@ -596,7 +596,7 @@ component extends="BaseModelTest" appMapping="root" {
 					expect( response.isSuccess() );
 					var result = response.json();
 
-					debug( result );
+					// debug( result );
 					expect( result ).toBeStruct().toHaveKey( "hits" );
 					expect( arrayFirst( result.hits ) ).toHaveKey( "_formatted" );
 				} );
