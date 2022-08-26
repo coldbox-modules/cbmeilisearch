@@ -26,9 +26,11 @@ component {
 	 */
 	function configure(){
 		settings = {
+			// What HTTP host is the Meilisearch server listening on?
 			MEILISEARCH_HOST       : getSystemSetting( "MEILISEARCH_HOST", "http://127.0.0.1" ),
+			// What port is the Meilisearch server listening on?
 			MEILISEARCH_PORT       : getSystemSetting( "MEILISEARCH_PORT", "7700" ),
-			// Preferably overriden via a .env file or environment variable
+			// Master key or API key for authenticating to a protected Meilisearch instance
 			MEILISEARCH_MASTER_KEY : getSystemSetting( "MEILISEARCH_MASTER_KEY", "change_me" )
 		};
 	}
@@ -38,13 +40,17 @@ component {
 	 */
 	function onLoad(){
 		// Binder Mappings
+		var apiHeaders = {};
+		if ( len( settings.MEILISEARCH_MASTER_KEY ) ){
+			apiHeaders[ "Authorization" ] = "Bearer #settings.MEILISEARCH_MASTER_KEY#";
+		}
 		binder
 			.map( "HyperClient@cbmeilisearch" )
 			.to( "hyper.models.HyperBuilder" )
 			.asSingleton()
 			.initWith(
 				baseURL: "#settings.MEILISEARCH_HOST#:#settings.MEILISEARCH_PORT#",
-				headers: { "Authorization" : "Bearer #settings.MEILISEARCH_MASTER_KEY#" }
+				headers: apiHeaders
 			);
 
 		binder
