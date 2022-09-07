@@ -8,7 +8,7 @@ on:
         required: true
 
 env:
-  MASTER_KEY: bifur_bofur_bombur
+  MASTER_KEY: bilbo_baggins
 
 jobs:
   tests:
