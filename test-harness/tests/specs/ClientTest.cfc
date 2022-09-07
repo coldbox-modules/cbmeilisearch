@@ -174,6 +174,7 @@ component extends="BaseModelTest" appMapping="root" {
 							"indexes"     : [ "*" ],
 							"expiresAt"   : javacast( "null", 0 )
 						} );
+						variables.model.parseAndThrow( response );
 						expect( response.isSuccess() ).toBeTrue();
 						variables.testKey = response.json();
 					}

@@ -3,7 +3,7 @@
  */
 component accessors="true" {
 
-	property name="HyperClient" inject="HyperClient@cbmeilisearch";
+	property name="HyperClient" inject="HyperClient@cbmeilisearch" getter="false" setter="false";
 
 	/**
 	 * Constructor

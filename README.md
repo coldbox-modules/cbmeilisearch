@@ -102,6 +102,6 @@ Apache License, Version 2.0.
 
 Copyright 2022 (and on) - [Ortus Solutions](https://www.ortussolutions.com/)
 
-* [Homepage](https://github.com/michaelborn/cbMeilisearch)
-* [Issue Tracker](https://github.com/michaelborn/cbMeilisearch/issues)
-* [New BSD License](https://github.com/michaelborn/cbMeilisearch/blob/master/LICENSE.txt)
+* [Homepage](https://github.com/coldbox-modules/cbmeilisearch)
+* [Issue Tracker](https://github.com/coldbox-modules/cbmeilisearch/issues)
+* [New BSD License](https://github.com/coldbox-modules/cbmeilisearch/blob/master/LICENSE.txt)
