@@ -2,17 +2,18 @@
 .artifacts/**
 .tmp/**
 meili_data
+docs/
 
 # Engine + Secrets
 .env
 .engine/**
 
 # Dependencies
-test-harness/coldbox/**
-test-harness/docbox/**
-test-harness/testbox/**
-test-harness/logs/**
-test-harness/modules/**
+test-harness/coldbox
+test-harness/docbox
+test-harness/testbox
+test-harness/logs
+test-harness/modules
 
 # modules
 modules/**

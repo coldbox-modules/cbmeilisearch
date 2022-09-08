@@ -48,7 +48,7 @@ jobs:
             ${{ runner.OS }}-commandbox-cache-${{ hashFiles( 'box.json' ) }}-${{ hashFiles( 'test-harness/box.json' ) }}
 
       - name: Setup CommandBox
-        uses: Ortus-Solutions/setup-commandbox@v2.0.0
+        uses: Ortus-Solutions/setup-commandbox@main
         with:
           forgeboxAPIKey: ${{ secrets.FORGEBOX_TOKEN }}
 
@@ -116,3 +116,17 @@ jobs:
           SLACK_TITLE: "${{ env.MODULE_ID }} Build"
           SLACK_USERNAME: CI
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      - name: Show Server Log On Failures
+        if: ${{ failure() }}
+        run: |
+          box server log serverConfigFile="server-${{ matrix.cfengine }}.json"
+
+      - name: Upload Debug Logs To Artifacts
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: Failure Debugging Info - ${{ matrix.cfengine }}
+          path: |
+            .engine/**/logs/*
+            .engine/**/WEB-INF/cfusion/logs/*

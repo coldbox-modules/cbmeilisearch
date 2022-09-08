@@ -2,8 +2,8 @@
 Copyright Since 2005 ColdBox Framework by Luis Majano and Ortus Solutions, Corp
 www.coldbox.org | www.ortussolutions.com
 ********************************************************************************
-ColdBox is open source. However, if you use this product please know that it is bound to the following Licence.
-If you use ColdBox, please make mention of it in your code or web site or add a Powered By Coldbox icon.
+cbMeilisearch is open source. However, if you use this product please know that it is bound to the following Licence.
+If you use cbMeilisearch, please make mention of it in your code or web site or add a Powered By cbMeilisearch icon.
 
 Apache License, Version 2.0
 
