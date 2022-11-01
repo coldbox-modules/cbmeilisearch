@@ -2,7 +2,7 @@
 
 An API wrapper for Meilisearch written in CFML for the ColdBox platform.
 
-## Installation
+## Getting Started
 
 1. Install via CommandBox - `box install cbmeilisearch`
 2. [Start a Meilisearch instance](#starting-meilisearch)
@@ -69,20 +69,22 @@ This library follows the [Meilisearch API reference](https://docs.meilisearch.co
 
 ## 🤖 Meilisearch Version Compatibility
 
-This package only guarantees compatibility with version `v0.28.0` of Meilisearch.
+This package guarantees compatibility with Meilisearch versions:
 
-## TODO
+* [`v0.28.0`](https://github.com/meilisearch/meilisearch/releases/tag/v0.28.0) and [`v0.28.1`](https://github.com/meilisearch/meilisearch/releases/tag/v0.28.1)
+* [`v0.29.0`](https://github.com/meilisearch/meilisearch/releases/tag/v0.29.0) and [`v0.29.1`](https://github.com/meilisearch/meilisearch/releases/tag/v0.29.1)
 
-* ✅ Drop additional params as first-class arguments - too much work. Accept a struct and pass it through to the JSON body or URL.
-* ✅ Refactor API to match [PHP SDK](https://github.com/meilisearch/meilisearch-php)
-* ✅ Return HyperResponse object, don't try to parse it without asking.
-* Finalize API documentation
-  * Add Getting Started section to README
-  * Add argument docs for each API method
-* Add [Multitenancy](https://docs.meilisearch.com/learn/security/tenant_tokens.html#multitenancy-and-tenant-tokens) support
-  * Add [Tenant Token generation utility](https://docs.meilisearch.com/learn/security/tenant_tokens.html#generating-tenant-tokens-without-a-meilisearch-sdk)
-* Move to [coldbox-modules](https://github.com/coldbox-modules) organization
-* Add callback support for asynchronous task completion 
+Versions `v0.27.x` and below are NOT supported due to the breaking changes introduced in `v0.28.0`.
+
+## TODO / Help Needed
+
+Looking to contribute? I'd love to see help in these areas:
+
+* [Multitenancy](https://docs.meilisearch.com/learn/security/tenant_tokens.html#multitenancy-and-tenant-tokens) support
+  * Add a [Tenant Token generation utility](https://docs.meilisearch.com/learn/security/tenant_tokens.html#generating-tenant-tokens-without-a-meilisearch-sdk) 🔑
+  * Add a suite of multitenancy tests 🤖
+* More and better documentation
+* More tests
 
 ## License
 
