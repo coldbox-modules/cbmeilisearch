@@ -23,6 +23,7 @@ jobs:
         experimental: [ false ]
         include:
           - meilisearch: "v0.30.0rc0"
+            cfengine: "lucee@5"
             experimental: true
     steps:
       - name: Checkout Repository
