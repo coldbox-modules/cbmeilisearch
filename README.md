@@ -85,6 +85,7 @@ Looking to contribute? I'd love to see help in these areas:
   * Add a suite of multitenancy tests 🤖
 * More and better documentation
 * More tests
+* Add [v0.30.0rc0 support](https://github.com/meilisearch/meilisearch/releases/tag/v0.30.0rc0)
 
 ## License
 

@@ -21,9 +21,9 @@ jobs:
         cfengine: [ "lucee@5", "adobe@2018", "adobe@2021" ]
         meilisearch: [ "v0.28", "v0.29" ]
         experimental: [ false ]
-        # include:
-        #   - meilisearch: "v0.28.1"
-        #     experimental: true
+        include:
+          - meilisearch: "v0.30.0rc0"
+            experimental: true
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
@@ -84,7 +84,7 @@ jobs:
         if: always()
         with:
           files: test-harness/tests/results/**/*.xml
-          check_name: "${{ matrix.cfengine }} Test Results"
+          check_name: "${{ matrix.cfengine }} w/ Meilisearch ${{ matrix.meilisearch }} Test Results"
 
       - name: Upload Test Results to Artifacts
         if: always()
