@@ -162,6 +162,14 @@ component extends="BaseModelTest" appMapping="root" {
 					var exampleTask = response.json();
 					variables.model.getTask( exampleTask.taskUid );
 				} );
+				it( "can cancel tasks", function(){
+					var response = variables.model.cancelTasks({
+						"uids" : 1
+					});
+					expect( response.isSuccess() ).toBeTrue();
+					expect( response.json().status ).toBe( "enqueued" );
+					expect( response.json().type ).toBe( "taskCancelation" );
+				} );
 			} );
 
 			describe( "Keys", function(){

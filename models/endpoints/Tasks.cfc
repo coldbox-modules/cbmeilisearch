@@ -24,6 +24,15 @@ component accessors="true" extends="BaseRequest" {
 	}
 
 	/**
+	 * Cancel tasks
+	 *
+	 * @link https://docs.meilisearch.com/reference/api/tasks.html#cancel-tasks
+	 */
+	public HyperResponse function cancelTasks( struct params = {} ){
+		return HyperClient.setQueryParams( arguments.params ).post( "/tasks/cancel" );
+	}
+
+	/**
 	 * Wait for completion of a given (asynchronous) task.
 	 *
 	 * @url          https://docs.meilisearch.com/reference/api/overview.html#asynchronous-operations

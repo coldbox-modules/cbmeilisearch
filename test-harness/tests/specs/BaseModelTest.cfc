@@ -36,7 +36,7 @@ component extends="coldbox.system.testing.BaseModelTest" {
 		var indexes  = getWirebox().getInstance( "cbmeilisearch.models.endpoints.Indexes" );
 		indexes.deleteIndex( uid = "products" );
 		var response = indexes.createIndex( uid = "products", primaryKey = "id" );
-		expect( response.isSuccess() ).toBeTrue( "");
+		expect( response.isSuccess() ).toBeTrue();
 		var result = response.json();
 
 		expect( result )
