@@ -20,7 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * 📦 NEW: Add support for empty API key 
 * ‼ BREAKING: Rename handleResponse() to parseAndThrow() 
 
-## [1.0.1] => 2022-SEPTEMPER-8
+## [1.0.0] => 2022-SEPTEMPER-8
 
 * 📦 First iteration of this module
 * 📦 Added Documents API wrapper
