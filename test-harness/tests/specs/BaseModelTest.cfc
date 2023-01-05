@@ -44,13 +44,12 @@ component extends="coldbox.system.testing.BaseModelTest" {
 	}
 
 	function getMeilisearchVersion(){
-		var system = createObject( "java", "java.lang.System" );
-		var host = !isNull( system.getEnv('MEILISEARCH_HOST') ) ? system.getEnv('MEILISEARCH_HOST') : "127.0.0.1";
-		var port = !isNull( system.getEnv('MEILISEARCH_PORT') ) ? system.getEnv('MEILISEARCH_PORT') : "7700";
+		var host = !isNull( server.system.environment[ 'MEILISEARCH_HOST' ] ) ? server.system.environment[ 'MEILISEARCH_HOST' ] : "127.0.0.1";
+		var port = !isNull( server.system.environment[ 'MEILISEARCH_PORT' ] ) ? server.system.environment[ 'MEILISEARCH_PORT' ] : "7700";
 
 		local.result          = "";
 		cfhttp( url = "#host#:#port#/version", result = "local.result"){
-			cfhttpparam( name = "Authorization", type="header", value = "Bearer #system.getEnv( 'MEILISEARCH_MASTER_KEY' )#" );
+			cfhttpparam( name = "Authorization", type="header", value = "Bearer #server.system.environment[  'MEILISEARCH_MASTER_KEY' ]#" );
 		}
 	
 		if ( local.result.responseheader.status_code == "504" ){
@@ -58,7 +57,7 @@ component extends="coldbox.system.testing.BaseModelTest" {
 		} else if ( left( local.result.responseheader.status_code, 1 ) != 2 ){
 			throw(
 				message = "Unexpected Meilisearch status code: #local.result.statuscode#",
-				detail = "Used API key #system.getEnv( 'MEILISEARCH_MASTER_KEY' )#",
+				detail = "Used API key #server.system.environment[ 'MEILISEARCH_MASTER_KEY' ]#",
 				extendedInfo = serializeJSON( local.result )
 			);
 		}
