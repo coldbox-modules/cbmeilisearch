@@ -81,12 +81,12 @@ Versions `v0.27.x` and below are NOT supported due to the breaking changes intro
 
 Looking to contribute? I'd love to see help in these areas:
 
+* ✅ Add [v0.30 support](https://github.com/meilisearch/meilisearch/releases/tag/v0.30.0)
+* Add a date helper for [formatting dates for API consumption](https://docs.meilisearch.com/learn/advanced/asynchronous_operations.html#filter-by-date)
 * [Multitenancy](https://docs.meilisearch.com/learn/security/tenant_tokens.html#multitenancy-and-tenant-tokens) support
   * Add a [Tenant Token generation utility](https://docs.meilisearch.com/learn/security/tenant_tokens.html#generating-tenant-tokens-without-a-meilisearch-sdk) 🔑
   * Add a suite of multitenancy tests 🤖
-* More and better documentation
-* More tests
-* Add [v0.30 support](https://github.com/meilisearch/meilisearch/releases/tag/v0.30.0)
+* API / Usage documentation
 
 ## License
 
