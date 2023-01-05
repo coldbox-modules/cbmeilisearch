@@ -34,6 +34,10 @@ component {
 	this.mappings[ "/moduleroot" ]            = moduleRootPath;
 	this.mappings[ "/#request.MODULE_NAME#" ] = moduleRootPath & "#request.MODULE_PATH#";
 
+	function onApplicationStart(){
+		loadEnvIntoSystemProps();
+	}
+
 	function onRequestStart( required targetPage ){
 		if ( url.keyExists( "fwreinit" ) ) {
 			if ( structKeyExists( server, "lucee" ) ) {
@@ -41,19 +45,18 @@ component {
 			}
 		}
 
-		// Cleanup
-		if ( !isNull( application.cbController ) ) {
-			application.cbController.getLoaderService().processShutdown();
-		}
-		structDelete( application, "cbController" );
-		structDelete( application, "wirebox" );
-
 		return true;
 	}
 
-	public function onRequestEnd(){
-		structDelete( application, "cbController" );
-		structDelete( application, "wirebox" );
+	function loadEnvIntoSystemProps(){
+		var javaSystem = createObject( "java", "java.lang.System" );
+		var file = fileRead( this.mappings[ '/#request.MODULE_NAME#' ] & "/.env" );
+		for( envPair in listToArray( file, chr( 10 ) ) ){
+			if ( envPair DOES NOT CONTAIN "=" ) continue;
+			var key = listGetAt( envPair, 1, "=" );
+			var value = listGetAt( envPair, 2, "=" );
+			javaSystem.setProperty( key, value );
+		}
 	}
 
 }
