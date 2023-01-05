@@ -35,7 +35,7 @@ component {
 	this.mappings[ "/#request.MODULE_NAME#" ] = moduleRootPath & "#request.MODULE_PATH#";
 
 	function onApplicationStart(){
-		loadEnvIntoSystemProps();
+		loadEnvIntoSystemProps( this.mappings[ "/root" ] );
 	}
 
 	function onRequestStart( required targetPage ){
@@ -48,9 +48,9 @@ component {
 		return true;
 	}
 
-	function loadEnvIntoSystemProps(){
+	function loadEnvIntoSystemProps( required string baseDir ){
 		var javaSystem = createObject( "java", "java.lang.System" );
-		var file = fileRead( this.mappings[ '/#request.MODULE_NAME#' ] & "/.env" );
+		var file = fileRead( arguments.baseDir & "/.env" );
 		for( envPair in listToArray( file, chr( 10 ) ) ){
 			if ( envPair DOES NOT CONTAIN "=" ) continue;
 			var key = listGetAt( envPair, 1, "=" );
