@@ -57,4 +57,25 @@ component accessors="true" extends="BaseRequest" {
 		return HyperClient.delete( "/indexes/#arguments.uid#" );
 	}
 
+	/**
+	 * Swap Indexes
+	 * 
+	 * ! Note: This method accepts two strings instead of an array.
+	 * ! Accepting an array would allow developers to pass multiple sets of indexes to swap in one single operation...
+	 * ! ... just like the API supports.
+	 * ! I chose to simplify this for 98% of use cases and prefer multiple `.swapIndexes()` calls instead.
+	 *
+	 * @link https://docs.meilisearch.com/reference/api/indexes.html#swap-indexes
+	 */
+	public HyperResponse function swapIndexes( required string first, required string second ){
+		return HyperClient
+				.setBody([
+					{
+						"indexes" : [ arguments.first, arguments.second ]
+					}
+				])
+				.asJson()
+				.post( "/swap-indexes" );
+	}
+
 }

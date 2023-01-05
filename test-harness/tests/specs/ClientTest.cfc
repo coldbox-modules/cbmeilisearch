@@ -37,6 +37,13 @@ component extends="BaseModelTest" appMapping="root" {
 					variables.model.getAllIndexes( { "limit" : 20, "offset" : 1 } );
 				} );
 
+				it( "can swap indexes", function(){
+					var response = model.swapIndexes( "movies", "films" );
+					// debug( response );
+					expect( response.isSuccess() ).toBeTrue();
+					expect( response.json().type ).toBe( "indexSwap" );
+				} );
+
 				it( "can delete index", function(){
 					variables.model.deleteIndex( "movies" );
 				} );
