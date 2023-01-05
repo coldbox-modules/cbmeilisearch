@@ -44,7 +44,7 @@ jobs:
           # Setup .env
           touch .env
           # ENV
-          printf "MEILISEARCH_HOST=localhost\n" >> .env
+          printf "MEILISEARCH_HOST=http://localhost\n" >> .env
           printf "MEILISEARCH_PORT=7700\n" >> .env
           printf "MEILISEARCH_MASTER_KEY=$MASTER_KEY\n" >> .env
 
@@ -69,10 +69,6 @@ jobs:
       - name: Start ${{ matrix.cfengine }} Server
         run: |
           box server start serverConfigFile="server-${{ matrix.cfengine }}.json" --noSaveSettings --debug
-          # Install Adobe 2021 cfpm modules
-          if [[ "${{ matrix.cfengine }}" == "adobe@2021" ]] ; then
-            box run-script install:2021
-          fi
           curl http://127.0.0.1:60277
 
       - name: Run Tests

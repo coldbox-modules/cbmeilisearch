@@ -24,7 +24,6 @@ docker pull getmeili/meilisearch:v0.30
 docker run --detach --rm \
     -p 7700:7700 \
     -e MEILI_MASTER_KEY='mySecretKey'\
-    -v $(pwd)/meili_data:/meili_data \
     getmeili/meilisearch:v0.30 \
     meilisearch \
     --env="development"

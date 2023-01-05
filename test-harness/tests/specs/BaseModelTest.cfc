@@ -55,6 +55,11 @@ component extends="coldbox.system.testing.BaseModelTest" {
 	
 		if ( local.result.status_code == "504" ){
 			throw( "Meilisearch is not reachable" );
+		} else if ( left( local.result.status_code, 1 ) != 2 ){
+			throw(
+				message = "Unexpected Meilisearch status code: #local.result.status_code# #local.result.status_text#",
+				extendedInfo = serializeJSON( local.result )
+			);
 		}
 		this.MEILISEARCH_VERSION = deserializeJSON( local.result.filecontent ).pkgVersion;
 	}
