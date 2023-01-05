@@ -9,10 +9,6 @@ component extends="BaseModelTest" appMapping="root" {
 		variables.model = getWirebox().getInstance( "Client@cbmeilisearch" );
 	}
 
-	function afterAll(){
-		super.afterAll();
-	}
-
 	/*********************************** BDD SUITES ***********************************/
 
 	function run(){
@@ -37,12 +33,12 @@ component extends="BaseModelTest" appMapping="root" {
 					variables.model.getAllIndexes( { "limit" : 20, "offset" : 1 } );
 				} );
 
-				it( "can swap indexes", function(){
+				it( title = "can swap indexes", body = function(){
 					var response = model.swapIndexes( "movies", "films" );
 					// debug( response );
 					expect( response.isSuccess() ).toBeTrue();
 					expect( response.json().type ).toBe( "indexSwap" );
-				} );
+				}, skip = parseVersion( this.MEILISEARCH_VERSION ) < parseVersion( "v0.30.0" ) );
 
 				it( "can delete index", function(){
 					variables.model.deleteIndex( "movies" );
@@ -169,15 +165,15 @@ component extends="BaseModelTest" appMapping="root" {
 					var exampleTask = response.json();
 					variables.model.getTask( exampleTask.taskUid );
 				} );
-				it( "can cancel tasks", function(){
+				it( title = "can cancel tasks", body = function(){
 					var response = variables.model.cancelTasks({
 						"uids" : 1
 					});
 					expect( response.isSuccess() ).toBeTrue();
 					expect( response.json().status ).toBe( "enqueued" );
 					expect( response.json().type ).toBe( "taskCancelation" );
-				} );
-				it( "can delete tasks which succeeded or canceled before 2023", function(){
+				}, skip = parseVersion( this.MEILISEARCH_VERSION ) < parseVersion( "v0.30.0" ) );
+				it( title = "can delete tasks which succeeded or canceled before 2023", body = function(){
 					var response = variables.model.deleteTasks({
 						"statuses" :"succeeded,canceled",
 						"beforeStartedAt" : "2023-01-01T10:00:00.000000Z"
@@ -185,7 +181,7 @@ component extends="BaseModelTest" appMapping="root" {
 					expect( response.isSuccess() ).toBeTrue();
 					expect( response.json().status ).toBe( "enqueued" );
 					expect( response.json().type ).toBe( "taskDeletion" );
-				} );
+				}, skip = parseVersion( this.MEILISEARCH_VERSION ) < parseVersion( "v0.30.0" ) );
 			} );
 
 			describe( "Keys", function(){

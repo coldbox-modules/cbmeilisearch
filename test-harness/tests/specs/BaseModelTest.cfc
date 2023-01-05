@@ -3,6 +3,9 @@ component extends="coldbox.system.testing.BaseModelTest" {
 	this.loadColdbox   = true;
 	this.unLoadColdbox = true;
 
+	param this.MEILISEARCH_VERSION = "unknown";
+	getMeilisearchVersion();
+
 	function beforeAll(){
 		super.beforeAll();
 
@@ -16,20 +19,44 @@ component extends="coldbox.system.testing.BaseModelTest" {
 			getWirebox().autowire( variables.model );
 		}
 
-		ensureMeilisearchResponding();
+		getMeilisearchVersion();
 		ensureTestIndexExists();
 		addTestDocuments();
 	}
 
-	function afterAll(){
-		super.afterAll();
+	/**
+	 * Useful for skipping tests if the current Meilisearch version is less than some minimum.
+	 *
+	 * @version The version string from Meiilisearch. "v0.28.1"
+	 */
+	function parseVersion( required string version ){
+		return javaCast( "float",
+			reReplace(
+				reReplace(
+					arguments.version,
+					"[^0-9.]",
+					"",
+					"all"
+				),
+				"([0-9]+).([0-9]+).([0-9]+)",
+				"\1\2\3"
+			)
+		);
 	}
 
-	function ensureMeilisearchResponding(){
-		var response = getWirebox().getInstance( "Client@cbmeilisearch" ).version();
-		if ( response.getStatusCode() == "504" ){
+	function getMeilisearchVersion(){
+		var system = createObject( "java", "java.lang.System" );
+		var host = !isNull( system.getEnv('MEILISEARCH_HOST') ) ? system.getEnv('MEILISEARCH_HOST') : "127.0.0.1";
+		var port = !isNull( system.getEnv('MEILISEARCH_PORT') ) ? system.getEnv('MEILISEARCH_PORT') : "7700";
+
+		cfhttp( url = "#host#:#port#/version", result = "local.result"){
+			cfhttpparam( name = "Authorization", type="header", value = "Bearer #system.getEnv( 'MEILISEARCH_MASTER_KEY' )#" );
+		}
+	
+		if ( local.result.status_code == "504" ){
 			throw( "Meilisearch is not reachable" );
 		}
+		this.MEILISEARCH_VERSION = deserializeJSON( local.result.filecontent ).pkgVersion;
 	}
 
 	function ensureTestIndexExists(){
@@ -90,6 +117,20 @@ component extends="coldbox.system.testing.BaseModelTest" {
 				documents  = documents,
 				primaryKey = "id"
 			);
+	}
+
+	function run(){
+		describe( "BaseModelTest", function() {
+			it( "can parse version", function() {
+				expect( parseVersion( "v0.30.0" ) ).toBe( "0300" );
+				expect( parseVersion( "v0.30.0" ) ).toBe( parseVersion( "v0.30.0" ) );
+				expect( parseVersion( "v0.30.1" ) ).toBeGT( parseVersion( "v0.30.0" ) );
+				expect( parseVersion( "v0.30.0" ) ).toBeGT( parseVersion( "v0.28.0" ) );
+				expect( parseVersion( "v0.30.1" ) ).toBeLT( parseVersion( "v0.30.3" ) );
+				debug( parseVersion( "v0.30.0" ) );
+				debug( parseVersion( "v0.30.0" ) );
+			})
+		})
 	}
 
 }
