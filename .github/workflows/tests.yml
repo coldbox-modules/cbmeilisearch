@@ -22,7 +22,7 @@ jobs:
         meilisearch: [ "v0.28", "v0.29" ]
         experimental: [ false ]
         include:
-          - meilisearch: "v0.30.0rc0"
+          - meilisearch: "v0.30"
             cfengine: "lucee@5"
             experimental: true
     steps:

@@ -73,7 +73,7 @@ component extends="BaseModelTest" appMapping="root" {
 						documents  = documents,
 						primaryKey = "id"
 					);
-					expect( response.isSuccess() );
+					expect( response.isSuccess() ).toBeTrue();
 					var result = response.json();
 
 					// debug( result );
@@ -112,7 +112,7 @@ component extends="BaseModelTest" appMapping="root" {
 						documents  = documents,
 						primaryKey = "id"
 					);
-					expect( response.isSuccess() );
+					expect( response.isSuccess() ).toBeTrue();
 					var result = response.json();
 
 					// debug( result );
@@ -122,7 +122,7 @@ component extends="BaseModelTest" appMapping="root" {
 
 				it( "can delete one document", function(){
 					var response = model.deleteDocument( index = "products", document_id = "111" );
-					expect( response.isSuccess() );
+					expect( response.isSuccess() ).toBeTrue();
 					var result = response.json();
 
 					// debug( result );
@@ -132,7 +132,7 @@ component extends="BaseModelTest" appMapping="root" {
 
 				it( "can delete by batch", function(){
 					var response = model.deleteDocuments( index = "products", document_ids = [ "3767", "22" ] );
-					expect( response.isSuccess() );
+					expect( response.isSuccess() ).toBeTrue();
 					var result = response.json();
 
 					// debug( result );
@@ -142,7 +142,7 @@ component extends="BaseModelTest" appMapping="root" {
 
 				it( "can delete all documents", function(){
 					var response = model.deleteAllDocuments( "products" );
-					expect( response.isSuccess() );
+					expect( response.isSuccess() ).toBeTrue();
 					var result = response.json();
 
 					// debug( result );
@@ -158,7 +158,7 @@ component extends="BaseModelTest" appMapping="root" {
 
 				it( "can get single task", function(){
 					var response = variables.model.createIndex( "example" );
-					expect( response.isSuccess() );
+					expect( response.isSuccess() ).toBeTrue();
 					var exampleTask = response.json();
 					variables.model.getTask( exampleTask.taskUid );
 				} );
@@ -222,7 +222,7 @@ component extends="BaseModelTest" appMapping="root" {
 				variables.taskIds = [];
 				it( "getSettings", function(){
 					var response = model.getSettings( "products" );
-					expect( response.isSuccess() );
+					expect( response.isSuccess() ).toBeTrue();
 					var result = response.json();
 
 					// debug( result );
@@ -236,7 +236,7 @@ component extends="BaseModelTest" appMapping="root" {
 							"stopWords"            : [ "the", "and", "or", "but", "not" ]
 						}
 					);
-					expect( response.isSuccess() );
+					expect( response.isSuccess() ).toBeTrue();
 					var result = response.json();
 
 					// debug( result );
@@ -245,7 +245,7 @@ component extends="BaseModelTest" appMapping="root" {
 				} );
 				it( "resetSettings", function(){
 					var response = model.resetSettings( "products" );
-					expect( response.isSuccess() );
+					expect( response.isSuccess() ).toBeTrue();
 					var result = response.json();
 					// debug( result );
 					expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
@@ -253,7 +253,7 @@ component extends="BaseModelTest" appMapping="root" {
 				} );
 				it( "getDisplayedAttributes", function(){
 					var response = model.getDisplayedAttributes( "products" );
-					expect( response.isSuccess() );
+					expect( response.isSuccess() ).toBeTrue();
 					var result = response.json();
 					// debug( result );
 					expect( result ).toBeArray().toHaveLength( 1 );
@@ -261,7 +261,7 @@ component extends="BaseModelTest" appMapping="root" {
 				} );
 				it( "updateDisplayedAttributes", function(){
 					var response = model.updateDisplayedAttributes( "products", [ "title", "price" ] );
-					expect( response.isSuccess() );
+					expect( response.isSuccess() ).toBeTrue();
 					var result = response.json();
 					// debug( result );
 					expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
@@ -269,7 +269,7 @@ component extends="BaseModelTest" appMapping="root" {
 				} );
 				it( "resetDisplayedAttributes", function(){
 					var response = model.resetDisplayedAttributes( "products" );
-					expect( response.isSuccess() );
+					expect( response.isSuccess() ).toBeTrue();
 					var result = response.json();
 					// debug( result );
 					expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
@@ -277,13 +277,13 @@ component extends="BaseModelTest" appMapping="root" {
 				} );
 				it( "getDistinctAttribute", function(){
 					var response = model.getDistinctAttribute( "products" );
-					expect( response.isSuccess() );
+					expect( response.isSuccess() ).toBeTrue();
 					var result = response.json();
 					expect( isNull( result ) ).toBeTrue();
 				} );
 				it( "updateDistinctAttribute", function(){
 					var response = model.updateDistinctAttribute( "products", "id" );
-					expect( response.isSuccess() );
+					expect( response.isSuccess() ).toBeTrue();
 					var result = response.json();
 					// debug( result );
 					expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
@@ -291,7 +291,7 @@ component extends="BaseModelTest" appMapping="root" {
 				} );
 				it( "resetDistinctAttribute", function(){
 					var response = model.resetDistinctAttribute( "products" );
-					expect( response.isSuccess() );
+					expect( response.isSuccess() ).toBeTrue();
 					var result = response.json();
 					// debug( result );
 					expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
@@ -299,14 +299,14 @@ component extends="BaseModelTest" appMapping="root" {
 				} );
 				it( "getFacetingSettings", function(){
 					var response = model.getFacetingSettings( "products" );
-					expect( response.isSuccess() );
+					expect( response.isSuccess() ).toBeTrue();
 					var result = response.json();
 					// debug( result );
 					expect( result ).toBeStruct().toHaveKey( "maxValuesPerFacet" );
 				} );
 				it( "updateFacetingSettings", function(){
 					var response = model.updateFacetingSettings( "products", { "maxValuesPerFacet" : 20 } );
-					expect( response.isSuccess() );
+					expect( response.isSuccess() ).toBeTrue();
 					var result = response.json();
 					// debug( result );
 					expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
@@ -314,7 +314,7 @@ component extends="BaseModelTest" appMapping="root" {
 				} );
 				it( "resetFacetingSettings", function(){
 					var response = model.resetFacetingSettings( "products" );
-					expect( response.isSuccess() );
+					expect( response.isSuccess() ).toBeTrue();
 					var result = response.json();
 					// debug( result );
 					expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
@@ -322,14 +322,14 @@ component extends="BaseModelTest" appMapping="root" {
 				} );
 				it( "getFilterableAttributes", function(){
 					var response = model.getFilterableAttributes( "products" );
-					expect( response.isSuccess() );
+					expect( response.isSuccess() ).toBeTrue();
 					var result = response.json();
 					// debug( result );
 					expect( result ).toBeArray().toHaveLength( 0 );
 				} );
 				it( "updateFilterableAttributes", function(){
 					var response = model.updateFilterableAttributes( "products", [ "price", "category" ] );
-					expect( response.isSuccess() );
+					expect( response.isSuccess() ).toBeTrue();
 					var result = response.json();
 					// debug( result );
 					expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
@@ -337,7 +337,7 @@ component extends="BaseModelTest" appMapping="root" {
 				} );
 				it( "resetFilterableAttributes", function(){
 					var response = model.resetFilterableAttributes( "products" );
-					expect( response.isSuccess() );
+					expect( response.isSuccess() ).toBeTrue();
 					var result = response.json();
 					// debug( result );
 					expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
@@ -345,14 +345,14 @@ component extends="BaseModelTest" appMapping="root" {
 				} );
 				it( "getPaginationSettings", function(){
 					var response = model.getPaginationSettings( "products" );
-					expect( response.isSuccess() );
+					expect( response.isSuccess() ).toBeTrue();
 					var result = response.json();
 					// debug( result );
 					expect( result ).toBeStruct().toHaveKey( "maxTotalHits" );
 				} );
 				it( "updatePaginationSettings", function(){
 					var response = model.updatePaginationSettings( "products", { "maxTotalHits" : 20 } );
-					expect( response.isSuccess() );
+					expect( response.isSuccess() ).toBeTrue();
 					var result = response.json();
 					// debug( result );
 					expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
@@ -360,7 +360,7 @@ component extends="BaseModelTest" appMapping="root" {
 				} );
 				it( "resetPaginationSettings", function(){
 					var response = model.resetPaginationSettings( "products" );
-					expect( response.isSuccess() );
+					expect( response.isSuccess() ).toBeTrue();
 					var result = response.json();
 					// debug( result );
 					expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
@@ -368,7 +368,7 @@ component extends="BaseModelTest" appMapping="root" {
 				} );
 				it( "getRankingRules", function(){
 					var response = model.getRankingRules( "products" );
-					expect( response.isSuccess() );
+					expect( response.isSuccess() ).toBeTrue();
 					var result = response.json();
 					// debug( result );
 					expect( result ).toBeArray().toHaveLength( 6 );
@@ -386,7 +386,7 @@ component extends="BaseModelTest" appMapping="root" {
 							"release_date:desc"
 						]
 					);
-					expect( response.isSuccess() );
+					expect( response.isSuccess() ).toBeTrue();
 					var result = response.json();
 					// debug( result );
 					expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
@@ -394,7 +394,7 @@ component extends="BaseModelTest" appMapping="root" {
 				} );
 				it( "resetRankingRules", function(){
 					var response = model.resetRankingRules( "products" );
-					expect( response.isSuccess() );
+					expect( response.isSuccess() ).toBeTrue();
 					var result = response.json();
 					// debug( result );
 					expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
@@ -402,7 +402,7 @@ component extends="BaseModelTest" appMapping="root" {
 				} );
 				it( "getSearchableAttributes", function(){
 					var response = model.getSearchableAttributes( "products" );
-					expect( response.isSuccess() );
+					expect( response.isSuccess() ).toBeTrue();
 					var result = response.json();
 					// debug( result );
 					expect( result ).toBeArray().toHaveLength( 1 );
@@ -410,14 +410,14 @@ component extends="BaseModelTest" appMapping="root" {
 				} );
 				it( "updateSearchableAttributes", function(){
 					var response = model.updateSearchableAttributes( "products", [ "title", "price" ] );
-					expect( response.isSuccess() );
+					expect( response.isSuccess() ).toBeTrue();
 					var result = response.json();
 					// debug( result );
 					expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
 				} );
 				it( "resetSearchableAttributes", function(){
 					var response = model.resetSearchableAttributes( "products" );
-					expect( response.isSuccess() );
+					expect( response.isSuccess() ).toBeTrue();
 					var result = response.json();
 					// debug( result );
 					expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
@@ -425,14 +425,14 @@ component extends="BaseModelTest" appMapping="root" {
 				} );
 				it( "getSortableAttributes", function(){
 					var response = model.getSortableAttributes( "products" );
-					expect( response.isSuccess() );
+					expect( response.isSuccess() ).toBeTrue();
 					var result = response.json();
 					// debug( result );
 					expect( result ).toBeArray().toHaveLength( 0 );
 				} );
 				it( "updateSortableAttributes", function(){
 					var response = model.updateSortableAttributes( "products", [ "title", "price" ] );
-					expect( response.isSuccess() );
+					expect( response.isSuccess() ).toBeTrue();
 					var result = response.json();
 					// debug( result );
 					expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
@@ -440,7 +440,7 @@ component extends="BaseModelTest" appMapping="root" {
 				} );
 				it( "resetSortableAttributes", function(){
 					var response = model.resetSortableAttributes( "products" );
-					expect( response.isSuccess() );
+					expect( response.isSuccess() ).toBeTrue();
 					var result = response.json();
 					// debug( result );
 					expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
@@ -448,14 +448,14 @@ component extends="BaseModelTest" appMapping="root" {
 				} );
 				it( "getStopWords", function(){
 					var response = model.getStopWords( "products" );
-					expect( response.isSuccess() );
+					expect( response.isSuccess() ).toBeTrue();
 					var result = response.json();
 					// debug( result );
 					expect( result ).toBeArray().toHaveLength( 0 );
 				} );
 				it( "updateStopWords", function(){
 					var response = model.updateStopWords( "products", [ "of", "the", "and" ] );
-					expect( response.isSuccess() );
+					expect( response.isSuccess() ).toBeTrue();
 					var result = response.json();
 					// debug( result );
 					expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
@@ -463,7 +463,7 @@ component extends="BaseModelTest" appMapping="root" {
 				} );
 				it( "resetStopWords", function(){
 					var response = model.resetStopWords( "products" );
-					expect( response.isSuccess() );
+					expect( response.isSuccess() ).toBeTrue();
 					var result = response.json();
 					// debug( result );
 					expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
@@ -471,7 +471,7 @@ component extends="BaseModelTest" appMapping="root" {
 				} );
 				it( "getSynonyms", function(){
 					var response = model.getSynonyms( "products" );
-					expect( response.isSuccess() );
+					expect( response.isSuccess() ).toBeTrue();
 					var result = response.json();
 					// debug( result );
 					expect( result ).toBeStruct().toBeEmpty();
@@ -484,7 +484,7 @@ component extends="BaseModelTest" appMapping="root" {
 							"Born"    : [ "Bourne", "Jason" ]
 						}
 					);
-					expect( response.isSuccess() );
+					expect( response.isSuccess() ).toBeTrue();
 					var result = response.json();
 					// debug( result );
 					expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
@@ -492,7 +492,7 @@ component extends="BaseModelTest" appMapping="root" {
 				} );
 				it( "resetSynonyms", function(){
 					var response = model.resetSynonyms( "products" );
-					expect( response.isSuccess() );
+					expect( response.isSuccess() ).toBeTrue();
 					var result = response.json();
 					// debug( result );
 					expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
@@ -500,7 +500,7 @@ component extends="BaseModelTest" appMapping="root" {
 				} );
 				it( "getTypoTolerance", function(){
 					var response = model.getTypoTolerance( "products" );
-					expect( response.isSuccess() );
+					expect( response.isSuccess() ).toBeTrue();
 					var result = response.json();
 					// debug( result );
 					expect( result ).toBeStruct().toHaveKey( "minWordSizeForTypos" );
@@ -514,7 +514,7 @@ component extends="BaseModelTest" appMapping="root" {
 							"disableOnAttributes" : [ "name" ]
 						}
 					);
-					expect( response.isSuccess() );
+					expect( response.isSuccess() ).toBeTrue();
 					var result = response.json();
 					// debug( result );
 					expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
@@ -522,7 +522,7 @@ component extends="BaseModelTest" appMapping="root" {
 				} );
 				it( "resetTypoTolerance", function(){
 					var response = model.resetTypoTolerance( "products" );
-					expect( response.isSuccess() );
+					expect( response.isSuccess() ).toBeTrue();
 					var result = response.json();
 					// debug( result );
 					expect( result ).toBeStruct().toHaveKey( "enqueuedAt" );
@@ -531,7 +531,7 @@ component extends="BaseModelTest" appMapping="root" {
 				it( "All tasks succeeded", function(){
 					variables.taskIds.each( ( taskUID ) => {
 						var response = model.getTask( taskUID );
-						expect( response.isSuccess() );
+						expect( response.isSuccess() ).toBeTrue();
 						var result = response.json();
 						// debug( result );
 						expect( result.status ).toBe( "succeeded" );
@@ -541,7 +541,7 @@ component extends="BaseModelTest" appMapping="root" {
 			describe( "Dumps", function(){
 				it( "can create dump", function(){
 					var response = model.createDump();
-					expect( response.isSuccess() );
+					expect( response.isSuccess() ).toBeTrue();
 					var result = response.json();
 
 					// debug( result );
@@ -551,7 +551,7 @@ component extends="BaseModelTest" appMapping="root" {
 			describe( "Version", function(){
 				it( "can get version", function(){
 					var response = model.version();
-					expect( response.isSuccess() );
+					expect( response.isSuccess() ).toBeTrue();
 					var result = response.json();
 
 					// debug( result );
@@ -561,7 +561,7 @@ component extends="BaseModelTest" appMapping="root" {
 			describe( "Stats", function(){
 				it( "can get individual index stats", function(){
 					var response = model.stats( "products" );
-					expect( response.isSuccess() );
+					expect( response.isSuccess() ).toBeTrue();
 					var result = response.json();
 
 					// debug( result );
@@ -570,7 +570,7 @@ component extends="BaseModelTest" appMapping="root" {
 
 				it( "can get all stats for all indexes", function(){
 					var response = model.stats();
-					expect( response.isSuccess() );
+					expect( response.isSuccess() ).toBeTrue();
 					var result = response.json();
 
 					// debug( result );
@@ -588,7 +588,7 @@ component extends="BaseModelTest" appMapping="root" {
 						"q" : "watch",
 						"attributesToHighlight" : [ "title" ]
 					} );
-					expect( response.isSuccess() );
+					expect( response.isSuccess() ).toBeTrue();
 					var result = response.json();
 
 					// debug( result );
@@ -602,7 +602,7 @@ component extends="BaseModelTest" appMapping="root" {
 						// TODO: Investigate  array-to-string casting issue in Hyper.
 						"attributesToHighlight" : "title"
 					} );
-					expect( response.isSuccess() );
+					expect( response.isSuccess() ).toBeTrue();
 					var result = response.json();
 
 					// debug( result );
