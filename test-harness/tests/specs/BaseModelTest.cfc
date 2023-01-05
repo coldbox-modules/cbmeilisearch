@@ -19,7 +19,6 @@ component extends="coldbox.system.testing.BaseModelTest" {
 			getWirebox().autowire( variables.model );
 		}
 
-		getMeilisearchVersion();
 		ensureTestIndexExists();
 		addTestDocuments();
 	}
@@ -49,15 +48,17 @@ component extends="coldbox.system.testing.BaseModelTest" {
 		var host = !isNull( system.getEnv('MEILISEARCH_HOST') ) ? system.getEnv('MEILISEARCH_HOST') : "127.0.0.1";
 		var port = !isNull( system.getEnv('MEILISEARCH_PORT') ) ? system.getEnv('MEILISEARCH_PORT') : "7700";
 
+		local.result          = "";
 		cfhttp( url = "#host#:#port#/version", result = "local.result"){
 			cfhttpparam( name = "Authorization", type="header", value = "Bearer #system.getEnv( 'MEILISEARCH_MASTER_KEY' )#" );
 		}
 	
-		if ( local.result.status_code == "504" ){
+		if ( local.result.responseheader.status_code == "504" ){
 			throw( "Meilisearch is not reachable" );
-		} else if ( left( local.result.status_code, 1 ) != 2 ){
+		} else if ( left( local.result.responseheader.status_code, 1 ) != 2 ){
 			throw(
-				message = "Unexpected Meilisearch status code: #local.result.status_code# #local.result.status_text#",
+				message = "Unexpected Meilisearch status code: #local.result.statuscode#",
+				detail = "Used API key #system.getEnv( 'MEILISEARCH_MASTER_KEY' )#",
 				extendedInfo = serializeJSON( local.result )
 			);
 		}
