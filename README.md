@@ -18,14 +18,14 @@ From [the Meilisearch Quickstart guide](https://docs.meilisearch.com/learn/getti
 
 ```bash
 # Fetch the latest version of Meilisearch image from DockerHub
-docker pull getmeili/meilisearch:v0.28
+docker pull getmeili/meilisearch:v0.30
 
 # Launch Meilisearch in development mode with a master key
 docker run --detach --rm \
     -p 7700:7700 \
     -e MEILI_MASTER_KEY='mySecretKey'\
     -v $(pwd)/meili_data:/meili_data \
-    getmeili/meilisearch:v0.28 \
+    getmeili/meilisearch:v0.30 \
     meilisearch \
     --env="development"
 ```
@@ -71,8 +71,9 @@ This library follows the [Meilisearch API reference](https://docs.meilisearch.co
 
 This package guarantees compatibility with Meilisearch versions:
 
-* [`v0.28.0`](https://github.com/meilisearch/meilisearch/releases/tag/v0.28.0) and [`v0.28.1`](https://github.com/meilisearch/meilisearch/releases/tag/v0.28.1)
-* [`v0.29.0`](https://github.com/meilisearch/meilisearch/releases/tag/v0.29.0) and [`v0.29.1`](https://github.com/meilisearch/meilisearch/releases/tag/v0.29.1)
+* [`v0.28.x`](https://github.com/meilisearch/meilisearch/releases/tag/v0.28.0)
+* [`v0.29.x`](https://github.com/meilisearch/meilisearch/releases/tag/v0.29.0)
+* [`v0.30.x`](https://github.com/meilisearch/meilisearch/releases/tag/v0.30.0)
 
 Versions `v0.27.x` and below are NOT supported due to the breaking changes introduced in `v0.28.0`.
 
@@ -85,7 +86,7 @@ Looking to contribute? I'd love to see help in these areas:
   * Add a suite of multitenancy tests 🤖
 * More and better documentation
 * More tests
-* Add [v0.30.0rc0 support](https://github.com/meilisearch/meilisearch/releases/tag/v0.30.0rc0)
+* Add [v0.30 support](https://github.com/meilisearch/meilisearch/releases/tag/v0.30.0)
 
 ## License
 
