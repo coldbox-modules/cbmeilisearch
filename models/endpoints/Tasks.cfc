@@ -33,6 +33,15 @@ component accessors="true" extends="BaseRequest" {
 	}
 
 	/**
+	 * Delete tasks
+	 *
+	 * @link https://docs.meilisearch.com/reference/api/tasks.html#delete-tasks
+	 */
+	public HyperResponse function deleteTasks( struct params = {} ){
+		return HyperClient.setQueryParams( arguments.params ).delete( "/tasks" );
+	}
+
+	/**
 	 * Wait for completion of a given (asynchronous) task.
 	 *
 	 * @url          https://docs.meilisearch.com/reference/api/overview.html#asynchronous-operations

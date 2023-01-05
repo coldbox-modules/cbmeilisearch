@@ -170,6 +170,15 @@ component extends="BaseModelTest" appMapping="root" {
 					expect( response.json().status ).toBe( "enqueued" );
 					expect( response.json().type ).toBe( "taskCancelation" );
 				} );
+				it( "can delete tasks which succeeded or canceled before 2023", function(){
+					var response = variables.model.deleteTasks({
+						"statuses" :"succeeded,canceled",
+						"beforeStartedAt" : "2023-01-01T10:00:00.000000Z"
+					});
+					expect( response.isSuccess() ).toBeTrue();
+					expect( response.json().status ).toBe( "enqueued" );
+					expect( response.json().type ).toBe( "taskDeletion" );
+				} );
 			} );
 
 			describe( "Keys", function(){
