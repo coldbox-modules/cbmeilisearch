@@ -52,10 +52,9 @@ component extends="coldbox.system.testing.BaseModelTest" {
 		cfhttp( url = "#host#:#port#/version", result = "local.result"){
 			cfhttpparam( name = "Authorization", type="header", value = "Bearer #system.getProperty( 'MEILISEARCH_MASTER_KEY' )#" );
 		}
-	
-		if ( local.result.responseheader.status_code == "504" ){
+		if ( 200 < val( local.result.statuscode ) > 299 ){
 			throw( "Meilisearch is not reachable" );
-		} else if ( left( local.result.responseheader.status_code, 1 ) != 2 ){
+		} else if ( left( local.result.statuscode, 1 ) != 2 ){
 			throw(
 				message = "Unexpected Meilisearch status code: #local.result.statuscode#",
 				detail = "Used API key #system.getProperty( 'MEILISEARCH_MASTER_KEY' )#",
