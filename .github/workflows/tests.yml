@@ -23,11 +23,14 @@ jobs:
         meilisearch: [ "v1.0.1" ]
         experimental: [ false ]
         include:
-          - meilisearch: "v0.30", 
+          - meilisearch: "v1.1.0-rc.0"
             cfengine: "lucee@5"
-          - meilisearch: "v0.29", 
+            expiremental: true
+          - meilisearch: "v0.30"
             cfengine: "lucee@5"
-          - meilisearch: "v0.28", 
+          - meilisearch: "v0.29"
+            cfengine: "lucee@5"
+          - meilisearch: "v0.28"
             cfengine: "lucee@5"
     steps:
       - name: Checkout Repository
