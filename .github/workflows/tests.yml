@@ -19,10 +19,10 @@ jobs:
       fail-fast: false
       matrix:
         cfengine: [ "lucee@5", "adobe@2018", "adobe@2021" ]
-        meilisearch: [ "v0.28", "v0.29" ]
+        meilisearch: [ "v0.28", "v0.29", "v0.30" ]
         experimental: [ false ]
         include:
-          - meilisearch: "v0.30"
+          - meilisearch: "v1.0.1"
             cfengine: "lucee@5"
             experimental: true
     steps:
