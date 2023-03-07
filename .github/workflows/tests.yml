@@ -28,10 +28,13 @@ jobs:
             expiremental: true
           - meilisearch: "v0.30"
             cfengine: "lucee@5"
+            expiremental: false
           - meilisearch: "v0.29"
             cfengine: "lucee@5"
+            expiremental: false
           - meilisearch: "v0.28"
             cfengine: "lucee@5"
+            expiremental: false
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3.2.0
