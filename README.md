@@ -18,13 +18,13 @@ From [the Meilisearch Quickstart guide](https://docs.meilisearch.com/learn/getti
 
 ```bash
 # Fetch the latest version of Meilisearch image from DockerHub
-docker pull getmeili/meilisearch:v0.30
+docker pull getmeili/meilisearch:v1.0.1
 
 # Launch Meilisearch in development mode with a master key
 docker run --detach --rm \
     -p 7700:7700 \
     -e MEILI_MASTER_KEY='mySecretKey'\
-    getmeili/meilisearch:v0.30 \
+    getmeili/meilisearch:v1.0.1 \
     meilisearch \
     --env="development"
 ```
@@ -73,6 +73,7 @@ This package guarantees compatibility with Meilisearch versions:
 * [`v0.28.x`](https://github.com/meilisearch/meilisearch/releases/tag/v0.28.0)
 * [`v0.29.x`](https://github.com/meilisearch/meilisearch/releases/tag/v0.29.0)
 * [`v0.30.x`](https://github.com/meilisearch/meilisearch/releases/tag/v0.30.0)
+* [`v1.0.x`](https://github.com/meilisearch/meilisearch/releases/tag/v1.0.0)
 
 Versions `v0.27.x` and below are NOT supported due to the breaking changes introduced in `v0.28.0`.
 
