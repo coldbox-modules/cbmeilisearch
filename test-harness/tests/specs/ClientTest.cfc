@@ -14,7 +14,7 @@ component extends="BaseModelTest" appMapping="root" {
 	function run(){
 		describe( "cbmeilisearch.Client", function(){
 			it( "can initiate", function(){
-				expect( variables.model ).toBeInstanceOf( "cbmeilisearch.models.Client" );
+				expect( variables.model ).toBeInstanceOf( "Client" );
 			} );
 
 			describe( "Indexes", function(){
