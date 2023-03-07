@@ -15,16 +15,20 @@ jobs:
     name: Tests
     continue-on-error: ${{ matrix.experimental }}
     runs-on: ubuntu-20.04
+    timeout-minutes: 20
     strategy:
       fail-fast: false
       matrix:
         cfengine: [ "lucee@5", "adobe@2018", "adobe@2021" ]
-        meilisearch: [ "v0.28", "v0.29", "v0.30" ]
+        meilisearch: [ "v1.0.1" ]
         experimental: [ false ]
         include:
-          - meilisearch: "v1.0.1"
+          - meilisearch: "v0.30", 
             cfengine: "lucee@5"
-            experimental: true
+          - meilisearch: "v0.29", 
+            cfengine: "lucee@5"
+          - meilisearch: "v0.28", 
+            cfengine: "lucee@5"
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3.2.0
