@@ -6,6 +6,7 @@ on:
     branches:
       - development
       - master
+  workflow_dispatch:
 
 env:
   MODULE_ID: cbmeilisearch
@@ -26,7 +27,7 @@ jobs:
     name: Build & Publish
     if: github.repository == 'coldbox-modules/cbmeilisearch'
     needs: tests
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3.2.0

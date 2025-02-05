@@ -14,7 +14,7 @@ jobs:
   tests:
     name: Tests
     continue-on-error: ${{ matrix.experimental }}
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     strategy:
       fail-fast: false
