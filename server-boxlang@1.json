@@ -9,7 +9,7 @@
     "web":{
         "directoryBrowsing":true,
         "http":{
-            "port":"60299"
+            "port":"60277"
         },
         "rewrites":{
             "enable":"true"
